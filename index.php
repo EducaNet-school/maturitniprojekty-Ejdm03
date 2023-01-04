@@ -8,6 +8,10 @@
     <title>Online deníček</title>
     <link rel="stylesheet" href="styl.css">
 </head>
+<body>
+
+
+
 
 
 <ul>

@@ -1,3 +1,37 @@
+
+<?php
+$servername="localhost";
+$db="onlineD";
+$username="root";
+$password="";
+
+
+//připojení do db
+
+$conn = new mysqli ($servername,$username,$password,$db);
+ //zkontorluj pripojeni
+
+if (!$conn) {
+die("Connection failed: ");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
