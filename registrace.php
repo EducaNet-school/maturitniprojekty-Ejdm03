@@ -1,7 +1,7 @@
 
 <?php
 $servername="localhost";
-$db="onlineD";
+$db="onlined";
 $username="root";
 $password="";
 
@@ -15,23 +15,21 @@ if (!$conn) {
 die("Connection failed: ");
 }
 
+if (isset($POST["ok"])) {
 
 
+$jmeno= $_POST["jmeno"];
+$prijmeni=$_POST["prijmeni"];
+$email=$_POST["email"];
+$heslo=$_POST["heslo"];
 
+$insert="INSERT INTO users (firstname, surname, email, password) VALUES ('$jmeno','$prijmeni','$email','$heslo') ";
+$query=mysqli_query($conn, $insert);
 
-
-
-
-
-
-
+}
 
 
 ?>
-
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,17 +55,26 @@ die("Connection failed: ");
 <br>
 
 <div class="registrace">
-<form method="post" action="post">
-    <label for="jmeno">Jméno</label>
+<form method="post" action="registrace.php">
+    <div class="registraceformular">
+        <label for="jmeno">Jméno</label>
+    </div>
+
     <input type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
     <br>
-    <label for="prijmeni">Příjmení</label>
+    <div class="registraceformular">
+        <label for="prijmeni">Příjmení</label>
+    </div>
     <input type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
     <br>
-    <label for="email">Email</label>
+    <div class="registraceformular">
+        <label for="email">Email</label>
+    </div>
     <input type="email" id="email" name="email" placeholder="Zadej zde svůj email">
     <br>
-    <label for="heslo">Heslo</label>
+    <div class="registraceformular">
+        <label for="heslo">Heslo</label>
+    </div>
     <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
     <br>
     <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
