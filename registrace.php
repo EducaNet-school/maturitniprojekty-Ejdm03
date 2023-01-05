@@ -1,31 +1,30 @@
 
 <?php
-$servername="localhost";
-$db="onlined";
-$username="root";
-$password="";
 
+$servername = "localhost";
+$db = "onlined";
+$username = "root";
+$password = "";
 
-//připojení do db
+// pripojeni do db
+$conn = mysqli_connect($servername, $username, $password, $db);
 
-$conn = new mysqli ($servername,$username,$password,$db);
- //zkontorluj pripojeni
-
+// pripojeni kontrola
 if (!$conn) {
-die("Connection failed: ");
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($POST["ok"])) {
+if (isset($_POST["ok"])) {
+    $jmeno = $_POST["jmeno"];
+    $prijmeni = $_POST["prijmeni"];
+    $email = $_POST["email"];
+    $heslo = $_POST["heslo"];
 
-
-$jmeno= $_POST["jmeno"];
-$prijmeni=$_POST["prijmeni"];
-$email=$_POST["email"];
-$heslo=$_POST["heslo"];
-
-$insert="INSERT INTO users (firstname, surname, email, password) VALUES ('$jmeno','$prijmeni','$email','$heslo') ";
-$query=mysqli_query($conn, $insert);
-
+    $insert = "INSERT INTO users (firstname, surname, email, password) VALUES ('$jmeno','$prijmeni','$email','$heslo') ";
+    $result = mysqli_query($conn, $insert);
+    if (!$result) {
+        die("Chyba v prikazu " . mysqli_error($conn));
+    }
 }
 
 

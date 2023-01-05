@@ -1,3 +1,48 @@
+<?php
+$servername = "localhost";
+$db = "onlined";
+$username = "root";
+$password = "";
+
+
+
+
+
+// potvrzeni
+if (isset($_POST['ok'])) {
+    // Get the form data
+    $email = $_POST['email'];
+    $heslo = $_POST['heslo'];
+
+
+
+    // pripojeni do db
+    $dbb = mysqli_connect($servername, $username, $password, $db);
+
+    // kontrola
+    $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
+    $result = mysqli_query($dbb, $query);
+    if (mysqli_num_rows($result) == 1) {
+        // jestli vse sedí, presmeruje uzivatele na dalsi stranku
+
+        header('Location: denicek.php');
+    } else {
+        // neco nesedi , vypise
+        $error = "Email nebo Heslo nesedí. Zkus to znovu.";
+    }
+
+    // zavre pripojeni
+    mysqli_close($dbb);
+}
+
+
+?>
+
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +73,7 @@
 
 
 <div class="registrace">
-    <form method="post" action="post">
+    <form method="post" action="prihlaseni.php">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Zadej zde tvůj email">
         <br>
