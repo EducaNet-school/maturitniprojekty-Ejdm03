@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$db = "onlineD";
+$db = "onlined";
 $username = "root";
 $password = "";
 
@@ -10,7 +10,7 @@ $password = "";
 
 // potvrzeni
 if (isset($_POST['ok'])) {
-    // ziskat data
+    // Get the form data
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];
 

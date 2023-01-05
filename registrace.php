@@ -54,30 +54,30 @@ if (isset($_POST["ok"])) {
 <br>
 
 <div class="registrace">
-<form method="post" action="registrace.php">
-    <div class="registraceformular">
-        <label for="jmeno">Jméno</label>
-    </div>
+    <form method="post" action="registrace.php">
+        <div class="registraceformular">
+            <label for="jmeno">Jméno</label>
+        </div>
 
-    <input type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
-    <br>
-    <div class="registraceformular">
-        <label for="prijmeni">Příjmení</label>
-    </div>
-    <input type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
-    <br>
-    <div class="registraceformular">
-        <label for="email">Email</label>
-    </div>
-    <input type="email" id="email" name="email" placeholder="Zadej zde svůj email">
-    <br>
-    <div class="registraceformular">
-        <label for="heslo">Heslo</label>
-    </div>
-    <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
-    <br>
-    <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
-</form>
+        <input type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
+        <br>
+        <div class="registraceformular">
+            <label for="prijmeni">Příjmení</label>
+        </div>
+        <input type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
+        <br>
+        <div class="registraceformular">
+            <label for="email">Email</label>
+        </div>
+        <input type="email" id="email" name="email" placeholder="Zadej zde svůj email">
+        <br>
+        <div class="registraceformular">
+            <label for="heslo">Heslo</label>
+        </div>
+        <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
+        <br>
+        <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
+    </form>
 </div>
 
 </body>
