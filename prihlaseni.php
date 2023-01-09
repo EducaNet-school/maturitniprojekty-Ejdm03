@@ -7,7 +7,6 @@ $password = "";
 
 
 
-
 // potvrzeni
 if (isset($_POST['ok'])) {
     // Get the form data
@@ -16,15 +15,19 @@ if (isset($_POST['ok'])) {
 
 
 
+
     // pripojeni do db
     $dbb = mysqli_connect($servername, $username, $password, $db);
 
     // kontrola
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
+
     $result = mysqli_query($dbb, $query);
+    $row=mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
         // jestli vse sedí, presmeruje uzivatele na dalsi stranku
 
+        setcookie("id",$row["id"]);
         header('Location: denicek.php');
     } else {
         // neco nesedi , vypise
@@ -74,10 +77,14 @@ if (isset($_POST['ok'])) {
 
 <div class="registrace">
     <form method="post" action="prihlaseni.php">
-        <label for="email">Email</label>
+        <div class="registraceformula">
+            <label for="email">Email</label>
+        </div>
         <input type="email" id="email" name="email" placeholder="Zadej zde tvůj email">
         <br>
-        <label for="heslo">Heslo</label>
+        <div class="registraceformula">
+            <label for="heslo">Heslo</label>
+        </div>
         <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
         <br>
         <input type="submit" id="ok" name="ok" placeholder="Přihlásit se">
