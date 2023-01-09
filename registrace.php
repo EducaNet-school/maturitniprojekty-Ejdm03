@@ -1,6 +1,8 @@
 
 <?php
 
+
+
 $servername = "localhost";
 $db = "onlined";
 $username = "root";
@@ -20,7 +22,10 @@ if (isset($_POST["ok"])) {
     $email = $_POST["email"];
     $heslo = $_POST["heslo"];
 
+
+
     $insert = "INSERT INTO users (firstname, surname, email, password) VALUES ('$jmeno','$prijmeni','$email','$heslo') ";
+
     $result = mysqli_query($conn, $insert);
     if (!$result) {
         die("Chyba v prikazu " . mysqli_error($conn));

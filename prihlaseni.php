@@ -7,7 +7,6 @@ $password = "";
 
 
 
-
 // potvrzeni
 if (isset($_POST['ok'])) {
     // Get the form data
@@ -22,6 +21,7 @@ if (isset($_POST['ok'])) {
 
     // kontrola
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
+
     $result = mysqli_query($dbb, $query);
     $row=mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
