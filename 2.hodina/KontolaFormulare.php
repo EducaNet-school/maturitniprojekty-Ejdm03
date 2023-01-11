@@ -26,9 +26,9 @@
 
 
 <form action="KontolaFormulare.php" method="post">
-    <label for="name">Jmeno a Příjmení:</label>
+    <label for="jmeno">Jmeno a Příjmení:</label>
     <input type="text" id="jmeno" name="jmeno"><br>
-    <label for="address">Adresa:</label>
+    <label for="adresa">Adresa:</label>
     <input type="text" id="adresa" name="adresa"><br>
     <input type="submit" value="ok" name="ok">
 </form>
