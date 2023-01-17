@@ -6,3 +6,8 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `admin` int(5) DEFAULT NULL
 )
+
+
+
+
+
