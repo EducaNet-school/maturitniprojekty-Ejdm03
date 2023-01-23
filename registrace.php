@@ -1,8 +1,6 @@
 
 <?php
 
-
-
 $servername = "localhost";
 $db = "onlined";
 $username = "root";
@@ -17,14 +15,18 @@ if (!$conn) {
 }
 
 if (isset($_POST["ok"])) {
+    if ($_POST["adminheslo"] == "7p+CwFm4HTpOpUB4W8yqrqy6gWKG5kRMvYMDU2GX1x8=") {
+        $admin_value = 1;
+    } else {
+        $admin_value = 0;
+    }
+
     $jmeno = $_POST["jmeno"];
     $prijmeni = $_POST["prijmeni"];
     $email = $_POST["email"];
     $heslo = $_POST["heslo"];
 
-
-
-    $insert = "INSERT INTO users (firstname, surname, email, password) VALUES ('$jmeno','$prijmeni','$email','$heslo') ";
+    $insert = "INSERT INTO users (firstname, surname, email, password, adminRole) VALUES ('$jmeno','$prijmeni','$email','$heslo', $admin_value) ";
 
     $result = mysqli_query($conn, $insert);
     if (!$result) {
@@ -64,23 +66,28 @@ if (isset($_POST["ok"])) {
             <label for="jmeno">Jméno</label>
         </div>
 
-        <input type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
+        <input required type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
         <br>
         <div class="registraceformular">
             <label for="prijmeni">Příjmení</label>
         </div>
-        <input type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
+        <input required type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
         <br>
         <div class="registraceformular">
             <label for="email">Email</label>
         </div>
-        <input type="email" id="email" name="email" placeholder="Zadej zde svůj email">
+        <input required type="email" id="email" name="email" placeholder="Zadej zde svůj email">
         <br>
         <div class="registraceformular">
             <label for="heslo">Heslo</label>
         </div>
-        <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
+        <input required type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
         <br>
+        <div class="registraceformular">
+           <label for="adminhest">Admin Heslo</label>
+        </div>
+        <input type="password" id="adminheslo" name="adminheslo" placeholder="Zadej heslo pro Admina">
+               <br>
         <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
     </form>
 </div>

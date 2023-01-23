@@ -1,12 +1,26 @@
 CREATE TABLE `users` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `id` int(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
-  `admin` int(5) DEFAULT NULL
+  `adminRole` int(5) DEFAULT NULL
 )
 
+
+
+
+
+
+
+
+// denik s nazvem
+
+
+CREATE TABLE `denik`(
+`idd` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`jmeno` VARCHAR(255)
+)
 
 
 

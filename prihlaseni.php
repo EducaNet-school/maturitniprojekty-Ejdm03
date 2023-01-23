@@ -25,10 +25,14 @@ if (isset($_POST['ok'])) {
     $result = mysqli_query($dbb, $query);
     $row=mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
-        // jestli vse sedí, presmeruje uzivatele na dalsi stranku
-
-        setcookie("id",$row["id"]);
-        header('Location: denicek.php');
+        // check if user is admin
+        if ($row["adminRole"] == 1) {
+            setcookie("id",$row["id"]);
+            header('Location: Admindashboard.php');
+        } else {
+            setcookie("id",$row["id"]);
+            header('Location: denicek.php');
+        }
     } else {
         // neco nesedi , vypise
         $error = "Email nebo Heslo nesedí. Zkus to znovu.";
