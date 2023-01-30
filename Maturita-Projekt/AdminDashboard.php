@@ -44,16 +44,28 @@ $result = mysqli_query($conn, $query);
     ?>
         <tr>
             <td><?php echo $row["id"]; ?></td>
-            <td><?php echo $row["name"]; ?></td>
+            <td><?php echo $row["firstname"]; ?></td>
             <td><?php echo $row["surname"]; ?></td>
             <td><?php echo $row["email"]; ?></td>
             <td><?php echo $adminRole; ?></td>
             <td>
                 <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
-                <a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
+                <a href="#" onclick="confirmDelete(<?php echo $row["id"]; ?>)">Delete</a>
             </td>
         </tr>
     <?php } ?>
 </table>
+<script>
+    function confirmDelete(id) {
+        var confirmDelete = confirm("Are you sure you want to delete this user?");
+        if (confirmDelete == true) {
+            window.location.replace("delete.php?id=" + id);
+        } else {
+            return false;
+        }
+    }
+</script>
+
+
 </body>
 </html>
