@@ -25,6 +25,12 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
+<nav>
+    <a href="AdminDashboard.php">Users</a>
+    <a href="#">Profile</a>
+    <a href="logout.php">Logout</a>
+</nav>
+
 <h1>Admin Dashboard</h1>
 <table>
     <tr>
