@@ -13,6 +13,24 @@ if (!$conn) {
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
+
+$role = "";
+
+
+if(isset($_POST["role"])) {
+    $role = $_POST["role"];
+
+    if ($role == "0" or $role==1) {
+        $query = "SELECT * FROM users WHERE adminRole = '$role'";
+        $result = mysqli_query($conn, $query);
+    }
+
+    } elseif (!!$role == "1") {
+
+        $query = "SELECT * FROM users";
+        $result = mysqli_query($conn, $query);
+}
+
 ?>
 <!doctype html>
 <html lang="cz">
@@ -27,11 +45,33 @@ $result = mysqli_query($conn, $query);
 <body>
 <nav>
     <a href="AdminDashboard.php">Users</a>
-    <a href="#">Profile</a>
+    <a href="find.php">Hledání</a>
     <a href="logout.php">Logout</a>
 </nav>
 
 <h1>Admin Dashboard</h1>
+
+
+
+
+<div class="custom-select">
+<form action="AdminDashboard.php" method="POST">
+    <select name="role" id="role">
+        <option value="">--Select Role--</option>
+        <option value="0" <?php if($role == "0") {echo "selected";} ?>>Users</option>
+        <option value="1" <?php if($role == "1") {echo "selected";} ?>>Admins</option>
+        <option value="3" <?php echo "selected"; ?>>ALL</option>
+    </select>
+    <div class="filtr">
+    <input type="submit" value="Filter">
+    </div>
+</form>
+</div>
+<br>
+<h1>Celkem <?php echo mysqli_num_rows($result); ?> Uživatelé</h1>
+<br>
+
+
 <table>
     <tr>
         <th>ID</th>
@@ -56,11 +96,15 @@ $result = mysqli_query($conn, $query);
             <td><?php echo $adminRole; ?></td>
             <td>
                 <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
+                <a href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>
                 <a href="#" onclick="confirmDelete(<?php echo $row["id"]; ?>)">Delete</a>
             </td>
         </tr>
     <?php } ?>
 </table>
+
+
+
 <script>
     function confirmDelete(id) {
         var confirmDelete = confirm("Are you sure you want to delete this user?");
@@ -70,6 +114,83 @@ $result = mysqli_query($conn, $query);
             return false;
         }
     }
+    var x, i, j, l, ll, selElmnt, a, b, c;
+    /* Look for any elements with the class "custom-select": */
+    x = document.getElementsByClassName("custom-select");
+    l = x.length;
+    for (i = 0; i < l; i++) {
+        selElmnt = x[i].getElementsByTagName("select")[0];
+        ll = selElmnt.length;
+        /* For each element, create a new DIV that will act as the selected item: */
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        /* For each element, create a new DIV that will contain the option list: */
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < ll; j++) {
+
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function(e) {
+
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        yl = y.length;
+                        for (k = 0; k < yl; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function(e) {
+
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+
+    function closeAllSelect(elmnt) {
+
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+
+
+    document.addEventListener("click", closeAllSelect);
+
+
 </script>
 
 
