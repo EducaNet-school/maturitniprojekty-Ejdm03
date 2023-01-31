@@ -1,14 +1,13 @@
 <?php
-
+//ID KONTROLA ZATIM
 $id=$_COOKIE["id"];
-
-
-
-
-
 echo "<h1>";
 echo  $id;
 echo "</h1>";
+
+
+
+
 
 
 ?>
