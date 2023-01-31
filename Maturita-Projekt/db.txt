@@ -4,7 +4,8 @@ CREATE TABLE `users` (
   `surname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
-  `adminRole` int(5) DEFAULT NULL
+  `adminRole` int(5) DEFAULT NULL,
+  `Block` int(10) DEFAULT NULL
 )
 
 
@@ -21,6 +22,16 @@ CREATE TABLE `denik`(
 `idd` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `jmeno` VARCHAR(255)
 )
+
+
+CREATE TABLE `U2D`(
+`id_zapis` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`id_u` INT(100) NOT NULL,
+`id_d` INT(100) NOT NULL,
+ FOREIGN KEY(id_u) REFERENCES users(id),
+ FOREIGN KEY(id_d) REFERENCES denik(idd)
+)
+
 
 
 
