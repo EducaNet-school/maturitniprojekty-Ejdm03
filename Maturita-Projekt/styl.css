@@ -209,7 +209,7 @@ nav a {
 }
 
 #search-container {
-    width: 1000px;
+    width: 1250px;
     margin: 50px auto;
 }
 #search {
@@ -221,7 +221,7 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1000px;
+    width: 1250px;
     padding: 10px;
     text-align: center;
     margin-top: 10px;
@@ -229,4 +229,17 @@ nav a {
     background-color: #8b2424;
 }
 
+.banicek{
+    font-size: 72px;
+    color: red;
+    text-align: center;
+}
 
+.error-message{
+    color: #960909;
+
+}
+
+.success-message{
+    color: #37f600;
+}

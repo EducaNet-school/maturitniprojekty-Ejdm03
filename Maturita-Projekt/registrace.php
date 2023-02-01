@@ -26,11 +26,21 @@ if (isset($_POST["ok"])) {
     $email = $_POST["email"];
     $heslo = $_POST["heslo"];
 
-    $insert = "INSERT INTO users (firstname, surname, email, password, adminRole) VALUES ('$jmeno','$prijmeni','$email','$heslo', $admin_value) ";
+    // Kontrola, zda e-mail není již použitý
+    $select_email = "SELECT email FROM users WHERE email='$email'";
+    $email_result = mysqli_query($conn, $select_email);
 
-    $result = mysqli_query($conn, $insert);
-    if (!$result) {
-        die("Chyba v prikazu " . mysqli_error($conn));
+    if (mysqli_num_rows($email_result) > 0) {
+        $usedem= "Tento e-mail je již použitý";
+        echo $usedem;
+    } else {
+        $reg="Úspěšne jsi se registroval";
+        $insert = "INSERT INTO users (firstname, surname, email, password, adminRole) VALUES ('$jmeno','$prijmeni','$email','$heslo', $admin_value) ";
+        echo $reg;
+        $result = mysqli_query($conn, $insert);
+        if (!$result) {
+            die("Chyba v prikazu " . mysqli_error($conn));
+        }
     }
 }
 
@@ -88,6 +98,12 @@ if (isset($_POST["ok"])) {
         </div>
         <input type="password" id="adminheslo" name="adminheslo" placeholder="Zadej heslo pro Admina">
                <br>
+        <?php if (isset($usedem)): ?>
+            <h3 class="error-message"><?php echo $usedem; ?></h3>
+        <?php endif; ?>
+        <?php if (isset($reg)): ?>
+            <h3 class="success-message"><?php echo $reg; ?></h3>
+        <?php endif; ?>
         <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
     </form>
 </div>

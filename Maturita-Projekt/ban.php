@@ -28,8 +28,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-    <!doctype html>
-    <html lang="cz">
+<!doctype html>
+<html lang="cz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -40,23 +40,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <h1>Edit User</h1>
+<table>
+    <<tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Admin Role</th>
+        <th>Ban</th>
+    </tr
+    <tr>
+        <td><?php echo $row["id"]; ?></td>
+        <td><?php echo $row["firstname"]; ?></td>
+        <td><?php echo $row["surname"]; ?></td>
+        <td><?php echo $row["email"]; ?></td>
+        <td><?php echo ($row["adminRole"] == 0) ? "User" : "Admin"; ?></td>
+        <td><?php echo ($row["Block"] == 0) ? "No" : "Banned"; ?></td>
+    </tr>
+</table>
+<br>
 <form method="post">
-    <label>Name:</label>
-    <input type="text" name="firstname" placeholder="<?php echo $row['firstname']; ?>">
-    <br>
-    <label>Surname:</label>
-    <input type="text" name="surname" placeholder="<?php echo $row['surname']; ?>">
-    <br>
-    <label>Email:</label>
-    <input type="email" name="email" placeholder="<?php echo $row['email']; ?>">
-    <br>
     <select name="ban">
-        <option value="0" <?php if($row['adminRole'] == "No") { echo 'selected'; } ?>>Neblokovat</option>
-        <option value="1" <?php if($row['adminRole'] == "Yes") { echo 'selected'; } ?>>Zabanovat</option>
+        <option value="0" <?php if($row['adminRole'] == "No") { echo 'selected'; } ?>>Odblokovat</option>
+        <option value="1" <?php if($row['adminRole'] == "Yes") { echo 'selected'; } ?>>Zablokovat</option>
     </select>
-    <br>
+    <br><br>
     <input type="submit" value="Update">
 </form>
 </body>
-    </html>
-<?php
+</html>

@@ -79,21 +79,33 @@ if(isset($_POST["role"])) {
         <th>Surname</th>
         <th>Email</th>
         <th>Admin Role</th>
+        <th>Ban</th>
         <th>Actions</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) {
-    if ($row["adminRole"] == 0) {
-        $adminRole = "User";
-    } else if ($row["adminRole"] == 1) {
-        $adminRole = "Admin";
-    }
-    ?>
+        if ($row["adminRole"] == 0) {
+            $adminRole = "User";
+        } else if ($row["adminRole"] == 1) {
+            $adminRole = "Admin";
+        }
+
+        if($row["Block"]== 0){
+            $userBlock = "No";
+        } elseif ($row["Block"]==1){
+            $userBlock = "Banned";
+        }
+
+
+
+        ?>
+
         <tr>
             <td><?php echo $row["id"]; ?></td>
             <td><?php echo $row["firstname"]; ?></td>
             <td><?php echo $row["surname"]; ?></td>
             <td><?php echo $row["email"]; ?></td>
             <td><?php echo $adminRole; ?></td>
+            <td><?php echo $userBlock; ?></td>
             <td>
                 <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
                 <a href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>

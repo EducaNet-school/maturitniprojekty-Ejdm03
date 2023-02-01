@@ -18,6 +18,9 @@ if (isset($_POST['ok'])) {
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
     $result = mysqli_query($dbb, $query);
     $row=mysqli_fetch_assoc($result);
+
+
+
     if (mysqli_num_rows($result) == 1) {
 
         if ($row["Block"] == 1) {
@@ -31,7 +34,8 @@ if (isset($_POST['ok'])) {
             setcookie("id",$row["id"]);
             header('Location: denicek.php');
         }
-    } else {
+    }
+    else {
         // neco nesedi , vypise
         $error = "Email nebo Heslo nesedí. Zkus to znovu.";
         echo $error;
@@ -40,8 +44,6 @@ if (isset($_POST['ok'])) {
     // zavre pripojeni
     mysqli_close($dbb);
 }
-
-
 ?>
 
 
@@ -90,6 +92,12 @@ if (isset($_POST['ok'])) {
         </div>
         <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
         <br>
+        <?php if (isset($error)): ?>
+            <h3 class="error-message"><?php echo $error; ?></h3>
+        <?php endif; ?>
+
+
+
         <input type="submit" id="ok" name="ok" placeholder="Přihlásit se">
     </form>
 </div>
