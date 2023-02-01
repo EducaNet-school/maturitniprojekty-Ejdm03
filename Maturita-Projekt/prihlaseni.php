@@ -12,30 +12,29 @@ if (isset($_POST['ok'])) {
     // Get the form data
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];
-
-
-
-
     // pripojeni do db
     $dbb = mysqli_connect($servername, $username, $password, $db);
-
     // kontrola
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
-
     $result = mysqli_query($dbb, $query);
     $row=mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
+
+        if ($row["Block"] == 1) {
+            header('Location: Banned.php');
+        }
         // check if user is admin
-        if ($row["adminRole"] == 1) {
+        elseif ($row["adminRole"] == 1) {
             setcookie("id",$row["id"]);
             header('Location: Admindashboard.php');
-        } else {
+        } elseif ($row["adminRole"] == 0) {
             setcookie("id",$row["id"]);
             header('Location: denicek.php');
         }
     } else {
         // neco nesedi , vypise
         $error = "Email nebo Heslo nesedí. Zkus to znovu.";
+        echo $error;
     }
 
     // zavre pripojeni

@@ -1,15 +1,4 @@
 <?php
-//ID KONTROLA ZATIM
-$id=$_COOKIE["id"];
-echo "<h1>";
-echo  $id;
-echo "</h1>";
-
-
-
-
-
-
 ?>
 
 
@@ -23,9 +12,8 @@ echo "</h1>";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-
+<H1>banneD</H1>
 </body>
 </html>

@@ -9,7 +9,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Fetchne Data
+//Fetch data from users table
 $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $query);
@@ -20,15 +20,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $surname = $_POST['surname'];
     $email = $_POST['email'];
     $adminRole = $_POST['adminRole'];
+    $block= $_POST['ban'];
 
-    $query = "UPDATE users SET firstname='$firstname', surname='$surname', email='$email', adminRole='$adminRole' WHERE id = $id";
+    $query = "UPDATE users SET Block='$block' WHERE id = $id";
     mysqli_query($conn, $query);
     header("location:AdminDashboard.php");
 }
 
 ?>
-<!doctype html>
-<html lang="cz">
+    <!doctype html>
+    <html lang="cz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -41,21 +42,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Edit User</h1>
 <form method="post">
     <label>Name:</label>
-    <input type="text" name="firstname" value="<?php echo $row['firstname']; ?>">
+    <input type="text" name="firstname" placeholder="<?php echo $row['firstname']; ?>">
     <br>
     <label>Surname:</label>
-    <input type="text" name="surname" value="<?php echo $row['surname']; ?>">
+    <input type="text" name="surname" placeholder="<?php echo $row['surname']; ?>">
     <br>
     <label>Email:</label>
-    <input type="email" name="email" value="<?php echo $row['email']; ?>">
+    <input type="email" name="email" placeholder="<?php echo $row['email']; ?>">
     <br>
-    <label>Admin Role:</label>
-    <select name="adminRole">
-        <option value="0" <?php if($row['adminRole'] == 0) { echo 'selected'; } ?>>User</option>
-        <option value="1" <?php if($row['adminRole'] == 1) { echo 'selected'; } ?>>Admin</option>
+    <select name="ban">
+        <option value="0" <?php if($row['adminRole'] == "No") { echo 'selected'; } ?>>Neblokovat</option>
+        <option value="1" <?php if($row['adminRole'] == "Yes") { echo 'selected'; } ?>>Zabanovat</option>
     </select>
     <br>
     <input type="submit" value="Update">
 </form>
 </body>
-</html>
+    </html>
+<?php

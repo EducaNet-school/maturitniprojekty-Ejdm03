@@ -8,6 +8,6 @@ if(isset($_COOKIE['id'])) {
 }
 
 session_destroy();
-header("Location: index.php");
+header("Location: prihlaseni.php");
 exit();
 ?>
