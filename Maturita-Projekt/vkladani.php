@@ -1,5 +1,4 @@
 <?php
-
 $id = $_COOKIE["id"];
 
 $servername = "localhost";
@@ -12,21 +11,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//vyber from u2d kde id_u = $id
-$sql = "SELECT id_d FROM u2d WHERE id_u = '$id'";
+//Výběr jména deníku z tabulky "denik", kde "idd" = "$id"
+$sql = "SELECT jmeno FROM denik WHERE idd = '$id'";
 $result = mysqli_query($conn, $sql);
 
-//jestli to neco vrati
 if (mysqli_num_rows($result) > 0) {
-    //jestli tam neco je uloz id deniku
     $row = mysqli_fetch_assoc($result);
-    setcookie("id_deniku", $row["id_d"]);
-
-    //jestli tu neco je prehod na
-    header("Location: vkladani.php");
-} else {
-    //pokud tu nic neni prehod na
-    header("Location: dname.php");
+    $diaryName = $row["jmeno"];
 }
 
 mysqli_close($conn);
@@ -39,10 +30,16 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Vkladani</title>
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
+<nav>
+    <a href="logout.php">Logout</a>
+</nav>
 
+
+<h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
+<!-- Dál pokračovat s vkládaním zípisku potrebva udelat databazi-->
 </body>
 </html>
