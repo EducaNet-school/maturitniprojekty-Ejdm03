@@ -53,7 +53,7 @@ $result = mysqli_query($conn, $query);
                 return false;
             }
         }
-        
+
 
     </script>
 </head>
