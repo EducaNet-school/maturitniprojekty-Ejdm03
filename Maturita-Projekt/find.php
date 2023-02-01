@@ -24,6 +24,7 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="styl.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+
         $(document).ready(function(){
             $("#search").keyup(function(){
                 var searchTerm = $(this).val();
@@ -43,6 +44,17 @@ $result = mysqli_query($conn, $query);
                 }
             });
         });
+
+        function confirmDelete(id) {
+            var confirmDelete = confirm("Are you sure you want to delete this user?");
+            if (confirmDelete == true) {
+                window.location.replace("delete.php?id=" + id);
+            } else {
+                return false;
+            }
+        }
+
+
     </script>
 </head>
 <body>
