@@ -198,8 +198,6 @@ if(isset($_POST["role"])) {
             }
         }
     }
-
-
     document.addEventListener("click", closeAllSelect);
 
 

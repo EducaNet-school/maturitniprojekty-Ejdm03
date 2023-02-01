@@ -34,9 +34,9 @@ if (isset($_POST["ok"])) {
         $usedem= "Tento e-mail je již použitý";
         echo $usedem;
     } else {
-        $reg="Úspěšne jsi se registroval";
+        $reg="Úspěšne jsi se registroval, teď se můžeš přihlásit ";
         $insert = "INSERT INTO users (firstname, surname, email, password, adminRole) VALUES ('$jmeno','$prijmeni','$email','$heslo', $admin_value) ";
-        echo $reg;
+        echo $reg  ;
         $result = mysqli_query($conn, $insert);
         if (!$result) {
             die("Chyba v prikazu " . mysqli_error($conn));
@@ -99,10 +99,11 @@ if (isset($_POST["ok"])) {
         <input type="password" id="adminheslo" name="adminheslo" placeholder="Zadej heslo pro Admina">
                <br>
         <?php if (isset($usedem)): ?>
-            <h3 class="error-message"><?php echo $usedem; ?></h3>
+            <h3 class="error-message"><?php echo $usedem?></h3>
         <?php endif; ?>
+
         <?php if (isset($reg)): ?>
-            <h3 class="success-message"><?php echo $reg; ?></h3>
+            <h3 class="success-message"><?php echo $reg.'<a href="prihlaseni.php">Zde</a>'; ?></h3>
         <?php endif; ?>
         <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
     </form>
