@@ -42,7 +42,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
         echo '<td>';
         echo '<a href="edit.php?id=' . $row["id"] . '">Edit </a>';
         echo '<a href="ban.php?id=' . $row["id"] . '">Ban </a>';
-        echo '<a href="#" onclick="confirmDelete(' . $row["id"] . ')">Delete</a>';
+        echo '<a href="#" onclick="confirmDelete(' . $row["id"] . ');">Delete</a>';
         echo '</td>';
         echo '</tr>';
     }
