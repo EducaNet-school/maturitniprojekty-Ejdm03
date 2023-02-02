@@ -14,15 +14,16 @@ if (!$conn) {
 
 if ($_POST) {
     $description = $_POST["description"];
+    $message = $_POST["message"];
 
-    // Vložení zprávy do tabulky "messages"
-    $sql = "INSERT INTO messages (description, message) VALUES ('$description', '')";
+    // Insert the message into the "messages" table
+    $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
     $result = mysqli_query($conn, $sql);
 
-    // Získání ID vložené zprávy
+    // Get the ID of the inserted message
     $messageId = mysqli_insert_id($conn);
 
-    // Vložení vztahu mezi zprávou a deníkem do tabulky "M2D"
+    // Insert the relationship between the message and diary into the "M2D" table
     $sql = "INSERT INTO M2D (id_m, id_d) VALUES ('$messageId', '$id')";
     $result = mysqli_query($conn, $sql);
 
@@ -39,7 +40,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vkladani</title>
+    <title>Inserting</title>
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
@@ -47,11 +48,15 @@ mysqli_close($conn);
     <a href="logout.php">Logout</a>
     <a href="index.php">Back</a>
 </nav>
-<h1>Přidat zprávu</h1>
-<form action="vkladaniMes.php" method="post">
+<h1>Add Message</h1>
+<form action="addMes.php" method="post">
     <div>
-        <label for="description">Popis:</label>
-        <textarea name="description" id="description"></textarea>
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description">
+    </div>
+    <div>
+        <label for="message">Message:</label>
+        <textarea name="message" id="message"></textarea>
     </div>
     <div>
         <input type="submit" value="Save">

@@ -42,7 +42,7 @@ mysqli_close($conn);
 <body>
 <nav>
     <a href="logout.php">Logout</a>
-    <a hred="addMes.php">Add message</a>
+    <a href="addMes.php">Add message</a>
 </nav>
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
 <table>
@@ -56,8 +56,8 @@ mysqli_close($conn);
             <td><?php echo $row['description']; ?></td>
             <td><?php echo $row['date']; ?></td>
             <td>
-                <a href="editMes.php?id=<?php echo $row["id"]; ?>">Edit</a>
-                <a href="#" onclick="confirmDelete(<?php echo $row["id"]; ?>)">Delete</a>
+                <a href="editMes.php?id=<?php echo $row["id_message"]; ?>">Edit</a>
+                <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)">Delete</a>
             </td>
         </tr>
     <?php } ?>

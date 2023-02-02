@@ -10,7 +10,7 @@ if (!$conn) {
 }
 
 if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+    $id = (int)$_GET["id"];
 
     // Select the message with the given ID
     $sql = "SELECT * FROM messages WHERE id_message = '$id'";
@@ -25,12 +25,12 @@ if (isset($_GET["id"])) {
 }
 
 if (isset($_POST["submit"])) {
-    $id = $_POST["id"];
-    $description = $_POST["description"];
-    $message = $_POST["message"];
+    $id = (int)$_POST["id"];
+    $description = mysqli_real_escape_string($conn, $_POST["description"]);
+    $message = mysqli_real_escape_string($conn, $_POST["message"]);
 
     // Update the message with the given ID
-    $sql = "UPDATE messages SET description = '$description', message = '$message' WHERE id_message = '$id'";
+    $sql = "UPDATE messages SET description = '$description', message = '$message' WHERE id_message = $id";
     mysqli_query($conn, $sql);
 
     header("Location: denikDash.php");
