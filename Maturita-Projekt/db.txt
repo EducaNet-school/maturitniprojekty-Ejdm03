@@ -34,5 +34,18 @@ CREATE TABLE `U2D`(
 
 
 
+//vyzkouset doma
+
+CREATE TABLE `messages`(
+  `id_message` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_u` INT(100) NOT NULL,
+  `id_d` INT(100) NOT NULL,
+  `message` TEXT NOT NULL,
+  `description` TEXT NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(id_u) REFERENCES users(id),
+  FOREIGN KEY(id_d) REFERENCES denik(idd)
+);
+
 
 

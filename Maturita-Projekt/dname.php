@@ -48,7 +48,7 @@ mysqli_close($conn);
 </head>
 <body>
 
-<h1>Dej svému nedíku jméno</h1>
+<h1>Dej svému deníku jméno</h1>
 
 <div class="registrace">
 
