@@ -2,12 +2,7 @@
 
 $id = $_COOKIE["id"];
 
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password, $db);
+include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }

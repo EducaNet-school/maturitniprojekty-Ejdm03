@@ -1,9 +1,5 @@
 <?php
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
+include "connection.php";
 
 
 
@@ -13,7 +9,6 @@ if (isset($_POST['ok'])) {
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];
     // pripojeni do db
-    $conn = mysqli_connect($servername, $username, $password, $db);
     // kontrola
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
     $result = mysqli_query($conn, $query);
@@ -49,7 +44,7 @@ if (isset($_POST['ok'])) {
 
 if (isset($_POST['reset'])) {
     $email = $_POST['reset_email'];
-    $conn = mysqli_connect($servername, $username, $password, $db);
+
     $query = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {

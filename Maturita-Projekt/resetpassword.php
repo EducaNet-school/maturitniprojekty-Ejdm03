@@ -6,17 +6,13 @@ require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\Exception.php';
 require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\PHPMailer.php';
 require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\SMTP.php';
 
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
+include "connection.php";
 
 if (isset($_POST['reset'])) {
     // Get the email from the form
     $email = $_POST['email'];
 
     // pripojeni do db
-    $conn = mysqli_connect($servername, $username, $password, $db);
 
     // Check if the email exists in the database
     $query = "SELECT * FROM users WHERE email='$email'";

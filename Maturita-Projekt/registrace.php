@@ -1,13 +1,7 @@
 
 <?php
 
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
-// pripojeni do db
-$conn = mysqli_connect($servername, $username, $password, $db);
+include "connection.php";
 
 // pripojeni kontrola
 if (!$conn) {
