@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="182f5fc4-85d3-47dd-bd59-425528209882" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/AdminDashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/AdminDashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/addMes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/addMes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/ban.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/ban.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/deleteD.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/deleteD.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/denicek.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/denicek.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/denikDash.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/denikDash.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/dname.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/dname.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/editMes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/editMes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/find.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/find.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/prihlaseni.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/prihlaseni.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/db.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Maturita-Projekt/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/registrace.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/resetpassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/resetpassword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/search.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/search.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/showMes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/showMes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +56,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "inlay.hints",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,7 +95,7 @@
       <workItem from="1675415430401" duration="9151000" />
       <workItem from="1675425332818" duration="529000" />
       <workItem from="1675434227166" duration="1238000" />
-      <workItem from="1675446786025" duration="13776000" />
+      <workItem from="1675446786025" duration="17523000" />
     </task>
     <servers />
   </component>
@@ -124,5 +112,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

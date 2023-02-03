@@ -20,7 +20,7 @@ if ($_POST) {
     $messageId = mysqli_insert_id($conn);
 
     // Vložte vztah mezi zprávou a deníkem do tabulky "M2D".
-    $sql = "INSERT INTO M2D (id_m, id_d) VALUES ('$messageId', '$id')";
+    $sql = "INSERT INTO m2d (id_m, id_d) VALUES ('$messageId', '$id')";
     $result = mysqli_query($conn, $sql);
 
     header("Location: denikDash.php");
