@@ -18,8 +18,8 @@ if (mysqli_num_rows($result) > 0) {
 
 //Výběr zpráv z tabulky "messages", kde "id_d" = "$id" pomocí join s tabulkou "M2D"
 $sql = "SELECT messages.id_message, messages.description, messages.date FROM messages
-JOIN M2D ON messages.id_message = M2D.id_m
-WHERE M2D.id_d = '$id'";
+JOIN m2d ON messages.id_message = m2d.id_m
+WHERE m2d.id_d = '$id'";
 $result = mysqli_query($conn, $sql);
 
 

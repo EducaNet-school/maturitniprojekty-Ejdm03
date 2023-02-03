@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="182f5fc4-85d3-47dd-bd59-425528209882" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/db.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/registrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/registrace.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/showMes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/showMes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/denikDash.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/denikDash.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +91,7 @@
       <workItem from="1675415430401" duration="9151000" />
       <workItem from="1675425332818" duration="529000" />
       <workItem from="1675434227166" duration="1238000" />
-      <workItem from="1675446786025" duration="17523000" />
+      <workItem from="1675446786025" duration="19524000" />
     </task>
     <servers />
   </component>
