@@ -56,7 +56,7 @@ mysqli_close($conn);
     </div>
     <div>
         <label for="message">Message:</label>
-        <textarea name="message" id="message"></textarea>
+        <textarea name="message" id="message" class="message-textarea"></textarea>
     </div>
     <div>
         <input type="submit" value="Save">

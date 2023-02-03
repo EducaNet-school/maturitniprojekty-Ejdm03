@@ -59,6 +59,7 @@ mysqli_close($conn);
 <body>
 <nav>
     <a href="logout.php">Logout</a>
+    <a href="profile.php?id=<?php echo $id; ?>">Edit</a>
     <a href="addMes.php">Add message</a>
 </nav>
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
@@ -77,18 +78,22 @@ mysqli_close($conn);
         </div>
     </div>
     <div class="form-group">
+
+        <div class="Mall">
+            <a href="denikDash.php">Zobrazit vše</a>
+        </div>
         <div class="form-input">
             <input type="submit" value="Filter">
         </div>
     </div>
 </form>
 
-
+<h1>Tvoje zápisky</h1>
 
 <table>
     <tr>
         <th>Popis</th>
-        <th>Datum</th>
+        <th>Datum vytvoření</th>
         <th>Actions</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
@@ -114,6 +119,7 @@ mysqli_close($conn);
             return false;
         }
     }
+
 </script>
 
 </html>

@@ -16,7 +16,7 @@ $message = '';
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $id = (int)$_GET["id"];
 
-    // Select the message with the given ID
+
     $sql = "SELECT * FROM messages WHERE id_message = $id";
     $result = mysqli_query($conn, $sql);
 

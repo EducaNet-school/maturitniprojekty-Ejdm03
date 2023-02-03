@@ -13,10 +13,10 @@ if (isset($_POST['ok'])) {
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];
     // pripojeni do db
-    $dbb = mysqli_connect($servername, $username, $password, $db);
+    $conn = mysqli_connect($servername, $username, $password, $db);
     // kontrola
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
-    $result = mysqli_query($dbb, $query);
+    $result = mysqli_query($conn, $query);
     $row=mysqli_fetch_assoc($result);
 
 
@@ -42,7 +42,36 @@ if (isset($_POST['ok'])) {
     }
 
     // zavre pripojeni
-    mysqli_close($dbb);
+    mysqli_close($conn);
+
+}
+
+
+if (isset($_POST['reset'])) {
+    $email = $_POST['reset_email'];
+    $conn = mysqli_connect($servername, $username, $password, $db);
+    $query = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) == 1) {
+        // Generate password reset link and send email
+        $reset_link = generateResetLink($email);
+        sendPasswordResetEmail($email, $reset_link);
+        $success = "A password reset link has been sent to your email.";
+    } else {
+        $error = "The email address is not associated with any account.";
+    }
+    mysqli_close($conn);
+}
+
+// Function to generate password reset link
+function generateResetLink($email) {
+    // Generate a unique reset token
+    $reset_token = bin2hex(random_bytes(16));
+    // Save the reset token and expiry date
+
+
+
+
 }
 ?>
 
@@ -96,7 +125,9 @@ if (isset($_POST['ok'])) {
             <h3 class="error-message"><?php echo $error; ?></h3>
         <?php endif; ?>
 
-
+        <div class="resetB">
+        <a href="resetpassword.php">Reset password</a>
+        </div>
 
         <input type="submit" id="ok" name="ok" placeholder="Přihlásit se">
     </form>
