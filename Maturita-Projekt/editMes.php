@@ -9,28 +9,31 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($_GET["id"])) {
+$id = 0;
+$description = '';
+$message = '';
+
+if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $id = (int)$_GET["id"];
 
     // Select the message with the given ID
-    $sql = "SELECT * FROM messages WHERE id_message = '$id'";
+    $sql = "SELECT * FROM messages WHERE id_message = $id";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $description = $row["description"];
-        $message = $row["message"]; // corrected the variable name
-        $date = $row["date"];
+        $message = $row["message"];
     }
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $id = (int)$_POST["id"];
     $description = mysqli_real_escape_string($conn, $_POST["description"]);
     $message = mysqli_real_escape_string($conn, $_POST["message"]);
-
+    $date = date("Y-m-d H:i:s");
     // Update the message with the given ID
-    $sql = "UPDATE messages SET description = '$description', message = '$message' WHERE id_message = $id";
+    $sql = "UPDATE messages SET description = '$description', message = '$message', date = '$date' WHERE id_message = $id";
     mysqli_query($conn, $sql);
 
     header("Location: denikDash.php");
@@ -54,7 +57,7 @@ mysqli_close($conn);
     <a href="denikDash.php">Back</a>
 </nav>
 <h1>Uprav svůj zápisek</h1>
-<form action="edit.php" method="post">
+<form action="editMes.php" method="post">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div>
         <label for="description">Description</label>
@@ -62,12 +65,11 @@ mysqli_close($conn);
     </div>
     <div>
         <label for="message">Message</label>
-        <textarea name="message" id="message" required><?php echo $message; ?></textarea>
+        <textarea name="message" id="message" class="message-textarea"  required><?php echo $message; ?></textarea>
     </div>
     <div>
         <input type="submit" name="submit" value="Ulož">
     </div>
 </form>
-
 </body>
 </html>

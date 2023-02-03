@@ -11,7 +11,16 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// SQL query to delete a record in the "messages" table where "id" = "$id"
+// delete vzat
+$sql = "DELETE FROM m2d WHERE id_m = '$id'";
+
+if (!mysqli_query($conn, $sql)) {
+    echo "Error deleting related records: " . mysqli_error($conn);
+    mysqli_close($conn);
+    exit();
+}
+
+// delete zpravy
 $sql = "DELETE FROM messages WHERE id_message = '$id'";
 
 if (mysqli_query($conn, $sql)) {

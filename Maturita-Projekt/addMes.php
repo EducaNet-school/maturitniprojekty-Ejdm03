@@ -16,14 +16,14 @@ if ($_POST) {
     $description = $_POST["description"];
     $message = $_POST["message"];
 
-    // Insert the message into the "messages" table
+    // vloz zpravu
     $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
     $result = mysqli_query($conn, $sql);
 
-    // Get the ID of the inserted message
+    // dostane id z mes
     $messageId = mysqli_insert_id($conn);
 
-    // Insert the relationship between the message and diary into the "M2D" table
+    // Vložte vztah mezi zprávou a deníkem do tabulky "M2D".
     $sql = "INSERT INTO M2D (id_m, id_d) VALUES ('$messageId', '$id')";
     $result = mysqli_query($conn, $sql);
 
@@ -46,7 +46,7 @@ mysqli_close($conn);
 <body>
 <nav>
     <a href="logout.php">Logout</a>
-    <a href="index.php">Back</a>
+    <a href="denikDash.php">Back</a>
 </nav>
 <h1>Add Message</h1>
 <form action="addMes.php" method="post">

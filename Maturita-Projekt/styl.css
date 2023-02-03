@@ -243,3 +243,53 @@ nav a {
 .success-message{
     color: #37f600;
 }
+
+
+.message-textarea {
+    width: 500px;
+    height: 200px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+    margin: 1rem auto;
+    width: 25%;
+}
+
+.form-label {
+    font-family: monospace;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.form-input {
+    display: flex;
+    justify-content: center;
+}
+
+.form-input input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.form-input input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

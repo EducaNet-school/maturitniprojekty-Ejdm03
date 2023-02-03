@@ -9,7 +9,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Fetchne Data
+//cte data
 $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $query);

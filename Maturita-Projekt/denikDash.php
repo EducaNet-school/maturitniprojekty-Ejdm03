@@ -27,6 +27,23 @@ JOIN M2D ON messages.id_message = M2D.id_m
 WHERE M2D.id_d = '$id'";
 $result = mysqli_query($conn, $sql);
 
+
+
+if (isset($_POST['from']) && isset($_POST['to'])) {
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $sql .= " AND DATE(messages.date) >= '$from' AND DATE(messages.date) <= '$to'";
+
+}
+
+$result = mysqli_query($conn, $sql);
+
+
+
+
+
+
+
 mysqli_close($conn);
 ?>
 <!doctype html>
@@ -45,6 +62,29 @@ mysqli_close($conn);
     <a href="addMes.php">Add message</a>
 </nav>
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
+
+<form action="denikDash.php" method="post">
+    <div class="form-group">
+        <div class="form-label">From:</div>
+        <div class="form-input">
+            <input type="date" id="from" name="from">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">To:</div>
+        <div class="form-input">
+            <input type="date" id="to" name="to">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-input">
+            <input type="submit" value="Filter">
+        </div>
+    </div>
+</form>
+
+
+
 <table>
     <tr>
         <th>Popis</th>
@@ -56,6 +96,7 @@ mysqli_close($conn);
             <td><?php echo $row['description']; ?></td>
             <td><?php echo $row['date']; ?></td>
             <td>
+                <a href="showMes.php?id=<?php echo $row['id_message'];?>">Show</a>
                 <a href="editMes.php?id=<?php echo $row["id_message"]; ?>">Edit</a>
                 <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)">Delete</a>
             </td>
