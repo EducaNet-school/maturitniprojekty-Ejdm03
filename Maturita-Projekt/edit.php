@@ -1,15 +1,10 @@
 <?php
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password, $db);
+include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Fetchne Data
+//cte data
 $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $query);

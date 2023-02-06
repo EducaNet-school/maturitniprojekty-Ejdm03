@@ -1,18 +1,8 @@
 
 <?php
 
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
+include "connection.php";
 
-// pripojeni do db
-$conn = mysqli_connect($servername, $username, $password, $db);
-
-// pripojeni kontrola
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 if (isset($_POST["ok"])) {
     if ($_POST["adminheslo"] == "7p+CwFm4HTpOpUB4W8yqrqy6gWKG5kRMvYMDU2GX1x8=") {

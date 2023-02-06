@@ -3,13 +3,7 @@
 //
 $id = $_COOKIE["id"];
 
-// pripojeni do db
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password, $db);
+include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -27,8 +21,8 @@ if (isset($_POST["odeslat"])) {
     $sql = "INSERT INTO u2d (id_u, id_d) VALUES ('$id', '$id')";
     mysqli_query($conn, $sql);
 
-    // presmeruj to the vkladani.php
-    header("Location: vkladani.php");
+    // presmeruj to the denikDash.php
+    header("Location: denikDash.php");
     exit;
 }
 

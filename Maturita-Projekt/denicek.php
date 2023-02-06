@@ -2,12 +2,7 @@
 
 $id = $_COOKIE["id"];
 
-$servername = "localhost";
-$db = "onlined";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password, $db);
+include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -20,10 +15,10 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     //jestli tam neco je uloz id deniku
     $row = mysqli_fetch_assoc($result);
-    setcookie("id_deniku", $row["id_d"]);
+    setcookie("id_d", $row["id_d"]);
 
     //jestli tu neco je prehod na
-    header("Location: vkladani.php");
+    header("Location: denikDash.php");
 } else {
     //pokud tu nic neni prehod na
     header("Location: dname.php");
