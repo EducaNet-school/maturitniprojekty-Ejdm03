@@ -56,6 +56,7 @@ mysqli_close($conn);
     <a href="logout.php">Logout</a>
     <a href="profile.php?id=<?php echo $id; ?>">Edit</a>
     <a href="addMes.php">Add message</a>
+    <a href="findMes.php">Hledat Zápisky</a>
 </nav>
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
 
