@@ -18,7 +18,7 @@ CREATE TABLE `denik`(
 )
 
 
-CREATE TABLE `U2D`(
+CREATE TABLE `u2d`(
 `id_zapis` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `id_u` INT(100) NOT NULL,
 `id_d` INT(100) NOT NULL,
@@ -36,13 +36,10 @@ CREATE TABLE `messages`(
 );
 
 
-CREATE TABLE `M2D`(
+CREATE TABLE `m2d`(
   `id_zapis` INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `id_d` INT(100) NOT NULL,
   `id_m` INT(100) NOT NULL,
   FOREIGN KEY(id_d) REFERENCES denik(idd),
   FOREIGN KEY(id_m) REFERENCES messages(id_message)
 );
-
-
-$idd = $_COOKIE["id_deniku"];
