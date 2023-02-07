@@ -6,21 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="182f5fc4-85d3-47dd-bd59-425528209882" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/styl.css" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/styl.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true">
+  <component name="ComposerSettings" doNotAsk="true" notifyAboutMissingVendor="false">
     <pharConfigPath>$PROJECT_DIR$/PHPMailer/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="package.json" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -95,6 +97,10 @@
       <workItem from="1675592951818" duration="2202000" />
       <workItem from="1675617647502" duration="3209000" />
       <workItem from="1675636626908" duration="328000" />
+      <workItem from="1675636976326" duration="628000" />
+      <workItem from="1675695217409" duration="668000" />
+      <workItem from="1675782348554" duration="51000" />
+      <workItem from="1675782435761" duration="2683000" />
     </task>
     <servers />
   </component>
