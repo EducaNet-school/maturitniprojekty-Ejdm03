@@ -81,12 +81,27 @@ mysqli_close($conn);
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required value="<?php echo $password; ?>">
     </div>
+    <input type="checkbox" onclick="myFunction()">Show Password
+
 
     <div>
         <input type="submit" name="submit" value="Save">
     </div>
 </form>
 </body>
+
+<script>
+
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
 </html>
 
 

@@ -1,7 +1,6 @@
 <?php
 
 
-// Include the required PHPMailer files
 require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\Exception.php';
 require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\PHPMailer.php';
 require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\SMTP.php';
@@ -30,7 +29,7 @@ if (isset($_POST['reset'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'onlinedenicek@gmail.com';
-        $mail->Password = 'ujvfojzlvztrecew';
+        $mail->Password = '//';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('info@onlined.com', 'Onlined');
