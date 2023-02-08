@@ -53,10 +53,10 @@ mysqli_close($conn);
 </head>
 <body>
 <nav>
-    <a href="logout.php">Logout</a>
-    <a href="profile.php?id=<?php echo $id; ?>">Edit</a>
-    <a href="addMes.php">Add message</a>
-    <a href="findMes.php">Hledat Zápisky</a>
+    <a href="profile.php?id=<?php echo $id; ?>">Správa údajů</a>
+    <a href="addMes.php">Přidat zípisky</a>
+    <a href="findMes.php">Hledat zápisky</a>
+    <a href="logout.php">Odhlásit se</a>
 </nav>
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
 

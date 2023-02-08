@@ -9,6 +9,7 @@ $name = '';
 $surname = '';
 $email = '';
 $password = '';
+$dname="";
 
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $id = (int)$_GET["id"];
@@ -16,6 +17,10 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     // Select the user with the given ID
     $sql = "SELECT * FROM users WHERE id = $id";
     $result = mysqli_query($conn, $sql);
+
+    $sql1 = "SELECT * FROM denik WHERE idd=$id";
+    $result1 = mysqli_query($conn, $sql1);
+
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -26,9 +31,18 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     } else {
         echo "User with id $id not found in the database.";
     }
-} else {
-    echo "No user id was specified in the URL.";
+
+    if (mysqli_num_rows($result1) > 0) {
+        $roww = mysqli_fetch_assoc($result1);
+        $dname = $roww["jmeno"];
+    } else {
+        echo "Denik s ID $id nenalezen";
+    }
 }
+
+
+
+
 
 if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $id = (int)$_POST["id"];
@@ -36,11 +50,16 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
+    $dname=mysqli_real_escape_string($conn,$_POST["dname"]);
 
 
     // Update the user with the given ID
     $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
     mysqli_query($conn, $sql);
+
+    $sql1 ="UPDATE denik SET jmeno='$dname' WHERE idd = $id";
+    mysqli_query($conn, $sql1);
+
 
     header("Location: denikDash.php");
     exit();
@@ -60,7 +79,7 @@ mysqli_close($conn);
 </head>
 <body>
 <nav>
-    <a href="denikDash.php">Back</a>
+    <a href="denikDash.php">Zpět</a>
 </nav>
 <h1>Edit User</h1>
 <form action="profile.php" method="post">
@@ -83,6 +102,10 @@ mysqli_close($conn);
     </div>
     <input type="checkbox" onclick="myFunction()">Show Password
 
+    <div>
+    <label for="dname">Název Deníčku</label>
+    <input type="text" name="dname" id="dname" required value="<?php echo $dname; ?>"
+</div>
 
     <div>
         <input type="submit" name="submit" value="Save">
