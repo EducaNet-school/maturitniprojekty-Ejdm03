@@ -11,9 +11,6 @@
 <body>
 
 
-
-
-
 <ul>
     <li><a class="active" href="index.php">Home</a></li>
     <li><a href="nas.php">O nás</a></li>
@@ -21,6 +18,7 @@
     <li><a href="prihlaseni.php">Přihlášení</a></li>
     <li><a href="registrace.php">Registrace</a></li>
 </ul>
+
 
 
 <br>
