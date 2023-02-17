@@ -33,7 +33,6 @@ if (isset($_POST['ok'])) {
     else {
         // neco nesedi , vypise
         $error = "Email nebo Heslo nesedí. Zkus to znovu.";
-        echo $error;
     }
 
     // zavre pripojeni
@@ -83,50 +82,61 @@ function generateResetLink($email) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Online deníček</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 
 
 </head>
-<body>
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="nas.php">O nás</a></li>
-    <li><a href="proc.php">Proč</a></li>
-    <li><a class="active"  href="prihlaseni.php">Přihlášení</a></li>
-    <li><a href="registrace.php">Registrace</a></li>
-</ul>
+<body class="login">
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="#home">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Domů</span></span></a>
+            <a href="prihlaseni.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
+            <a href="registrace.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
+
+        </div>
+    </nav>
+</header>
+
+
 
 <br>
 <br>
 <br>
 <br>
 
+<div class="form-login">
+    <div class="title">Přihlášení</div>
 
-
-
-<div class="registrace">
     <form method="post" action="prihlaseni.php">
-        <div class="registraceformula">
-            <label for="email">Email</label>
+        <div class="input-container ic1">
+            <input id="email" class="input" type="email" name="email" placeholder=" " required/>
+            <div class="cut"></div>
+            <label for="email" class="placeholder">Email</label>
         </div>
-        <input type="email" id="email" name="email" placeholder="Zadej zde tvůj email">
-        <br>
-        <div class="registraceformula">
-            <label for="heslo">Heslo</label>
+        <div class="input-container ic2">
+            <input id="heslo" class="input" type="password" name="heslo" placeholder=" " required/>
+            <div class="cut"></div>
+            <label for="heslo" class="placeholder">Heslo</label>
         </div>
-        <input type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
-        <br>
+        <div class="resetB">
+            <a href="resetpassword.php">Zapomněl jsi heslo?</a>
+        </div>
         <?php if (isset($error)): ?>
             <h3 class="error-message"><?php echo $error; ?></h3>
         <?php endif; ?>
-
-        <div class="resetB">
-        <a href="resetpassword.php">Reset password</a>
-        </div>
-
-        <input type="submit" id="ok" name="ok" placeholder="Přihlásit se">
+        <button type="submit" class="submit" name="ok">Přihlásit se</button>
     </form>
 </div>
+
+
+
 
 
 

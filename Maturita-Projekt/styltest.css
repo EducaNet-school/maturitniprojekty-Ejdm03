@@ -210,3 +210,290 @@ footer {
     display: block;
     text-align: center;
 }
+
+
+
+
+
+body.login {
+    align-items: center;
+    background-color: #1e204f;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-login {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 450px;
+    padding: 20px;
+    width: 500px;
+}
+
+.title {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.subtitle {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+}
+
+.ic1 {
+    margin-top: 40px;
+}
+
+.ic2 {
+    margin-top: 30px;
+}
+
+.input {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+
+.cut {
+    background-color: #15172b;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 76px;
+}
+
+.cut-short {
+    width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+}
+
+.placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+    color: #808097;
+}
+
+.input:focus ~ .placeholder {
+    color: #dc2f55;
+}
+
+.submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+// outline: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.submit:active {
+    background-color: #06b;
+}
+
+
+
+.error-message {
+    color: red;
+}
+
+
+.resetB {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.resetB a {
+    color: #999;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.resetB a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+
+#home {
+    background-color: #686464;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+section {
+    padding: 80px 0;
+}
+
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #1C2331;
+}
+
+.description {
+    font-size: 3rem;
+    text-align: center;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1C2331;
+}
+
+.about-text {
+    margin-top: 30px;
+    font-size: 1.25rem;
+    color: #000000;
+    text-align: justify;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.about-text {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.about-image {
+    flex: 1;
+    max-width: 300px;
+}
+
+.about-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.about-text h2 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.about-text p {
+    font-size: 22px;
+    line-height: 1.5;
+}
+#work {
+    background-color: #f8f8f8;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.work-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px;
+}
+
+.work-text {
+    width: 50%;
+    text-align: center;
+}
+
+.work-text h2 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.work-text p {
+    font-size: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.work-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+

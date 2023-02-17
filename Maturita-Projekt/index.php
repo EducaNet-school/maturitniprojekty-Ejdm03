@@ -22,32 +22,64 @@
             <a href="#about" class="nav-link"><span class="nav-link-span"><span class="u-nav">Proč</span></span></a>
             <a href="#work" class="nav-link"><span class="nav-link-span"><span class="u-nav">O nás</span></span></a>
             <a href="#contact" class="nav-link"><span class="nav-link-span"><span class="u-nav">Kontakt</span></span></a>
+            <a href="prihlaseni.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
+            <a href="registrace.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
+
         </div>
     </nav>
 </header>
 <main>
     <section id="home">
-        <h1> Pes</h1>
+        <h1 class="title">Online Deníček</h1>
+        <p class="description">Zaznamenej si své myšlenky moderně</p>
     </section>
-    <section id="about">
-        <h1>Lasdadaw</h1>
-    </section>
-    <section id="work">
 
+    <section id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Proč psát deník?</h2>
+                <p>
+                    Psaní deníku může mít mnoho pozitivních účinků na naši psychiku.
+                    Pomáhá nám udržovat se v klidu, zlepšuje naši kreativitu, pomáhá nám
+                    zpracovat a uvolnit negativní emoce, a mnoho dalšího. Navíc, psaní
+                    deníku online ti umožní psát kdykoliv a kdekoliv, a můžeš si tak
+                    zapsat své myšlenky okamžitě, když tě napadnou.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="https://via.placeholder.com/300x200" alt="Typing on a notebook">
+            </div>
+        </div>
     </section>
+
+    <section id="work">
+        <div class="work-container">
+            <div class="work-text">
+                <h2>O mně</h2>
+                <p>
+                    Jsem Adam Antoš a věnuji se seberozvoji a pomáhání lidem. Rád trávím čas ve sportovních aktivitách, čtení knih a učení nových věcí. Snažím se být pozitivní silou v životech lidí a pomáhat jim dosáhnout svých cílů.
+                </p>
+            </div>
+            <div class="work-image">
+                <img src="https://via.placeholder.com/300x200" alt="A man in a suit">
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
 
     </section>
 </main>
 
+
+
+
 <footer>
     <p>Author: Adam Antoš<br>
         <a href="#">onlinedenicek@gmail.com</a></p>
 </footer>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
     var util = {
         mobileMenu() {
@@ -85,7 +117,6 @@
         $(document).scroll(util.scrollEvent);
 
     });
-
 </script>
 
 </html>
