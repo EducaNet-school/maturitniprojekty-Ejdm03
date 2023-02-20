@@ -52,11 +52,22 @@ $result = mysqli_query($conn, $query);
     </script>
 </head>
 <body>
-<nav>
-    <a href="AdminDashboard.php">Users</a>
-    <a href="find.php">Hledání</a>
-    <a href="logout.php">Logout</a>
-</nav>
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="AdminDashboard.php">OnlineD Admin DASHBOARD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="AdminDashboard.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Admin Dashboard</span></span></a>
+            <a href="find.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Hledat</span></span></a>
+            <a href="logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Odhlásit se</span></span></a>
+
+        </div>
+    </nav>
+</header>
 <br>
 <div id="search-container">
     <input type="text" id="search" placeholder="Search users...">
