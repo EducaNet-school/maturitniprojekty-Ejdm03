@@ -22,11 +22,11 @@ if (isset($_POST["ok"])) {
 
     if (mysqli_num_rows($email_result) > 0) {
         $usedem= "Tento e-mail je již použitý";
-        echo $usedem;
+
     } else {
-        $reg="Úspěšne jsi se registroval, teď se můžeš přihlásit ";
         $insert = "INSERT INTO users (firstname, surname, email, password, adminRole) VALUES ('$jmeno','$prijmeni','$email','$heslo', $admin_value) ";
-        echo $reg  ;
+        $reg="Úspěšne jsi se registroval, teď se můžeš přihlásit ";
+
         $result = mysqli_query($conn, $insert);
         if (!$result) {
             die("Chyba v prikazu " . mysqli_error($conn));
@@ -44,58 +44,69 @@ if (isset($_POST["ok"])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Online deníček</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="login">
 
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="nas.php">O nás</a></li>
-    <li><a href="proc.php">Proč</a></li>
-    <li><a href="prihlaseni.php">Přihlášení</a></li>
-    <li><a class="active" href="registrace.php">Registrace</a></li>
-</ul>
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="index.php">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Domů</span></span></a>
+            <a href="prihlaseni.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
+            <a href="registrace.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
+
+        </div>
+    </nav>
+</header>
 <br>
 <br>
 <br>
 <br>
 
-<div class="registrace">
+<div class="form-register">
+    <div class="title">Registrace</div>
+
     <form method="post" action="registrace.php">
-        <div class="registraceformular">
-            <label for="jmeno">Jméno</label>
+        <div class="input-container ic1">
+            <input id="jmeno" class="input" type="text" name="jmeno" placeholder=" " required>
+            <div class="cut"></div>
+            <label for="jmeno" class="placeholder">Jméno</label>
         </div>
-
-        <input required type="text" id="jmeno" name="jmeno" placeholder="Zadej zde tvoje jméno">
-        <br>
-        <div class="registraceformular">
-            <label for="prijmeni">Příjmení</label>
+        <div class="input-container ic2">
+            <input id="prijmeni" class="input" type="text" name="prijmeni" placeholder=" " required>
+            <div class="cut"></div>
+            <label for="prijmeni" class="placeholder">Příjmení</label>
         </div>
-        <input required type="text" id="prijmeni" name="prijmeni" placeholder="Zadej zde tvohe příjmení">
-        <br>
-        <div class="registraceformular">
-            <label for="email">Email</label>
+        <div class="input-container ic2">
+            <input id="email" class="input" type="email" name="email" placeholder=" " required>
+            <div class="cut"></div>
+            <label for="email" class="placeholder">Email</label>
         </div>
-        <input required type="email" id="email" name="email" placeholder="Zadej zde svůj email">
-        <br>
-        <div class="registraceformular">
-            <label for="heslo">Heslo</label>
+        <div class="input-container ic2">
+            <input id="heslo" class="input" type="password" name="heslo" placeholder=" " required>
+            <div class="cut"></div>
+            <label for="heslo" class="placeholder">Heslo</label>
         </div>
-        <input required type="password" id="heslo" name="heslo" placeholder="Zadej zde tvoje heslo">
-        <br>
-        <div class="registraceformular">
-           <label for="adminhest">Admin Heslo</label>
+        <div class="resetB">
+            <a href="prihlaseni.php">Již máš účet? Přihlaš se.</a>
         </div>
-        <input type="password" id="adminheslo" name="adminheslo" placeholder="Zadej heslo pro Admina">
-               <br>
         <?php if (isset($usedem)): ?>
-            <h3 class="error-message"><?php echo $usedem?></h3>
+            <h3 class="error-message"><?php echo $usedem; ?></h3>
         <?php endif; ?>
 
         <?php if (isset($reg)): ?>
-            <h3 class="success-message"><?php echo $reg.'<a href="prihlaseni.php">Zde</a>'; ?></h3>
+            <h3 class="success-message"><?php echo $reg; ?></h3>
         <?php endif; ?>
-        <input type="submit" id="ok" name="ok" placeholder="Registrovat se">
+
+
+
+        <button type="submit" class="submit" name="ok">Registrovat se</button>
     </form>
 </div>
 

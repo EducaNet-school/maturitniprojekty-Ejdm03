@@ -22,6 +22,7 @@ body {
     margin: 0;
 }
 
+
 section {
     height: 100vh;
 }
@@ -233,7 +234,7 @@ body.login {
 }
 
 .title {
-    color: #eee;
+    color: #fffcfc;
     font-family: sans-serif;
     font-size: 36px;
     font-weight: 600;
@@ -344,6 +345,7 @@ body.login {
 
 .error-message {
     color: red;
+    text-align: center;
 }
 
 
@@ -388,7 +390,7 @@ section {
     font-size: 4rem;
     font-weight: bold;
     text-align: center;
-    color: #1C2331;
+    color: #ffffff;
 }
 
 .description {
@@ -449,7 +451,7 @@ section {
     line-height: 1.5;
 }
 #work {
-    background-color: #f8f8f8;
+    background-color: #d9d7d7;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -496,4 +498,19 @@ section {
     border-radius: 10px;
 }
 
+
+
+.success-message {
+    color: green;
+    text-align: center;
+}
+
+.form-register {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 600px;
+    padding: 20px;
+    width: 500px;
+}
 

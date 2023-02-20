@@ -91,7 +91,7 @@ function generateResetLink($email) {
     <nav id="nav">
         <div class="nav left">
         <span class="gradient skew">
-          <h1 class="logo un-skew"><a href="#home">OnlineD</a></h1>
+          <h1 class="logo un-skew"><a href="index.php">OnlineD</a></h1>
         </span>
             <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
         </div>
@@ -134,7 +134,6 @@ function generateResetLink($email) {
         <button type="submit" class="submit" name="ok">Přihlásit se</button>
     </form>
 </div>
-
 
 
 
