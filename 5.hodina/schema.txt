@@ -1,0 +1,92 @@
+CREATE DATABASE FilmSkola;
+
+USE FilmSkola;
+
+CREATE TABLE Film (
+  id INT PRIMARY KEY,
+  nazev VARCHAR(255),
+  popis TEXT,
+  delka INT,
+  datum_vydani DATE
+);
+
+CREATE TABLE Kategorie (
+  id INT PRIMARY KEY,
+  nazev VARCHAR(255),
+  popis TEXT
+);
+
+CREATE TABLE Herec (
+  id INT PRIMARY KEY,
+  jmeno VARCHAR(255),
+  prijmeni VARCHAR(255)
+);
+
+CREATE TABLE Oceneni (
+  id INT PRIMARY KEY,
+  nazev VARCHAR(255),
+  popis TEXT,
+  datum DATE,
+  misto VARCHAR(255)
+);
+
+
+CREATE TABLE Film_Kategorie (
+  film_id INT,
+  kategorie_id INT,
+  PRIMARY KEY (film_id, kategorie_id),
+  FOREIGN KEY (film_id) REFERENCES Film(id),
+  FOREIGN KEY (kategorie_id) REFERENCES Kategorie(id)
+);
+
+CREATE TABLE Film_Herec (
+  film_id INT,
+  herec_id INT,
+  PRIMARY KEY (film_id, herec_id),
+  FOREIGN KEY (film_id) REFERENCES Film(id),
+  FOREIGN KEY (herec_id) REFERENCES Herec(id)
+);
+
+CREATE TABLE Film_Oceneni (
+  film_id INT,
+  oceneni_id INT,
+  PRIMARY KEY (film_id, oceneni_id),
+  FOREIGN KEY (film_id) REFERENCES Film(id),
+  FOREIGN KEY (oceneni_id) REFERENCES Oceneni(id)
+);
+
+
+
+
+
+     +-----------+        +--------------+         +-----------+
+     | Film      |        | Kategorie    |         | Herec     |
+     +-----------+        +--------------+         +-----------+
+     | id        |<--+--o<| id           | o--+--->| id        |
+     | nazev     |   |   | nazev        |   |      | jmeno     |
+     | popis     |   |   | popis        |   |      | prijmeni  |
+     | delka     |   |   +--------------+   |      +-----------+
+     | datum_vyd.|   |                      |
+     +-----------+   |   +--------------+   |
+                     o---| Film_Kategorie|<--o
+                     |   +--------------+   |
+                     |   | film_id      |   |
+                     |   | kategorie_id |   |
+                     |   +--------------+   |
+                     |                      |
+                     o---+--------------+   |
+                     |   | Film_Herec   |<--o
+                     |   +--------------+   |
+                     |   | film_id      |   |
+                     o-->| herec_id     |   |
+                     |   +--------------+   |
+                     |                      |
+                     o---+--------------+   |
+                     |   | Oceneni      |<--o
+                     |   +--------------+   |
+                     |   | id           |   |
+                     |   | nazev        |   |
+                     |   | popis        |   |
+                     |   | datum        |   |
+                     |   | misto        |   |
+                     o---+--------------+---o
