@@ -27,6 +27,27 @@ if(isset($_POST["role"])) {
         $result = mysqli_query($conn, $query);
 }
 
+$sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
+$resulttt = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    $rowa = mysqli_fetch_assoc($resulttt);
+    $avg_messages_per_day = round($rowa["avg_messages_per_day"], 2);
+} else {
+    $avg_messages_per_day = 0;
+}
+
+// Close database connection
+mysqli_close($conn);
+
+
+
+
+
+
+
+
+
 ?>
 <!doctype html>
 <html lang="cz">
@@ -39,16 +60,29 @@ if(isset($_POST["role"])) {
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-<nav>
-    <a href="AdminDashboard.php">Users</a>
-    <a href="find.php">Hledání</a>
-    <a href="logout.php">Logout</a>
-</nav>
+
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="AdminDashboard.php">OnlineD Admin DASHBOARD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="AdminDashboard.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Admin Dashboard</span></span></a>
+            <a href="find.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Hledat</span></span></a>
+            <a href="logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Odhlásit se</span></span></a>
+
+        </div>
+    </nav>
+</header>
+
 
 <h1>Admin Dashboard</h1>
 
 
-
+<div class='avg-messages-per-day'>Průměr přidaných práv za 1 den:<?php echo $avg_messages_per_day; ?> </div>
 
 <div class="custom-select">
 <form action="AdminDashboard.php" method="POST">
