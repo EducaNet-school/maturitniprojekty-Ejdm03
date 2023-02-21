@@ -29,7 +29,7 @@ if (isset($_POST['reset'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'onlinedenicek@gmail.com';
-        $mail->Password = '//';
+        $mail->Password = 'intccaevaroqfmzu';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('info@onlined.com', 'Onlined');
@@ -69,7 +69,7 @@ if (isset($_POST['reset'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset hesla</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
 <body>
 <h2>Reset hesla</h2>

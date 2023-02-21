@@ -30,18 +30,26 @@ if(isset($_POST["role"])) {
 $sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
 $resulttt = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($resulttt) > 0) {
     $rowa = mysqli_fetch_assoc($resulttt);
     $avg_messages_per_day = round($rowa["avg_messages_per_day"], 2);
 } else {
     $avg_messages_per_day = 0;
 }
 
-// Close database connection
-mysqli_close($conn);
+
+
+$sql1 ="SELECT COUNT(*) AS total_messages FROM messages";
+$result1 = mysqli_query($conn, $sql1);
 
 
 
+if (mysqli_num_rows($result1) > 0) {
+    $row1 = mysqli_fetch_assoc($result1);
+    $total_messages = $row1["total_messages"];
+} else {
+    $total_messages = 0;
+}
 
 
 
@@ -83,6 +91,9 @@ mysqli_close($conn);
 
 
 <div class='avg-messages-per-day'>Průměr přidaných práv za 1 den:<?php echo $avg_messages_per_day; ?> </div>
+<div class='avg-messages-per-day'>Celkový počet zpráv je:<?php echo $total_messages; ?> </div>
+
+
 
 <div class="custom-select">
 <form action="AdminDashboard.php" method="POST">
