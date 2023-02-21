@@ -56,12 +56,19 @@ $result = mysqli_query($conn, $query);
     </script>
 </head>
 <body>
-<nav>
-    <a href="logout.php">Logout</a>
-    <a href="profile.php?id=<?php echo $id; ?>">Edit</a>
-    <a href="addMes.php">Add message</a>
-    <a href="findMes.php">Hledat Zápisky</a>
-</nav>
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="denikDash.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Zpět</span></span></a>
+        </div>
+    </nav>
+</header>
 <br>
 <div id="search-container">
     <input type="text" id="search" placeholder="Zadej klíčové slovo..">

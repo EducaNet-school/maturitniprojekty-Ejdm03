@@ -600,3 +600,10 @@ section {
 .contact-link:hover {
     background-color: #006B87;
 }
+
+#contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

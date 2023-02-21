@@ -73,6 +73,7 @@
                 <p>Pokud budete mít jakýkoli dotaz či obchodní nabídku, neváhejte nás kontaktovat na našem emailu:</p>
                 <a href="mailto:adam.antos@educanet.cz" class="contact-link">adam.antos@educanet.cz</a>
             </div>
+        </div>
     </section>
 </main>
 

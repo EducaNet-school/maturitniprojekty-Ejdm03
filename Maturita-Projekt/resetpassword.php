@@ -29,7 +29,7 @@ if (isset($_POST['reset'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'onlinedenicek@gmail.com';
-        $mail->Password = 'intccaevaroqfmzu';
+        $mail->Password = '';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('info@onlined.com', 'Onlined');
@@ -48,11 +48,9 @@ if (isset($_POST['reset'])) {
 
     } else {
 
-        echo "<div id='loader'>
-    <div class='loader'></div>
-</div>";
-        echo "<h1>Email neexistuje v naší databázi.</h1>";
-        header("Refresh: 6; url=prihlaseni.php");
+
+        $emailnone="Účet s tímto e-maile nebyl nalezen v naší databázi, zkus to znovu";
+
     }
 
     mysqli_close($conn);
@@ -71,15 +69,52 @@ if (isset($_POST['reset'])) {
     <title>Reset hesla</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
-<h2>Reset hesla</h2>
 
 
-<form method="post" action="resetpassword.php">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="Zadej svůj email">
-    <br><br>
-    <input type="submit" name="reset" value="Resetovat heslo">
-</form>
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="index.php">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Domů</span></span></a>
+            <a href="prihlaseni.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
+            <a href="$" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Obnova Hesla</span></span></a>
+            <a href="registrace.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+<body class="login">
+
+<div class="form-login">
+    <div class="title">Přihlášení</div>
+    <form method="post" action="resetpassword.php">
+        <div class="input-container ic1">
+            <input type="email" id="email" name="email" class="input">
+            <div class="cut"></div>
+            <label for="email" class="placeholder">Email:</label>
+            </div>
+        <?php if (isset($emailnone)): ?>
+            <h3 class="error-message"><?php echo $emailnone; ?></h3>
+        <?php endif; ?>
+
+        <button type="submit" name="reset" class="submit">Resetovat Heslo</button>
+    </form>
+</div>
+
+
+
+
+
 </body>
 </html>

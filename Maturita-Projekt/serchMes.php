@@ -22,7 +22,7 @@ WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$sear
         echo '<tr>';
         echo '<td>' . $row["id_message"] . '</td>';
         echo '<td>' . $row["description"] . '</td>';
-        echo '<td>' . $row["message"] . '</td>';
+        echo '<td>' . substr($row["message"],0,50) . '</td>';
         echo '<td>' . $row["date"] . '</td>';
         echo '<td>';
         echo '<a href="showMes.php?id=' . $row["id_message"].'">Show </a>';

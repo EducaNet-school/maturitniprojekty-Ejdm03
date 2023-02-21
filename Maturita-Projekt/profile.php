@@ -4,7 +4,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$id = $_COOKIE["id"];
+$id = isset($_COOKIE["id"]) ? (int)$_COOKIE["id"] : null;
 $name = '';
 $surname = '';
 $email = '';
@@ -13,7 +13,8 @@ $dname="";
 
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $id = (int)$_GET["id"];
-
+    }
+if ($id) {
     // Select the user with the given ID
     $sql = "SELECT * FROM users WHERE id = $id";
     $result = mysqli_query($conn, $sql);
@@ -78,9 +79,27 @@ mysqli_close($conn);
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-<nav>
-    <a href="denikDash.php">Zpět</a>
-</nav>
+
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="denikDash.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Zpět</span></span></a>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
 <h1>Edit User</h1>
 <form action="profile.php" method="post">
     <input type="hidden" name="id" value="<?php echo $id; ?>">

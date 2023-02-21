@@ -52,12 +52,31 @@ mysqli_close($conn);
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-<nav>
-    <a href="profile.php?id=<?php echo $id; ?>">Správa údajů</a>
-    <a href="addMes.php">Přidat zípisky</a>
-    <a href="findMes.php">Hledat zápisky</a>
-    <a href="logout.php">Odhlásit se</a>
-</nav>
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="$">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="denikDash.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Přehled zápisků</span></span></a>
+            <a href="profile.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Správa údajů</span></span></a>
+            <a href="findMes.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Hledat zápisky</span></span></a>
+            <a href="addMes.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přidat zápisek</span></span></a>
+            <a href="logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Odhlásit se</span></span></a>
+
+        </div>
+    </nav>
+</header>
+
+<br>
+<br>
+<br>
+
+
+
 <h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
 
 <form action="denikDash.php" method="post">
