@@ -59,7 +59,7 @@
         <div class="work-container">
             <div class="work-text">
                 <h2>Kontaktujte nás</h2>
-                <p>Pokud budete mít jakýkoli dotaz či obchodní nabídku, neváhejte nás kontaktovat na našem emailu:</p>
+                <p>Pokud budete mít jakýkoli dotaz či se domíváte, že vám byla blokace udělena neprávem, neváhejte nás kontaktovat na našem emailu:</p>
                 <a href="mailto:adam.antos@educanet.cz" class="contact-link">adam.antos@educanet.cz</a>
             </div>
         </div>

@@ -150,7 +150,7 @@ if (mysqli_num_rows($result1) > 0) {
             <td>
                 <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
                 <a href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>
-                <a href="#" onclick="confirmDelete(<?php echo $row["id"]; ?>)">Delete</a>
+                <a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
             </td>
         </tr>
     <?php } ?>
@@ -160,7 +160,7 @@ if (mysqli_num_rows($result1) > 0) {
 
 <script>
     function confirmDelete(id) {
-        var confirmDelete = confirm("Are you sure you want to delete this user?");
+        var confirmDelete = confirm("Are you sure you want to delete the user with ID " + id + "?");
         if (confirmDelete == true) {
             window.location.replace("delete.php?id=" + id);
         } else {
