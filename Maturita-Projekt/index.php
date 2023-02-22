@@ -34,6 +34,14 @@
         <p class="description">Zaznamenej si své myšlenky moderně</p>
     </section>
 
+
+
+
+
+
+
+
+
     <section id="about">
         <div class="about-container">
             <div class="about-text">
@@ -76,9 +84,6 @@
         </div>
     </section>
 </main>
-
-
-
 
 <footer>
     <p>Author: Adam Antoš<br>

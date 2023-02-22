@@ -1,11 +1,12 @@
 <?php
 
-
-require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\Exception.php';
-require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\PHPMailer.php';
-require 'E:\maturitniprojekty-Ejdm03\PHPMailer\src\SMTP.php';
-
 include "connection.php";
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+
 
 if (isset($_POST['reset'])) {
     // Get the email from the form
@@ -42,8 +43,10 @@ if (isset($_POST['reset'])) {
         echo "<div id='loader'>
     <div class='loader'></div>
 </div>";
-        echo "<h1>Heslo bylo resetováno a bylo posláno na tvůj email.</h1>";
-        header("Refresh: 6; url=prihlaseni.php");
+
+        $emailok="Heslo bylo resetováno a bylo posláno na tvůj email. Budeš přesměrován na Příhlášení za";
+        $countdown = 6; // set the countdown time in seconds
+        header("Refresh: $countdown; url=prihlaseni.php");
 
 
     } else {
@@ -108,6 +111,30 @@ if (isset($_POST['reset'])) {
             <h3 class="error-message"><?php echo $emailnone; ?></h3>
         <?php endif; ?>
 
+
+        <?php if (isset($emailok)): ?>
+            <h3 class="okreset">
+                <?php echo " Heslo bylo vygenerováno a posláno na tvůj email.   Stránka bude automaticky přesměrována za <span id='countdown'>$countdown</span> sekund."; ?>
+            </h3>
+            <script>
+                // Set the countdown time in seconds
+                var countdown = <?php echo $countdown; ?>;
+
+                // Update the countdown timer every second
+                setInterval(function() {
+                    countdown--;
+                    document.getElementById('countdown').innerHTML = countdown;
+                }, 1000);
+
+                // Redirect to the login page after the countdown ends
+                setTimeout(function() {
+                    window.location.href = "prihlaseni.php";
+                }, countdown * 1000);
+            </script>
+        <?php endif; ?>
+
+
+
         <button type="submit" name="reset" class="submit">Resetovat Heslo</button>
     </form>
 </div>
@@ -117,4 +144,5 @@ if (isset($_POST['reset'])) {
 
 
 </body>
+
 </html>
