@@ -1,22 +1,24 @@
 <?php
 
+
+
+$id = $_GET["id"];
 include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$id = $_GET["id"];
-
+echo $id;
 //Delete data from users table based on id
-$query = "DELETE FROM users WHERE id=$id";
-$result = mysqli_query($conn, $query);
+$querry = "DELETE FROM users WHERE id= $id";
+$resultt = mysqli_query($conn, $querry);
 
-if ($result) {
+if ($resultt) {
     header("Location: AdminDashboard.php");
 } else {
     echo "Error deleting record: " . mysqli_error($conn);
 }
 
-mysqli_close($conn);
+
 
 ?>
