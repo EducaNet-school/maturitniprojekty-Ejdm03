@@ -112,7 +112,7 @@ if (mysqli_num_rows($result1) > 0) {
 <h1>Celkem <?php echo mysqli_num_rows($result); ?> Uživatelé</h1>
 <br>
 
-
+<div class="table-users">
 <table>
     <tr>
         <th>ID</th>
@@ -155,6 +155,7 @@ if (mysqli_num_rows($result1) > 0) {
         </tr>
     <?php } ?>
 </table>
+</div>
 
 
 
