@@ -85,31 +85,32 @@ if (mysqli_num_rows($result1) > 0) {
         </div>
     </nav>
 </header>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <h1>Admin Dashboard</h1>
 
-
-<div class='avg-messages-per-day'>Průměr přidaných práv za 1 den:<?php echo $avg_messages_per_day; ?> </div>
-<div class='avg-messages-per-day'>Celkový počet zpráv je:<?php echo $total_messages; ?> </div>
-
-
-
 <div class="custom-select">
-<form action="AdminDashboard.php" method="POST">
-    <select name="role" id="role">
-        <option value="">--Select Role--</option>
-        <option value="0" <?php if($role == "0") {echo "selected";} ?>>Users</option>
-        <option value="1" <?php if($role == "1") {echo "selected";} ?>>Admins</option>
-        <option value="3" <?php echo "selected"; ?>>ALL</option>
-    </select>
-    <div class="filtr">
-    <input type="submit" value="Filter">
-    </div>
-</form>
+    <form action="AdminDashboard.php" method="POST">
+        <select name="role" id="role">
+            <option value="">--Select Role--</option>
+            <option value="0" <?php if($role == "0") {echo "selected";} ?>>Users</option>
+            <option value="1" <?php if($role == "1") {echo "selected";} ?>>Admins</option>
+            <option value="3" <?php echo "selected"; ?>>ALL</option>
+        </select>
+        <div class="filtr">
+            <input type="submit" value="Filter">
+        </div>
+    </form>
 </div>
+
+
+<div class="uzivatele">
 <br>
-<h1>Celkem <?php echo mysqli_num_rows($result); ?> Uživatelé</h1>
 <br>
 
 <div class="table-users">
@@ -155,6 +156,14 @@ if (mysqli_num_rows($result1) > 0) {
         </tr>
     <?php } ?>
 </table>
+</div>
+
+<div  class="statistika-container">
+    <div class="statistika-nadpis">Statistiky průměr</div>
+
+    <div class='avg-messages-per-day'>Přidané zprávy za 1 den:<?php echo $avg_messages_per_day; ?> </div>
+    <div class='avg-messages-per-day'>Celkový počet zpráv:<?php echo $total_messages; ?> </div>
+</div>
 </div>
 
 

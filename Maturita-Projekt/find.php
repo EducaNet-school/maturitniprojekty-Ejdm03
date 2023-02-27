@@ -68,7 +68,7 @@ $result = mysqli_query($conn, $query);
         </div>
     </nav>
 </header>
-<br>
+<div class="hledat-nadpis">Zde hledej uživatele</div>
 <div id="search-container">
     <input type="text" id="search" placeholder="Search users...">
     <div id="result"></div>
