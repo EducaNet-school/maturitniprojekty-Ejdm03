@@ -132,7 +132,7 @@ a:hover {
 .custom-select {
     position: relative;
     font-family: Arial;
-    margin: 0 auto;
+    left: 600px;
     width: 200px;
 }
 
@@ -481,4 +481,14 @@ a:hover {
     font-weight: bold;
     color: blue;
     text-align:center;
+}
+.table-users {
+    background-color: #999999;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 700px;
+    padding: 20px;
+    width: 1400px;
+    text-align: center;
+    margin-right: auto;
 }

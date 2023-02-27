@@ -1,0 +1,50 @@
+1)
+
+SELECT f.nazev, COUNT(fh.herec_id) AS pocet_hercu
+FROM Film f
+LEFT JOIN Film_Herec fh ON f.id = fh.film_id
+GROUP BY f.id
+
+
+2)
+
+SELECT h.jmeno, h.prijmeni, COALESCE(f.nazev, 'NEHRAJE') AS film
+FROM Herec h
+LEFT JOIN Film_Herec fh ON h.id = fh.herec_id
+LEFT JOIN Film f ON fh.film_id = f.id
+ORDER BY h.prijmeni, h.jmeno
+
+
+3)
+
+SELECT k.nazev AS kategorie, f.nazev AS film, f.delka
+FROM Kategorie k
+LEFT JOIN Film_Kategorie fk ON k.id = fk.kategorie_id
+LEFT JOIN Film f ON fk.film_id = f.id
+WHERE f.delka = (
+  SELECT MAX(delka)
+  FROM Film f2
+  INNER JOIN Film_Kategorie fk2 ON f2.id = fk2.film_id
+  WHERE fk2.kategorie_id = k.id
+)
+
+
+
+4)
+
+SELECT f.nazev AS film, COUNT(fo.oceneni_id) AS pocet_ocenení
+FROM Film f
+LEFT JOIN Film_Oceneni fo ON f.id = fo.film_id
+GROUP BY f.id
+ORDER BY COUNT(fo.oceneni_id) DESC;
+
+
+5)
+
+SELECT DISTINCT h.jmeno, h.prijmeni
+FROM Herec h
+JOIN Film_Herec fh ON h.id = fh.herec_id
+JOIN Film_Kategorie fk ON fh.film_id = fk.film_id
+JOIN Kategorie k ON fk.kategorie_id = k.id AND k.nazev = 'Comedy';
+
+

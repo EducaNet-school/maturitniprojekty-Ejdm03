@@ -6,7 +6,7 @@ include "connection.php";
 
 if (isset($_POST["ok"])) {
 
-    if ($_POST["adminheslo"] == "7p+CwFm4HTpOpUB4W8yqrqy6gWKG5kRMvYMDU2GX1x8=") {
+    if ($_POST["hesloAdmin"] == "7p+CwFm4HTpOpUB4W8yqrqy6gWKG5kRMvYMDU2GX1x8=") {
         $admin_value = 1;
     } else {
         $admin_value = 0;
@@ -93,6 +93,11 @@ if (isset($_POST["ok"])) {
             <input id="heslo" class="input" type="password" name="heslo" placeholder=" " required>
             <div class="cut"></div>
             <label for="heslo" class="placeholder">Heslo</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="hesloAdmin" class="input" type="password" name="hesloAdmin" placeholder=" ">
+            <div class="cut"></div>
+            <label for="hesloAdmin" class="placeholder">Admin heslo</label>
         </div>
         <div class="resetB">
             <a href="prihlaseni.php">Již máš účet? Přihlaš se.</a>
