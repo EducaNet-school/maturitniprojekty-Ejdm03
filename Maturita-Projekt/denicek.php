@@ -1,6 +1,7 @@
 <?php
 
 $id = $_COOKIE["id"];
+$id_d = $_COOKIE["id_d"];
 
 include "connection.php";
 if (!$conn) {
