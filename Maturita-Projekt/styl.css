@@ -99,11 +99,16 @@ table {
     text-align: center;
     border-collapse: collapse;
     font-size:20px;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 th, td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
+}
+tr{
+    background-color: #623535;
 }
 
 th {
@@ -498,7 +503,7 @@ a:hover {
     box-sizing: border-box;
     height: 700px;
     padding: 20px;
-    width: 1200px;
+    width: 1350px;
     text-align: center;
     margin-right: 20px;
     margin-left: auto;
@@ -535,3 +540,4 @@ a:hover {
     color: white;
     font-size:50px;
 }
+
