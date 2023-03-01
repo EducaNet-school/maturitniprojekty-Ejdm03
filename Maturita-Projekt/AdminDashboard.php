@@ -117,12 +117,12 @@ if (mysqli_num_rows($result1) > 0) {
 <table>
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Surname</th>
+        <th>Jméno</th>
+        <th>Příjmení</th>
         <th>Email</th>
         <th>Admin Role</th>
-        <th>Ban</th>
-        <th>Actions</th>
+        <th>Blokace</th>
+        <th>Akce</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) {
         if ($row["adminRole"] == 0) {
@@ -132,9 +132,9 @@ if (mysqli_num_rows($result1) > 0) {
         }
 
         if($row["Block"]== 0){
-            $userBlock = "No";
+            $userBlock = "Ne";
         } elseif ($row["Block"]==1){
-            $userBlock = "Banned";
+            $userBlock = "Blokován";
         }
 
 
