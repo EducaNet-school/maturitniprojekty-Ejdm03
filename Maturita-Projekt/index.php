@@ -75,7 +75,7 @@
     </section>
 
     <section id="contact">
-        <div class="work-container">
+        <div class="email-container">
             <div class="work-text">
                 <h2>Kontaktujte nás</h2>
                 <p>Pokud budete mít jakýkoli dotaz či obchodní nabídku, neváhejte nás kontaktovat na našem emailu:</p>

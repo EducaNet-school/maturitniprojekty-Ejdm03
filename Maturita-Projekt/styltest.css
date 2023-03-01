@@ -408,6 +408,7 @@ section {
     font-size: 2.5rem;
     font-weight: bold;
     color: #1C2331;
+
 }
 
 .about-text {
@@ -416,6 +417,7 @@ section {
     color: #000000;
     text-align: justify;
     font-family: "Helvetica Neue", Arial, sans-serif;
+
 }
 
 .about-container {
@@ -425,7 +427,8 @@ section {
     align-items: center;
     margin: 220px auto;
     max-width: 800px;
-
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    border-radius:15px;
 
 }
 
@@ -473,11 +476,17 @@ section {
     width: 100%;
     max-width: 1200px;
     margin-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    border-radius:15px;
+
+
+
 }
 
 .work-text {
     width: 50%;
     text-align: center;
+
 }
 
 .work-text h2 {
@@ -505,6 +514,7 @@ section {
 .work-image img {
     max-width: 75%;
     border-radius: 10px;
+
 }
 
 
@@ -637,3 +647,12 @@ section {
     margin-bottom: 10px;
 }
 
+.email-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px;
+
+}
