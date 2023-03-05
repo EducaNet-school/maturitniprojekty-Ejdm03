@@ -55,7 +55,7 @@
                 </p>
             </div>
             <div class="about-image">
-                <img src="https://via.placeholder.com/300x200" alt="Typing on a notebook">
+                <img src="koutek.png" alt="Typing on a notebook">
             </div>
         </div>
     </section>
@@ -63,19 +63,19 @@
     <section id="work">
         <div class="work-container">
             <div class="work-text">
-                <h2>O mně</h2>
+                <h2>O autorovi</h2>
                 <p>
-                    Jsem Adam Antoš a věnuji se seberozvoji a pomáhání lidem. Rád trávím čas ve sportovních aktivitách, čtení knih a učení nových věcí. Snažím se být pozitivní silou v životech lidí a pomáhat jim dosáhnout svých cílů.
+                    Jsem Adam Antoš a věnuji se seberozvoji a pomáhání lidem. Rád trávím čas ve sportovních aktivitách, čtení knih a učení se nových věcí. Snažím se být pozitivní silou v životech lidí a pomáhat jim dosáhnout svých cílů.
                 </p>
             </div>
             <div class="work-image">
-                <img src="https://via.placeholder.com/300x200" alt="A man in a suit">
+                <img src="ja.png" alt="A man in a suit">
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="work-container">
+        <div class="email-container">
             <div class="work-text">
                 <h2>Kontaktujte nás</h2>
                 <p>Pokud budete mít jakýkoli dotaz či obchodní nabídku, neváhejte nás kontaktovat na našem emailu:</p>

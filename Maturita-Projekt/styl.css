@@ -507,7 +507,7 @@ a:hover {
     text-align: center;
     margin-right: 20px;
     margin-left: auto;
-
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
 .uzivatele {
@@ -527,6 +527,7 @@ a:hover {
     text-align: center;
     margin-left: auto;
     flex-grow: 1;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 .statistika-nadpis{
     text-align: center;
