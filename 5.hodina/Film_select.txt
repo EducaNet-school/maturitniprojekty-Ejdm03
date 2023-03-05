@@ -48,3 +48,57 @@ JOIN Film_Kategorie fk ON fh.film_id = fk.film_id
 JOIN Kategorie k ON fk.kategorie_id = k.id AND k.nazev = 'Comedy';
 
 
+
+
+6) funkce 
+
+
+DELIMITER $$
+CREATE FUNCTION longest_film_in_category(category_name VARCHAR(255))
+RETURNS INT
+BEGIN
+  DECLARE max_length INT;
+  
+  
+  SELECT id INTO @category_id FROM kategorie WHERE nazev = category_name;
+  
+  
+  SELECT MAX(delka) INTO max_length
+  FROM film
+  INNER JOIN film_kategorie ON film.id = film_kategorie.film_id
+  WHERE film_kategorie.kategorie_id = @category_id;
+  
+  RETURN max_length;
+END$$
+DELIMITER ;
+
+
+SELECT longest_film_in_category('Action');
+
+
+
+7) procedura 
+
+CREATE PROCEDURE vymazat_prazdne_kategorie()
+BEGIN
+DELETE FROM kategorie WHERE id NOT IN (SELECT DISTINCT kategorie_id FROM film_kategorie);
+END;
+
+
+ EXEC vymazat_prazdne_kategorie; 
+
+8) pohled 
+
+CREATE VIEW pocet_hercu_ve_filme AS
+SELECT f.id, f.nazev, COUNT(fh.herec_id) AS pocet_hercu
+FROM film f
+JOIN film_herec fh ON f.id = fh.film_id
+GROUP BY f.id
+
+
+SELECT * FROM pocet_hercu_ve_filme;
+
+
+
+
+
