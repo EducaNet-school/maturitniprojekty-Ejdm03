@@ -11,6 +11,7 @@ $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['id'];
     $firstname = $_POST['firstname'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
@@ -36,10 +37,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <h1>Edit User</h1>
 <table>
-    <<tr>
+    <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Surname</th>
+        <th>Jméno</th>
+        <th>Příjmení</th>
         <th>Email</th>
         <th>Admin Role</th>
         <th>Ban</th>

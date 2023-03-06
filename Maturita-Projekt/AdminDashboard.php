@@ -93,7 +93,6 @@ if (mysqli_num_rows($result1) > 0) {
 <br>
 
 <h1>Admin Dashboard</h1>
-
 <div class="custom-select">
     <form action="AdminDashboard.php" method="POST">
         <select name="role" id="role">
@@ -114,7 +113,9 @@ if (mysqli_num_rows($result1) > 0) {
 <br>
 
 <div class="table-users">
-<table>
+    <?php echo "<h1>Celkem " . mysqli_num_rows($result) . " Uživatelé</h1>";?>
+
+    <table>
     <tr>
         <th>ID</th>
         <th>Jméno</th>

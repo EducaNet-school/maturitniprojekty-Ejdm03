@@ -12,7 +12,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     $result = mysqli_query($conn, $query);
 
     echo '<table>';
-    echo '<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Admin Role</th><th>Ban</th><th>Actions</th></tr></thead>';
+    echo '<thead><tr><th>ID</th><th>Jméno</th><th>Příjmení</th><th>Email</th><th>Admin Role</th><th>Ban</th><th>Akce</th></tr></thead>';
     echo '<tbody>';
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row["adminRole"] == 0) {
