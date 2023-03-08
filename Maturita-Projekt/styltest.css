@@ -218,7 +218,7 @@ footer {
 
 body.login {
     align-items: center;
-    background-color: #1e204f;
+    background-color: #262865;
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -657,4 +657,24 @@ section {
     max-width: 1200px;
     margin-top: 50px;
 
+}
+
+.denikjmeno-nadpis{
+text-align: center;
+
+}
+
+.dname-containet{
+    width: 1000px;
+    height:250px;
+    margin-right: auto;
+    margin-left: auto;
+    display: grid;
+    justify-content: center;
+}
+
+
+.dname-body{
+    background-color: #756a6a;
+    border-radius:12px;
 }
