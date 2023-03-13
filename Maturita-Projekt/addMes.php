@@ -37,9 +37,9 @@ mysqli_close($conn);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inserting</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="show-mes-body">
 <header id="nav-wrapper">
     <nav id="nav">
         <div class="nav left">
@@ -53,19 +53,22 @@ mysqli_close($conn);
         </div>
     </nav>
 </header>
-<h1>Add Message</h1>
+
+<div class="mes-container">
+
+
+<h1 class="mes-popis">Přidej si zápisek</h1>
 <form action="addMes.php" method="post">
     <div>
-        <label for="description">Description:</label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" placeholder="Zde vlož popisek" class="popisek">
     </div>
     <div>
-        <label for="message">Message:</label>
-        <textarea name="message" id="message" class="message-textarea"></textarea>
+        <textarea name="message" id="message" class="message-textarea" placeholder="Zde vlož text"></textarea>
     </div>
     <div>
-        <input type="submit" value="Save">
+        <input type="submit" value="Uložit" class="mes-add">
     </div>
 </form>
+</div>
 </body>
 </html>

@@ -678,3 +678,63 @@ text-align: center;
     background-color: #756a6a;
     border-radius:12px;
 }
+
+.show-mes-body{
+    background-color: #7c7575;
+    font-family:monospace;
+    margin-top: 200px;
+}
+
+.mes-container{
+    margin: 0 auto;
+    width: 910px;
+    height: 650px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #15172b;
+    border-radius: 30px;
+}
+
+.message-textarea{
+    width: 845px;
+    height: 390px;
+    font-size:22px;
+    border-radius:12px;
+
+}
+
+h1.mes-popis{
+    color: white;
+    text-align: center;
+    font-size: 45px;
+}
+
+input.popisek{
+    text-align:center;
+    margin: 0 auto;
+    display:block;
+    width: 35%;
+    font-size:27px;
+    margin-bottom: 25px;
+    border-radius:5px;
+
+}
+
+input.mes-add {
+    width: 50%;
+    background-color: #4CAF50;
+    color: #fdfdfd;
+    padding: 14px 20px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+
+}
+
+input.mes-add:hover {
+    background-color: #45a049;
+}

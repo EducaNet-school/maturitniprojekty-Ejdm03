@@ -94,8 +94,8 @@ mysqli_close($conn);
     </div>
     <div class="form-group">
 
-        <div class="Mall">
-            <a href="denikDash.php">Zobrazit vše</a>
+        <div>
+            <a href="denikDash.php" class="D-vse">Zobrazit vše</a>
         </div>
         <div class="form-input">
             <input type="submit" value="Filter">
@@ -116,9 +116,9 @@ mysqli_close($conn);
             <td><?php echo $row['description']; ?></td>
             <td><?php echo $row['date']; ?></td>
             <td>
-                <a href="showMes.php?id=<?php echo $row['id_message'];?>">Show</a>
-                <a href="editMes.php?id=<?php echo $row["id_message"]; ?>">Edit</a>
-                <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)">Delete</a>
+                <a href="showMes.php?id=<?php echo $row['id_message'];?>" class="D-akce">Show</a>
+                <a href="editMes.php?id=<?php echo $row["id_message"]; ?>" class="D-akce">Edit</a>
+                <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)"class="D-akce">Delete</a>
             </td>
         </tr>
     <?php } ?>
