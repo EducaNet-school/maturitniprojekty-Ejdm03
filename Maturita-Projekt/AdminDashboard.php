@@ -150,9 +150,9 @@ if (mysqli_num_rows($result1) > 0) {
             <td><?php echo $adminRole; ?></td>
             <td><?php echo $userBlock; ?></td>
             <td>
-                <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
-                <a href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>
-                <a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
+                <a class="D-akce" href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
+                <a class="D-akce" href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>
+                <a class="D-akce" href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
             </td>
         </tr>
     <?php } ?>

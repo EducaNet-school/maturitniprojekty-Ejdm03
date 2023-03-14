@@ -76,9 +76,9 @@ mysqli_close($conn);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit User</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="show-mes-body">
 
 <header id="nav-wrapper">
     <nav id="nav">
@@ -99,39 +99,53 @@ mysqli_close($conn);
 
 
 
+<div class="mes-container">
 
-<h1>Edit User</h1>
-<form action="profile.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $id; ?>">
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" required value="<?php echo $name; ?>">
-    </div>
-    <div>
-        <label for="surname">Surname</label>
-        <input type="text" name="surname" id="surname" required value="<?php echo $surname; ?>">
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required value="<?php echo $email; ?>">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required value="<?php echo $password; ?>">
-    </div>
-    <input type="checkbox" onclick="myFunction()">Show Password
+    <div class="title">Upravit údaje</div>
 
-    <div>
-    <label for="dname">Název Deníčku</label>
-    <input type="text" name="dname" id="dname" required value="<?php echo $dname; ?>"
-</div>
 
-    <div>
-        <input type="submit" name="submit" value="Save">
-    </div>
+    <form action="profile.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <div class="input-container ic1">
+            <input class="input" type="text" name="name" id="name" required value="<?php echo $name; ?>">
+            <div class="cut"></div>
+         <label for="name" class="placeholder">Jméno</label>
+        </div>
+
+
+        <div class="input-container ic2">
+            <input class="input" type="text" name="surname" id="surname" required value="<?php echo $surname; ?>">
+            <div class="cut"></div>
+            <label for="surname" class="placeholder">Příjmení</label>
+
+        </div>
+
+        <div class="input-container ic2">
+            <input class="input" type="email" name="email" id="email" required value="<?php echo $email; ?>">
+            <div class="cut"></div>
+            <label class="placeholder" for="email">E-mail</label>
+
+        </div>
+
+        <div class="input-container ic2">
+            <input class="input" type="password" name="password" id="password" required value="<?php echo $password; ?>">
+            <div class="cut"></div>
+            <label class="placeholder" for="password">Heslo</label>
+        </div>
+
+        <input type="checkbox" onclick="myFunction()"> Show Password
+
+        <div class="input-container ic2">
+            <input class="input" type="text" name="dname" id="dname" required value="<?php echo $dname; ?>">
+            <div class="cut"></div>
+            <label class="placeholder" for="dname">D název</label>
+        </div>
+
+        <button type="submit" value="submit" class="submit" name="submit">Upravit</button>
+
 </form>
+</div>
 </body>
-
 <script>
 
     function myFunction() {

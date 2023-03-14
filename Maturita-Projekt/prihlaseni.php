@@ -115,6 +115,7 @@ function generateResetLink($email) {
     <div class="title">Přihlášení</div>
 
     <form method="post" action="prihlaseni.php">
+
         <div class="input-container ic1">
             <input id="email" class="input" type="email" name="email" placeholder=" " required/>
             <div class="cut"></div>
