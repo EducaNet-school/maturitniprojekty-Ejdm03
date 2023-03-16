@@ -109,7 +109,7 @@ mysqli_close($conn);
     <tr>
         <th>Popis</th>
         <th>Datum vytvoření</th>
-        <th>Actions</th>
+        <th>Akce</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
         <tr>

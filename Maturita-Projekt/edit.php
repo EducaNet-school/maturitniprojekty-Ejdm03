@@ -42,6 +42,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="edit-body">
 
+<header id="nav-wrapper">
+    <nav id="nav">
+        <div class="nav left">
+        <span class="gradient skew">
+          <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
+        </span>
+            <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+        </div>
+        <div class="nav right">
+            <a href="AdminDashboard.php" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Zpět</span></span></a>
+        </div>
+    </nav>
+</header>
+
 <div class="mes-container">
 
     <div class="title">Upravit údaje</div>

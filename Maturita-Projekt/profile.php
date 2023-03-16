@@ -43,8 +43,6 @@ if ($id) {
 
 
 
-
-
 if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $id = (int)$_POST["id"];
     $name = mysqli_real_escape_string($conn, $_POST["name"]);
@@ -53,7 +51,11 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $dname=mysqli_real_escape_string($conn,$_POST["dname"]);
 
-
+    $querry = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $querry);
+if(mysqli_num_rows($result) > 0) {
+    $email_error = "This email is already used, try another one.";
+} else {
     // Update the user with the given ID
     $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
     mysqli_query($conn, $sql);
@@ -65,8 +67,8 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     header("Location: denikDash.php");
     exit();
 }
+}
 
-mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="en">
@@ -124,8 +126,12 @@ mysqli_close($conn);
             <input class="input" type="email" name="email" id="email" required value="<?php echo $email; ?>">
             <div class="cut"></div>
             <label class="placeholder" for="email">E-mail</label>
-
         </div>
+
+
+        <?php if(isset($email_error)) { ?>
+            <span class="error"><?php echo $email_error; ?></span>
+        <?php } ?>
 
         <div class="input-container ic2">
             <input class="input" type="password" name="password" id="password" required value="<?php echo $password; ?>">
@@ -133,7 +139,7 @@ mysqli_close($conn);
             <label class="placeholder" for="password">Heslo</label>
         </div>
 
-        <input type="checkbox" onclick="myFunction()"> Show Password
+        <input type="checkbox" onclick="myFunction()"> <span class="showp">Show Password</span>
 
         <div class="input-container ic2">
             <input class="input" type="text" name="dname" id="dname" required value="<?php echo $dname; ?>">
@@ -159,5 +165,3 @@ mysqli_close($conn);
 
 </script>
 </html>
-
-
