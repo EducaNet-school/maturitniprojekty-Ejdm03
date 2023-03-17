@@ -25,9 +25,22 @@ WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$sear
         echo '<td>' . substr($row["message"],0,50) . '</td>';
         echo '<td>' . $row["date"] . '</td>';
         echo '<td>';
-        echo '<a class="D-akce" href="showMes.php?id=' . $row["id_message"].'">Show </a>';
-        echo '<a class="D-akce" href="editMes.php?id=' . $row["id_message"] . '">Edit </a>';
-        echo '<a class="D-akce" href="#" onclick="confirmDelete(' . $row["id_message"] . ');">Delete</a>';
+        echo '<form method="post" action="showMes.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-18">Zobrazit</button>';
+        echo '</form>';
+
+        echo '<form method="post" action="editMes.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-18">Upravit</button>';
+        echo '</form>';
+
+        echo '<form id="deleteForm_' . $row['id_message'] . '" method="post" action="deleteD.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-delete" onclick="confirmDelete(\'' . $row["id_message"] . '\')">Smazat</button>';
+        echo '</form>';
+
+
         echo '</td>';
         echo '</tr>';
     }

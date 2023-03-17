@@ -116,9 +116,18 @@ mysqli_close($conn);
             <td><?php echo $row['description']; ?></td>
             <td><?php echo $row['date']; ?></td>
             <td>
-                <a href="showMes.php?id=<?php echo $row['id_message'];?>" class="D-akce">Show</a>
-                <a href="editMes.php?id=<?php echo $row["id_message"]; ?>" class="D-akce">Edit</a>
-                <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)"class="D-akce">Delete</a>
+                <form method="post" action="showMes.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-18">Zobrazit</button>
+                </form>
+                <form method="post" action="editMes.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-18">Upravit</button>
+                </form>
+                <form id="deleteForm_<?php echo $row['id_message']; ?>" method="post" action="deleteD.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id_message"]; ?>')">Smazat</button>
+                </form>
             </td>
         </tr>
     <?php } ?>

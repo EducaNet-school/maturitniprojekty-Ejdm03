@@ -5,12 +5,13 @@ if (!$conn) {
 }
 
 //cte data
-$id = $_GET['id'];
+$id = $_POST['id']; // Use POST instead of GET
 $query = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["submit"])) {
+    $id = (int)$_POST["id"];
     $firstname = $_POST['firstname'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
@@ -61,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="title">Upravit údaje</div>
 
     <form method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
         <div class="input-container ic1">
             <input class="input" id="firstname" type="text" name="firstname" value="<?php echo $row['firstname']; ?>">

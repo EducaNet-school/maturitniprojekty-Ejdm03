@@ -10,8 +10,8 @@ $id_message = 0;
 $description = '';
 $message = '';
 
-if (isset($_GET["id"]) && !empty($_GET["id"])) {
-    $id_message = (int)$_GET["id"];
+if (isset($_POST["id"]) && !empty($_POST["id"])) {
+    $id_message = (int)$_POST["id"];
 
     // Select the message with the given ID
     $sql = "SELECT * FROM messages WHERE id_message = $id_message";

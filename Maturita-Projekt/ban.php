@@ -5,12 +5,15 @@ if (!$conn) {
 }
 
 //cte data
-$id = $_GET['id'];
+$id = $_POST['id'];
 $query = "SELECT * FROM users WHERE id = $id";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+// cte data z formulare
+if (isset($_POST["submit"])) {
+    $id = (int)$_POST["id"];
     $firstname = $_POST['firstname'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
@@ -18,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $block= $_POST['ban'];
 
 
-        // update user data
+        // updatuje data
         $query = "UPDATE users SET Block='$block' WHERE id = $id";
         mysqli_query($conn, $query);
         header("location:AdminDashboard.php");
@@ -55,6 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="title">Upravit údaje</div>
 
     <form method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
         <div class="input-container ic1">
             <input class="input" id="firstname" type="text" name="firstname" readonly value="<?php echo $row['firstname']; ?>">

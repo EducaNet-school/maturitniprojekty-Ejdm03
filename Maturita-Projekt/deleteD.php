@@ -1,5 +1,5 @@
 <?php
-$id = $_GET["id"];
+$id = $_POST["id"];
 
 include "connection.php";
 if (!$conn) {

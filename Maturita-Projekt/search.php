@@ -35,9 +35,20 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
         echo '<td>' . $adminRole . '</td>';
         echo '<td>' . $userBlock.'</td>';
         echo '<td>';
-        echo '<a class="D-akce" href="edit.php?id=' . $row["id"] . '">Edit </a>';
-        echo '<a class="D-akce" href="ban.php?id=' . $row["id"] . '">Ban </a>';
-        echo '<a class="D-akce" href="#" onclick="confirmDelete(' . $row["id"] . ');">Delete</a>';
+        echo '<form method="post" action="edit.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+        echo '<button type="submit" class="button-18">Upravit</button>';
+        echo '</form>';
+
+        echo '<form method="post" action="ban.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+        echo '<button type="submit" class="button-delete">Blokovat</button>';
+        echo '</form>';
+
+        echo '<form id="deleteForm_' . $row['id'] . '" method="post" action="delete.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+        echo '<button type="submit" class="button-delete" onclick="confirmDelete(\'' . $row["id"] . '\')">Smazat</button>';
+        echo '</form>';
         echo '</td>';
         echo '</tr>';
     }

@@ -122,7 +122,7 @@ if (mysqli_num_rows($result1) > 0) {
         <th>Příjmení</th>
         <th>Email</th>
         <th>Admin Role</th>
-        <th>Blokace</th>
+        <th>Blokován</th>
         <th>Akce</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) {
@@ -150,9 +150,23 @@ if (mysqli_num_rows($result1) > 0) {
             <td><?php echo $adminRole; ?></td>
             <td><?php echo $userBlock; ?></td>
             <td>
-                <a class="D-akce" href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
-                <a class="D-akce" href="ban.php?id=<?php echo $row["id"]; ?>">Ban</a>
-                <a class="D-akce" href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
+
+
+
+                <form method="post" action="edit.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="button-18">Upravit</button>
+                </form>
+
+                <form method="post" action="ban.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="button-delete">Blokovat</button>
+                </form>
+
+                <form id="deleteForm_<?php echo $row['id']; ?>" method="post" action="delete.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id"]; ?>')">Smazat</button>
+                </form>
             </td>
         </tr>
     <?php } ?>
