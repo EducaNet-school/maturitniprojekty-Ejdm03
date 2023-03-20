@@ -37,22 +37,30 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Give Your Diary a Name</title>
-    <link rel="stylesheet" href="styl.css">
+    <title>Přiřaď název deníku</title>
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="show-mes-body">
 
-<h1>Dej svému deníku jméno</h1>
 
-<div class="registrace">
+<div class="mes-container">
+    <div class="title">Dej svému deníku jméno</div>
+
 
 <form action="dname.php" method="post">
-    <div class="registraceformula">
-    <label for="diary_name">Název deníku:</label>
+    <div class="input-container ic2">
+        <input type="text" id="diary_name" name="diary_name" class="input" required>
+        <div class="cut"></div>
+        <label class="placeholder" for="diary_name">Název deníku:</label>
+
     </div>
-    <input type="text" id="diary_name" name="diary_name">
-    <input type="submit" name="odeslat" placeholder="Vloz název">
+
+    <input type="submit" name="odeslat" class="submit" value="Přiřadit jméno">
+
+
 </form>
 </div>
+
+
 </body>
 </html>

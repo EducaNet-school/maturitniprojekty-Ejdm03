@@ -70,6 +70,7 @@ $result = mysqli_query($conn, $query);
     </nav>
 </header>
 <br>
+<div class="hledat-nadpis">Zde hledej zápisky</div>
 <div id="search-container">
     <input type="text" id="search" placeholder="Zadej klíčové slovo..">
     <div id="result"></div>

@@ -10,8 +10,8 @@ $id_message = 0;
 $description = '';
 $message = '';
 
-if (isset($_GET["id"]) && !empty($_GET["id"])) {
-    $id_message = (int)$_GET["id"];
+if (isset($_POST["id"]) && !empty($_POST["id"])) {
+    $id_message = (int)$_POST["id"];
 
     // Select the message with the given ID
     $sql = "SELECT * FROM messages WHERE id_message = $id_message";
@@ -34,9 +34,9 @@ mysqli_close($conn);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="show-mes-body">
 <header id="nav-wrapper">
     <nav id="nav">
         <div class="nav left">
@@ -50,17 +50,18 @@ mysqli_close($conn);
         </div>
     </nav>
 </header>
-<h1>Message detail</h1>
+
+
+
+
+<div class="mes-container">
+<h1 class="mes-popis"><?php echo $description; ?></h1>
 <form>
     <div>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" value="<?php echo $description; ?>" readonly>
-    </div>
-    <div>
-        <label for="message">Message:</label>
         <textarea id="message" name="message" class="message-textarea" readonly><?php echo $message; ?></textarea>
     </div>
 </form>
+</div>
 
 </body>
 </html>

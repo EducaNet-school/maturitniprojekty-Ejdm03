@@ -1,6 +1,6 @@
 body {
     background-color: #7c7575;
-    font-family:monospace; ;
+    font-family:monospace;
 }
 h1, h2, h3, h4, h5{
     color: white;
@@ -108,11 +108,11 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 tr{
-    background-color: #623535;
+    background-color: #5a5757;
 }
 
 th {
-    background-color: #d40d3e;
+    background-color:#4040a1;
 }
 
 tr:nth-child(even) {
@@ -120,7 +120,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #111;
+    background-color: #565454;
 }
 
 a {
@@ -220,7 +220,7 @@ a:hover {
     text-align: center;
     margin-top: 10px;
     border: 1px solid #ccc;
-    background-color: #855959;
+    background-color: #767474;
     border-radius: 20px;
 }
 
@@ -325,6 +325,7 @@ a:hover {
 
 .Mall{
     font-size: 18px;
+
 }
 
 
@@ -398,7 +399,7 @@ h1.logo a, a:active, a:hover, a:visited {
     border-top: 0.5px solid #ddd;
 }
 
-a:link, a:visited, a:active {
+.nav a:link, a:visited, a:active {
     text-decoration: none;
     color: #618685;
 }
@@ -542,3 +543,110 @@ a:hover {
     font-size:50px;
 }
 
+a.D-vse{
+    color: white;
+    font-size:20px;
+}
+
+a.D-akce{
+    color: white;
+}
+
+
+
+
+
+.button-18 {
+    margin-bottom:4px;
+    align-items: center;
+    background-color: #0A66C2;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus {
+    background-color: #16437E;
+    color: #ffffff;
+}
+
+.button-18:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+}
+
+
+.button-delete {
+    margin-bottom:4px;
+    align-items: center;
+    background-color: #d70f0f;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
+
+.button-delete:hover,
+.button-delete:focus {
+    background-color: #530808;
+    color: #ffffff;
+}
+
+.button-delete:active {
+    background: #ff0202;
+    color: rgb(255, 255, 255, .7);
+}
+
+.button-delete:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+}

@@ -16,18 +16,31 @@ JOIN m2d ON messages.id_message = m2d.id_m
 WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$search%' OR date LIKE '%$search%')";    $result = mysqli_query($conn, $query);
 
     echo '<table>';
-    echo '<thead><tr><th>ID</th><th>Description</th><th>Message</th><th>Date</th><th>Actions</th></tr></thead>';
+    echo '<thead><tr><th>Popis</th><th>Text</th><th>Datum</th><th>Akce</th></tr></thead>';
     echo '<tbody>';
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<tr>';
-        echo '<td>' . $row["id_message"] . '</td>';
+
         echo '<td>' . $row["description"] . '</td>';
         echo '<td>' . substr($row["message"],0,50) . '</td>';
         echo '<td>' . $row["date"] . '</td>';
         echo '<td>';
-        echo '<a href="showMes.php?id=' . $row["id_message"].'">Show </a>';
-        echo '<a href="editMes.php?id=' . $row["id_message"] . '">Edit </a>';
-        echo '<a href="#" onclick="confirmDelete(' . $row["id_message"] . ');">Delete</a>';
+        echo '<form method="post" action="showMes.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-18">Zobrazit</button>';
+        echo '</form>';
+
+        echo '<form method="post" action="editMes.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-18">Upravit</button>';
+        echo '</form>';
+
+        echo '<form id="deleteForm_' . $row['id_message'] . '" method="post" action="deleteD.php">';
+        echo '<input type="hidden" name="id" value="' . $row['id_message'] . '">';
+        echo '<button type="submit" class="button-delete" onclick="confirmDelete(\'' . $row["id_message"] . '\')">Smazat</button>';
+        echo '</form>';
+
+
         echo '</td>';
         echo '</tr>';
     }

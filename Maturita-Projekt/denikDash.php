@@ -56,7 +56,7 @@ mysqli_close($conn);
     <nav id="nav">
         <div class="nav left">
         <span class="gradient skew">
-          <h1 class="logo un-skew"><a href="$">OnlineD</a></h1>
+          <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
         </span>
             <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
         </div>
@@ -94,8 +94,8 @@ mysqli_close($conn);
     </div>
     <div class="form-group">
 
-        <div class="Mall">
-            <a href="denikDash.php">Zobrazit vše</a>
+        <div>
+            <a href="denikDash.php" class="D-vse">Zobrazit vše</a>
         </div>
         <div class="form-input">
             <input type="submit" value="Filter">
@@ -109,16 +109,25 @@ mysqli_close($conn);
     <tr>
         <th>Popis</th>
         <th>Datum vytvoření</th>
-        <th>Actions</th>
+        <th>Akce</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <td><?php echo $row['description']; ?></td>
             <td><?php echo $row['date']; ?></td>
             <td>
-                <a href="showMes.php?id=<?php echo $row['id_message'];?>">Show</a>
-                <a href="editMes.php?id=<?php echo $row["id_message"]; ?>">Edit</a>
-                <a href="#" onclick="confirmDelete(<?php echo $row["id_message"]; ?>)">Delete</a>
+                <form method="post" action="showMes.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-18">Zobrazit</button>
+                </form>
+                <form method="post" action="editMes.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-18">Upravit</button>
+                </form>
+                <form id="deleteForm_<?php echo $row['id_message']; ?>" method="post" action="deleteD.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id_message"]; ?>')">Smazat</button>
+                </form>
             </td>
         </tr>
     <?php } ?>
