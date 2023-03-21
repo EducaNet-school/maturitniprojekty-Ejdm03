@@ -81,13 +81,13 @@ mysqli_close($conn);
 
 <form action="denikDash.php" method="post">
     <div class="form-group">
-        <div class="form-label">From:</div>
+        <div class="form-label">Od:</div>
         <div class="form-input">
             <input type="date" id="from" name="from">
         </div>
     </div>
     <div class="form-group">
-        <div class="form-label">To:</div>
+        <div class="form-label">Do:</div>
         <div class="form-input">
             <input type="date" id="to" name="to">
         </div>
@@ -98,7 +98,7 @@ mysqli_close($conn);
             <a href="denikDash.php" class="D-vse">Zobrazit vše</a>
         </div>
         <div class="form-input">
-            <input type="submit" value="Filter">
+            <input type="submit" value="Filtruj">
         </div>
     </div>
 </form>

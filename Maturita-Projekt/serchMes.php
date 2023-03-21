@@ -46,7 +46,7 @@ WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$sear
     }
     echo '</tbody>';
     echo '</table>';
-    echo "<h1>Total " . mysqli_num_rows($result) . " Messages</h1>";
+    echo "<h1>Celkem " . mysqli_num_rows($result) . " zápisky</h1>";
     exit;
 }
 

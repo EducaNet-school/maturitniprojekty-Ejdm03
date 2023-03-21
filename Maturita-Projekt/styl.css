@@ -149,7 +149,7 @@ a:hover {
 }
 
 .select-selected {
-    background-color: #d40d3e;
+    background-color: #4239c7;
 }
 
 /* Style the arrow inside the select element: */
@@ -182,7 +182,7 @@ a:hover {
 /* Style items (options): */
 .select-items {
     position: absolute;
-    background-color: #3e0312;
+    background-color: #372ec9;
     top: 100%;
     left: 0;
     right: 0;
