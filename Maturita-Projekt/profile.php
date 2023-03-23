@@ -13,7 +13,8 @@ $dname="";
 
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $id = (int)$_GET["id"];
-    }
+}
+
 if ($id) {
     // Select the user with the given ID
     $sql = "SELECT * FROM users WHERE id = $id";
@@ -21,7 +22,6 @@ if ($id) {
 
     $sql1 = "SELECT * FROM denik WHERE idd=$id";
     $result1 = mysqli_query($conn, $sql1);
-
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -41,35 +41,43 @@ if ($id) {
     }
 }
 
-
-
 if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $id = (int)$_POST["id"];
     $name = mysqli_real_escape_string($conn, $_POST["name"]);
     $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
-    $email = mysqli_real_escape_string($conn, $_POST["email"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
-    $dname=mysqli_real_escape_string($conn,$_POST["dname"]);
+    $dname = mysqli_real_escape_string($conn, $_POST["dname"]);
+    
+    $emailChanged = false;
+    $newEmail = mysqli_real_escape_string($conn, $_POST["email"]);
+    if ($newEmail != $email) {
+        $emailChanged = true;
+        $email = $newEmail;
+        $query = "SELECT * FROM users WHERE email='$email'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $email_error = "This email is already used, try another one.";
+            $emailChanged = false;
+        }
+    }
 
-    $querry = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $querry);
-if(mysqli_num_rows($result) > 0) {
-    $email_error = "This email is already used, try another one.";
-} else {
-    // Update the user with the given ID
-    $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
+    if ($emailChanged) {
+        // Update the user's email and other fields
+        $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
+    } else {
+        // Update the user's other fields only
+        $sql = "UPDATE users SET firstname = '$name', surname = '$surname', password = '$password' WHERE id = $id";
+    }
     mysqli_query($conn, $sql);
 
     $sql1 ="UPDATE denik SET jmeno='$dname' WHERE idd = $id";
     mysqli_query($conn, $sql1);
 
-
     header("Location: denikDash.php");
     exit();
 }
-}
-
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>

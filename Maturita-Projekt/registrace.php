@@ -6,7 +6,7 @@ include "connection.php";
 
 if (isset($_POST["ok"])) {
 
-    if ($_POST["hesloAdmin"] == "7p+CwFm4HTpOpUB4W8yqrqy6gWKG5kRMvYMDU2GX1x8=") {
+    if ($_POST["hesloAdmin"] == "pesjelesbum") {
         $admin_value = 1;
     } else {
         $admin_value = 0;
