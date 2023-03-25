@@ -103,7 +103,7 @@ mysqli_close($conn);
     </div>
 </form>
 
-<h1>Tvoje zápisky</h1>
+<h1>Tvoje zápisky:</h1>
 
 <table>
     <tr>
@@ -128,6 +128,7 @@ mysqli_close($conn);
                     <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
                     <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id_message"]; ?>')">Smazat</button>
                 </form>
+
             </td>
         </tr>
     <?php } ?>
@@ -136,14 +137,14 @@ mysqli_close($conn);
 </body>
 <script>
     function confirmDelete(id) {
-        var confirmDelete = confirm("Are you sure you want to delete this user?");
+        var confirmDelete = confirm("Opravdu cheš vymazat tento zápisek?");
         if (confirmDelete == true) {
             window.location.replace("deleteD.php?id=" + id);
         } else {
+            event.preventDefault();
             return false;
         }
     }
-
 </script>
 
 </html>

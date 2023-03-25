@@ -84,6 +84,12 @@ mysqli_close($conn);
         document.getElementById("charCount").innerHTML = charCountDisplay;
         document.getElementById("submitBtn").disabled = (charCount > 280);
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var textarea = document.getElementById("message");
+        textarea.addEventListener("input", countChars);
+        countChars(); // call countChars on page load to show the initial character count
+    });
 </script>
 </body>
 

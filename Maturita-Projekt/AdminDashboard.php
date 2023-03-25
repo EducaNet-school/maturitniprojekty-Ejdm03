@@ -185,13 +185,15 @@ if (mysqli_num_rows($result1) > 0) {
 
 <script>
     function confirmDelete(id) {
-        var confirmDelete = confirm("Are you sure you want to delete the user with ID " + id + "?");
+        var confirmDelete = confirm("Opravdu cheš vymazat tohoto uživatele?" + id + "?");
         if (confirmDelete == true) {
             window.location.replace("delete.php?id=" + id);
         } else {
+            event.preventDefault();
             return false;
         }
     }
+
     var x, i, j, l, ll, selElmnt, a, b, c;
     /* Look for any elements with the class "custom-select": */
     x = document.getElementsByClassName("custom-select");
