@@ -11,9 +11,8 @@ $email = '';
 $password = '';
 $dname="";
 
-if (isset($_GET["id"]) && !empty($_GET["id"])) {
-    $id = (int)$_GET["id"];
-}
+
+
 
 if ($id) {
     // Select the user with the given ID
@@ -45,37 +44,29 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $id = (int)$_POST["id"];
     $name = mysqli_real_escape_string($conn, $_POST["name"]);
     $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
+    $email = $_POST['email'];
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $dname = mysqli_real_escape_string($conn, $_POST["dname"]);
-    
-    $emailChanged = false;
-    $newEmail = mysqli_real_escape_string($conn, $_POST["email"]);
-    if ($newEmail != $email) {
-        $emailChanged = true;
-        $email = $newEmail;
-        $query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $query);
-        if (mysqli_num_rows($result) > 0) {
-            $email_error = "This email is already used, try another one.";
-            $emailChanged = false;
-        }
+
+    $query = "SELECT * FROM users WHERE email='$email' AND id != $id";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0) {
+        $email_error = "Tento email už někdo má, zkus jiný.";
+        } else {
+            $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
+            mysqli_query($conn, $sql);
+
+            $sql1 ="UPDATE denik SET jmeno='$dname' WHERE idd = $id";
+            mysqli_query($conn, $sql1);
+
+            $sucess = "Data upravena.";
+
+
+
+
     }
-
-    if ($emailChanged) {
-        // Update the user's email and other fields
-        $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
-    } else {
-        // Update the user's other fields only
-        $sql = "UPDATE users SET firstname = '$name', surname = '$surname', password = '$password' WHERE id = $id";
-    }
-    mysqli_query($conn, $sql);
-
-    $sql1 ="UPDATE denik SET jmeno='$dname' WHERE idd = $id";
-    mysqli_query($conn, $sql1);
-
-    header("Location: denikDash.php");
-    exit();
 }
+
 ?>
 
 <!doctype html>
@@ -119,21 +110,21 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
         <div class="input-container ic1">
             <input class="input" type="text" name="name" id="name" required value="<?php echo $name; ?>">
             <div class="cut"></div>
-         <label for="name" class="placeholder">Jméno</label>
+         <label for="name" class="placeholder">Jméno:</label>
         </div>
 
 
         <div class="input-container ic2">
             <input class="input" type="text" name="surname" id="surname" required value="<?php echo $surname; ?>">
             <div class="cut"></div>
-            <label for="surname" class="placeholder">Příjmení</label>
+            <label for="surname" class="placeholder">Příjmení:</label>
 
         </div>
 
         <div class="input-container ic2">
             <input class="input" type="email" name="email" id="email" required value="<?php echo $email; ?>">
             <div class="cut"></div>
-            <label class="placeholder" for="email">E-mail</label>
+            <label class="placeholder" for="email">E-mail:</label>
         </div>
 
 
@@ -141,19 +132,26 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
             <span class="error"><?php echo $email_error; ?></span>
         <?php } ?>
 
+
+
         <div class="input-container ic2">
             <input class="input" type="password" name="password" id="password" required value="<?php echo $password; ?>">
             <div class="cut"></div>
-            <label class="placeholder" for="password">Heslo</label>
+            <label class="placeholder" for="password">Heslo:</label>
         </div>
 
-        <input type="checkbox" onclick="myFunction()"> <span class="showp">Show Password</span>
+        <input type="checkbox" onclick="myFunction()"> <span class="showp">Zobrazit heslo</span>
 
         <div class="input-container ic2">
             <input class="input" type="text" name="dname" id="dname" required value="<?php echo $dname; ?>">
             <div class="cut"></div>
-            <label class="placeholder" for="dname">D název</label>
+            <label class="placeholder" for="dname">Název deníku:</label>
         </div>
+
+        <?php if(isset($sucess)) { ?>
+            <span class="okedit"><?php echo $sucess; ?></span>
+        <?php } ?>
+
 
         <button type="submit" value="submit" class="submit" name="submit">Upravit</button>
 
