@@ -182,7 +182,7 @@ a:hover {
 /* Style items (options): */
 .select-items {
     position: absolute;
-    background-color: #372ec9;
+    background-color: #080546;
     top: 100%;
     left: 0;
     right: 0;
@@ -495,14 +495,19 @@ a:hover {
     font-size: 20px;
     font-weight: bold;
     color: #ffffff;
-    text-align:left;
-    padding:10px;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 30px;
 }
+
+
 .table-users {
     background-color: #999999;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 700px;
+    height: auto;
     padding: 20px;
     width: 1350px;
     text-align: center;
@@ -529,7 +534,18 @@ a:hover {
     margin-left: auto;
     flex-grow: 1;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
 }
+
+.inner-container {
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 95%;
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+
 .statistika-nadpis{
     text-align: center;
     color: #590808;
@@ -649,4 +665,16 @@ a.D-akce{
     cursor: not-allowed;
     background: rgba(0, 0, 0, .08);
     color: rgba(0, 0, 0, .3);
+}
+
+
+.statistika-nadpis{
+    color: white;
+}
+
+
+.show-admin{
+    background-color: #7c7575;
+    font-family:monospace;
+    margin-top: 150px;
 }

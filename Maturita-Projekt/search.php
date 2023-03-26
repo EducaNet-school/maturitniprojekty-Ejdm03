@@ -12,19 +12,19 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     $result = mysqli_query($conn, $query);
 
     echo '<table>';
-    echo '<thead><tr><th>ID</th><th>Jméno</th><th>Příjmení</th><th>Email</th><th>Admin Role</th><th>Ban</th><th>Akce</th></tr></thead>';
+    echo '<thead><tr><th>ID</th><th>Jméno</th><th>Příjmení</th><th>Email</th><th>Role</th><th>Blokován</th><th>Akce</th></tr></thead>';
     echo '<tbody>';
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row["adminRole"] == 0) {
-            $adminRole = "User";
+            $adminRole = "Uživatel";
         } else if ($row["adminRole"] == 1) {
             $adminRole = "Admin";
         }
 
         if($row["Block"]==0){
-            $userBlock = "No";
+            $userBlock = "Ne";
         }elseif ($row["Block"]==1){
-            $userBlock ="Banned";
+            $userBlock ="Zablokován";
         }
 
         echo '<tr>';

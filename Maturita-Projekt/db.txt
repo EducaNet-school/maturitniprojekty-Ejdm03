@@ -4,9 +4,10 @@ CREATE TABLE `users` (
   `surname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
-  `adminRole` int(5) DEFAULT NULL,
-  `Block` int(10) DEFAULT NULL
-)
+  `adminRole` int(5) NOT NULL,
+  `Block` int(10) NOT NULL DEFAULT '0',
+  `registrationd` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 
 

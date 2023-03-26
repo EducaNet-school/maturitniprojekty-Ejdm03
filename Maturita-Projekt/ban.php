@@ -24,7 +24,14 @@ if (isset($_POST["submit"])) {
         // updatuje data
         $query = "UPDATE users SET Block='$block' WHERE id = $id";
         mysqli_query($conn, $query);
-        header("location:AdminDashboard.php");
+
+        if (!$query){
+            $ok = "Změny proběhly v pořádku";
+        } else{
+            $ne = "Něco se pokazilo";
+        }
+
+
     }
 
 ?>
@@ -55,7 +62,7 @@ if (isset($_POST["submit"])) {
 
 <div class="mes-container">
 
-    <div class="title">Upravit údaje</div>
+    <div class="title">Blokace účtu</div>
 
     <form method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -81,20 +88,30 @@ if (isset($_POST["submit"])) {
         </div>
 
         <div class="input-container ic2">
-            <input class="input" id="adminRole" type="text" name="adminRole" readonly value="<?php echo ($row['adminRole'] == 0) ? 'User' : 'Admin'; ?>">
+            <input class="input" id="adminRole" type="text" name="adminRole" readonly value="<?php echo ($row['adminRole'] == 0) ? 'Uživatel' : 'Admin'; ?>">
             <div class="cut"></div>
             <label class="placeholder" for="admin">Role:</label>
         </div>
 
 
         <div class="input-container ic2">
-            <select name="ban" class="input">
+            <select id ="ban" name="ban" class="input">
                 <option  value="0" <?php if($row['adminRole'] == "No") { echo 'selected'; } ?>>Odblokovat</option>
                 <option  value="1" <?php if($row['adminRole'] == "Yes") { echo 'selected'; } ?>>Zablokovat</option>
             </select>
+            <div class="cut"></div>
+
+            <label class="placeholder" for="ban">Blokace:</label>
+
         </div>
 
+        <?php if(isset($ok)) { ?>
+            <span class="okedit"><?php echo $ok; ?></span>
+        <?php } ?>
 
+        <?php if(isset($ne)) { ?>
+            <span class="error"><?php echo $ne; ?></span>
+        <?php } ?>
 
 
 

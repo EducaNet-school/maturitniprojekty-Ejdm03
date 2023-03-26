@@ -21,12 +21,15 @@ if (isset($_POST["submit"])) {
     $query = "SELECT * FROM users WHERE email='$email' AND id != $id";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0) {
-        $email_error = "This email is already used, try another one.";
+        $email_error = "Tento email už někdo má, zkus jiný.";
     } else {
         // update user data
         $query = "UPDATE users SET firstname='$firstname', surname='$surname', email='$email', adminRole='$adminRole' WHERE id = $id";
         mysqli_query($conn, $query);
-        header("location:AdminDashboard.php");
+
+        if ($query){
+            $okedit ="Data upravena.";
+        }
     }
 }
 
@@ -89,12 +92,16 @@ if (isset($_POST["submit"])) {
 
         <div class="input-container ic2">
             <select class="input" id="admin" name="adminRole">
-                <option value="0" <?php if($row['adminRole'] == 0) { echo 'selected'; } ?>>User</option>
+                <option value="0" <?php if($row['adminRole'] == 0) { echo 'selected'; } ?>>Uživatel</option>
                 <option value="1" <?php if($row['adminRole'] == 1) { echo 'selected'; } ?>>Admin</option>
             </select>
             <div class="cut"></div>
             <label class="placeholder" for="admin">Role:</label>
         </div>
+
+        <?php if(isset($okedit)) { ?>
+            <span class="okedit"><?php echo $okedit; ?></span>
+        <?php } ?>
 
         <button type="submit" value="submit" class="submit" name="submit">Upravit</button>
     </form>

@@ -70,7 +70,7 @@ $result = mysqli_query($conn, $query);
 </header>
 <div class="hledat-nadpis">Zde hledej uživatele</div>
 <div id="search-container">
-    <input type="text" id="search" placeholder="Zadej klíčové slovo...">
+    <input max="75" type="text" id="search" placeholder="Zadej klíčové slovo...">
     <div id="result"></div>
 </div>
 </body>
