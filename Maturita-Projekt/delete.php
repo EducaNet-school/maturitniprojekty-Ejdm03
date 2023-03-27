@@ -37,6 +37,6 @@ mysqli_query($conn, "SET foreign_key_checks = 1");
 if ($result_users && $result_denik && $result_messages && $result_u2d && $result_m2d) {
     header("Location: AdminDashboard.php");
 } else {
-    echo "Error deleting record: " . mysqli_error($conn);
+    echo "Chyba mazani " . mysqli_error($conn);
 }
 ?>

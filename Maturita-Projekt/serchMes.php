@@ -6,7 +6,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Check if there is anything in the search field
+// koukne zda tu neco je
 if (isset($_POST['search']) && !empty($_POST['search'])) {
     $search = mysqli_real_escape_string($conn, $_POST['search']);
 

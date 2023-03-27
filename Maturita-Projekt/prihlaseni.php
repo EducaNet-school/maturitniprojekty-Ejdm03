@@ -15,7 +15,7 @@ if (isset($_POST['ok'])) {
     $row=mysqli_fetch_assoc($result);
 
 
-
+//kontola role
     if (mysqli_num_rows($result) == 1) {
 
         if ($row["Block"] == 1) {
@@ -75,7 +75,7 @@ function generateResetLink($email) {
 
 
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

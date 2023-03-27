@@ -1,5 +1,5 @@
 <?php
-
+// pripojeni do db
 $servername = "localhost";
 $db = "onlined";
 $username = "root";

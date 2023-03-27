@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $adminRole = $_POST['adminRole'];
 
-    // check if email already exists
+    // kontrola emailu zda existuje
     $query = "SELECT * FROM users WHERE email='$email' AND id != $id";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0) {
@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
 
 ?>
 <!doctype html>
-<html lang="cz">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

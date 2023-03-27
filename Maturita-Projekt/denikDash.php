@@ -23,7 +23,7 @@ WHERE m2d.id_d = '$id'";
 $result = mysqli_query($conn, $sql);
 
 
-
+//filtrace od do
 if (isset($_POST['from']) && isset($_POST['to'])) {
     $from = $_POST['from'];
     $to = $_POST['to'];
@@ -42,7 +42,7 @@ $result = mysqli_query($conn, $sql);
 mysqli_close($conn);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

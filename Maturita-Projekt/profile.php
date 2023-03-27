@@ -15,7 +15,7 @@ $dname="";
 
 
 if ($id) {
-    // Select the user with the given ID
+    // vybere uzivatele
     $sql = "SELECT * FROM users WHERE id = $id";
     $result = mysqli_query($conn, $sql);
 
@@ -70,7 +70,7 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

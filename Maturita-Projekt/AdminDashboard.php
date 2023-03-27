@@ -5,14 +5,14 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Fetch data from users table
+//Nacita data z databaze
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
 
 $role = "";
 
-
+// filtrace podle role
 if(isset($_POST["role"])) {
     $role = $_POST["role"];
 
@@ -27,6 +27,7 @@ if(isset($_POST["role"])) {
         $result = mysqli_query($conn, $query);
 }
 
+// data pro statistiky
 $sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
 $resulttt = mysqli_query($conn, $sql);
 
@@ -99,7 +100,7 @@ if (mysqli_num_rows($result7) > 0) {
 
 ?>
 <!doctype html>
-<html lang="cz">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

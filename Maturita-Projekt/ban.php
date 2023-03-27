@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
 
 ?>
 <!doctype html>
-<html lang="cz">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

@@ -12,18 +12,18 @@ if ($_POST) {
     $description = $_POST["description"];
     $message = $_POST["message"];
 
-    // Check if message length is greater than 280
+    // Kontroluje pocet znaku
     if (strlen($message) > 280) {
         $error = "Message should not be more than 280 characters";
     } else {
-        // Insert message into database
+        // vklada do databaze message
         $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
         $result = mysqli_query($conn, $sql);
 
-        // Get the id of the inserted message
+        // ziska id vkladane message
         $messageId = mysqli_insert_id($conn);
 
-        // Insert a relationship between message and diary in the "M2D" table
+        // vytvari vztaz
         $sql = "INSERT INTO m2d (id_m, id_d) VALUES ('$messageId', '$id')";
         $result = mysqli_query($conn, $sql);
 
@@ -35,7 +35,7 @@ if ($_POST) {
 mysqli_close($conn);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
