@@ -107,7 +107,7 @@ if (mysqli_num_rows($result7) > 0) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AdminDashboard</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="show-admin">
 
@@ -128,7 +128,7 @@ if (mysqli_num_rows($result7) > 0) {
     </nav>
 </header>
 
-<h1>Admin Dashboard</h1>
+<div class="admin-nadpis">Admin Dashboard</div>
 <div class="custom-select">
     <form action="AdminDashboard.php" method="POST">
         <select name="role" id="role">
@@ -138,7 +138,7 @@ if (mysqli_num_rows($result7) > 0) {
             <option value="3" <?php echo "selected"; ?>>Všechny</option>
         </select>
         <div class="filtr">
-            <input type="submit" value="Filtruj">
+            <input type="submit" value="Filtruj" class="filtr-button">
         </div>
     </form>
 </div>
@@ -149,8 +149,8 @@ if (mysqli_num_rows($result7) > 0) {
 <br>
 
 <div class="table-users">
-    <?php echo "<h1>Celkem " . mysqli_num_rows($result) . " Uživatelé</h1>";?>
-<div class="inner-container">
+    <?php echo "<span class='admin-nadpis'>Celkem " . mysqli_num_rows($result) . " Uživatelé</span>";?>
+<div class="inner-containertab">
     <table>
     <tr>
         <th>ID</th>

@@ -64,7 +64,7 @@ input[type=text],input[type=password],input[type=email]{
     font-size:18px;
 }
 
-input[type=submit] {
+.filtr-button {
     width: 50%;
     background-color: #4CAF50;
     color: #fdfdfd;
@@ -75,7 +75,7 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+.filtr-button:hover {
     background-color: #45a049;
 }
 
@@ -93,7 +93,7 @@ label {
     font-size: 18px;
 }
 
-table {
+.table-users table {
     width: 100%;
     color: white;
     text-align: center;
@@ -103,23 +103,53 @@ table {
     overflow: hidden;
 }
 
-th, td {
+.table-users th, td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
-tr{
+.table-users tr{
     background-color: #5a5757;
 }
 
-th {
+.table-users th {
     background-color:#4040a1;
 }
 
-tr:nth-child(even) {
+.table-users tr:nth-child(even) {
     background-color: #333;
 }
 
-tr:hover {
+.table-users tr:hover {
+    background-color: #565454;
+}
+
+.table-zapisky table {
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-collapse: collapse;
+    font-size:20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-zapisky th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.table-zapisky tr{
+    background-color: #5a5757;
+}
+
+.table-zapisky th {
+    background-color:#4040a1;
+}
+
+.table-zapisky tr:nth-child(even) {
+    background-color: #333;
+}
+
+.table-zapisky tr:hover {
     background-color: #565454;
 }
 
@@ -280,15 +310,7 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.form-input input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
+
 
 #loader {
     position: fixed;
@@ -515,7 +537,18 @@ a:hover {
     margin-left: auto;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
-
+.table-zapisky {
+    background-color: #999999;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    width: auto;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
 .uzivatele {
     display: flex;
     padding: 20px;

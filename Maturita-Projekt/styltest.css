@@ -731,6 +731,9 @@ h1.mes-popis{
     text-align: center;
     font-size: 45px;
 }
+h1{
+    color: white;
+}
 
 input.popisek{
     text-align:center;
@@ -824,4 +827,415 @@ input.mes-add:hover {
 
 .count{
     color:white;
+}
+
+
+.show-admin{
+    background-color: #7c7575;
+    font-family:monospace;
+    margin-top: 150px;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    width: 220px;
+    text-align: center;
+    margin-left:auto;
+    margin-right: auto;
+    padding:12px;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+    background-color: #4239c7;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    content: "";
+
+    right: 25px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    background-color: #080546;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.filtr-button {
+    width: 50%;
+    background-color: #4CAF50;
+    color: #fdfdfd;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filtr-button:hover {
+    background-color: #45a049;
+}
+
+.table-users {
+    background-color: #999999;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    width: 1350px;
+    text-align: center;
+    margin-right: 20px;
+    margin-left: auto;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.inner-container {
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 95%;
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+.inner-containertab {
+    border: 2px solid white;
+    border-radius: 15px;
+    height: auto;
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+.admin-nadpis{
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    font-family:"Helvetica";
+    margin-bottom: 5px;
+    font-weight:bold;
+}
+.statistika-nadpis{
+    text-align: center;
+    color: #590808;
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.uzivatele {
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.table-users table {
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-collapse: collapse;
+    font-size:20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-users th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.table-users tr{
+    background-color: #5a5757;
+}
+
+.table-users th {
+    background-color:#4040a1;
+}
+
+.table-users tr:nth-child(even) {
+    background-color: #333;
+}
+
+.table-users tr:hover {
+    background-color: #565454;
+}
+
+.button-18 {
+    margin-bottom:4px;
+    align-items: center;
+    background-color: #0A66C2;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus {
+    background-color: #16437E;
+    color: #ffffff;
+}
+
+.button-18:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+}
+
+
+.button-delete {
+    margin-bottom:4px;
+    align-items: center;
+    background-color: #d70f0f;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
+
+.button-delete:hover,
+.button-delete:focus {
+    background-color: #530808;
+    color: #ffffff;
+}
+
+.button-delete:active {
+    background: #ff0202;
+    color: rgb(255, 255, 255, .7);
+}
+
+.button-delete:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+}
+
+.statistika-nadpis{
+    color: white;
+}
+.statistika-container{
+
+    background-color: #6d728a;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 700px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    margin-left: auto;
+    flex-grow: 1;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+}
+
+.avg-messages-per-day {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+.table-zapisky {
+    background-color: #999999;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    width: auto;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.show-admin{
+    background-color: #7c7575;
+    font-family:monospace;
+    margin-top: 150px;
+}
+
+.table-zapisky table {
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-collapse: collapse;
+    font-size:20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-zapisky th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.table-zapisky tr{
+    background-color: #5a5757;
+}
+
+.table-zapisky th {
+    background-color:#4040a1;
+}
+
+.table-zapisky tr:nth-child(even) {
+    background-color: #333;
+}
+
+.table-zapisky tr:hover {
+    background-color: #565454;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+    margin: 1rem auto;
+    width: 25%;
+}
+
+.form-label {
+    font-family: monospace;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.form-input {
+    display: flex;
+    justify-content: center;
+}
+
+a.D-vse{
+    color: white;
+    font-size:20px;
+}
+
+.form-input input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.hledat-nadpis{
+    padding-top: 250px;
+    text-align: center;
+    color: white;
+    font-size:50px;
+}
+
+
+#search-container {
+    position: static;
+    width: 1250px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 5px;
+    border-color: #5858c7;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1250px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    background-color: #767474;
+    border-radius: 20px;
 }
