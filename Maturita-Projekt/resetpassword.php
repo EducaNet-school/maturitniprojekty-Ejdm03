@@ -65,7 +65,7 @@ if (isset($_POST['reset'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,7 +100,7 @@ if (isset($_POST['reset'])) {
 <body class="login">
 
 <div class="form-login">
-    <div class="title">Přihlášení</div>
+    <div class="title">Obnova Hesla</div>
     <form method="post" action="resetpassword.php">
         <div class="input-container ic1">
             <input type="email" id="email" name="email" class="input">

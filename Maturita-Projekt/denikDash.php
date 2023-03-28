@@ -23,7 +23,7 @@ WHERE m2d.id_d = '$id'";
 $result = mysqli_query($conn, $sql);
 
 
-
+//filtrace od do
 if (isset($_POST['from']) && isset($_POST['to'])) {
     $from = $_POST['from'];
     $to = $_POST['to'];
@@ -42,16 +42,16 @@ $result = mysqli_query($conn, $sql);
 mysqli_close($conn);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vkladani</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="edit-body">
 <header id="nav-wrapper">
     <nav id="nav">
         <div class="nav left">
@@ -77,7 +77,7 @@ mysqli_close($conn);
 
 
 
-<h1>Název tvého deníku je : <?php echo $diaryName; ?></h1>
+<div class="admin-nadpis">Název tvého deníku je : <?php echo $diaryName; ?></div>
 
 <form action="denikDash.php" method="post">
     <div class="form-group">
@@ -97,15 +97,19 @@ mysqli_close($conn);
         <div>
             <a href="denikDash.php" class="D-vse">Zobrazit vše</a>
         </div>
-        <div class="form-input">
-            <input type="submit" value="Filtruj">
+        <div class="filtr">
+            <input class="filtr-button" type="submit" value="Filtruj">
         </div>
     </div>
 </form>
 
-<h1>Tvoje zápisky</h1>
+<div class="table-zapisky">
+    <span   class="admin-nadpis">Tvoje zápisky:</span>
 
-<table>
+    <div class="inner-containertab">
+
+
+    <table>
     <tr>
         <th>Popis</th>
         <th>Datum vytvoření</th>
@@ -128,22 +132,25 @@ mysqli_close($conn);
                     <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
                     <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id_message"]; ?>')">Smazat</button>
                 </form>
+
             </td>
         </tr>
     <?php } ?>
 </table>
+</div>
+</div>
 
 </body>
 <script>
     function confirmDelete(id) {
-        var confirmDelete = confirm("Are you sure you want to delete this user?");
+        var confirmDelete = confirm("Opravdu cheš vymazat tento zápisek?");
         if (confirmDelete == true) {
             window.location.replace("deleteD.php?id=" + id);
         } else {
+            event.preventDefault();
             return false;
         }
     }
-
 </script>
 
 </html>

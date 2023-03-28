@@ -12,25 +12,30 @@ if ($_POST) {
     $description = $_POST["description"];
     $message = $_POST["message"];
 
-    // vloz zpravu
-    $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
-    $result = mysqli_query($conn, $sql);
+    // Kontroluje pocet znaku
+    if (strlen($message) > 280) {
+        $error = "Message should not be more than 280 characters";
+    } else {
+        // vklada do databaze message
+        $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
+        $result = mysqli_query($conn, $sql);
 
-    // dostane id z mes
-    $messageId = mysqli_insert_id($conn);
+        // ziska id vkladane message
+        $messageId = mysqli_insert_id($conn);
 
-    // Vložte vztah mezi zprávou a deníkem do tabulky "M2D".
-    $sql = "INSERT INTO m2d (id_m, id_d) VALUES ('$messageId', '$id')";
-    $result = mysqli_query($conn, $sql);
+        // vytvari vztaz
+        $sql = "INSERT INTO m2d (id_m, id_d) VALUES ('$messageId', '$id')";
+        $result = mysqli_query($conn, $sql);
 
-    header("Location: denikDash.php");
-    exit;
+        header("Location: denikDash.php");
+        exit;
+    }
 }
 
 mysqli_close($conn);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -56,19 +61,36 @@ mysqli_close($conn);
 
 <div class="mes-container">
 
-
-<h1 class="mes-popis">Přidej si zápisek</h1>
-<form action="addMes.php" method="post">
-    <div>
-        <input type="text" name="description" id="description" placeholder="Zde vlož popisek" class="popisek">
-    </div>
-    <div>
-        <textarea name="message" id="message" class="message-textarea" placeholder="Zde vlož text"></textarea>
-    </div>
-    <div>
-        <input type="submit" value="Uložit" class="mes-add">
-    </div>
-</form>
+    <h1 class="mes-popis">Přidej si zápisek</h1>
+    <form action="addMes.php" method="post">
+        <div>
+            <input maxlength="50" type="text" name="description" id="description" placeholder="Zde vlož popisek" class="popisek" required>
+        </div>
+        <div>
+            <textarea name="message" id="message" class="message-textarea" placeholder="Zde vlož text" maxlength="280" oninput="countChars()" required></textarea>
+            <p class="count" id="charCount"></p>
+        </div>
+        <div>
+            <input type="submit" value="Uložit" class="mes-add" id="submitBtn" disabled>
+        </div>
+    </form>
 </div>
+
+<script>
+    function countChars() {
+        var charCount = document.getElementById("message").value.length;
+        var remainingChars = 280 - charCount;
+        var charCountDisplay = remainingChars + "/280";
+        document.getElementById("charCount").innerHTML = charCountDisplay;
+        document.getElementById("submitBtn").disabled = (charCount > 280);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var textarea = document.getElementById("message");
+        textarea.addEventListener("input", countChars);
+        countChars(); // call countChars on page load to show the initial character count
+    });
+</script>
 </body>
+
 </html>

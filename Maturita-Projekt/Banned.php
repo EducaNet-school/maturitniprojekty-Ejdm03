@@ -1,11 +1,9 @@
-<?php
-?>
 
 
 
 
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -27,7 +25,7 @@
     <div class="nav right">
         <a href="#home" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Blokace</span></span></a>
         <a href="#about" class="nav-link "><span class="nav-link-span"><span class="u-nav">Proč?</span></span></a>
-        <a href="#work" class="nav-link "><span class="nav-link-span"><span class="u-nav">Kontakt</span></span></a>
+        <a href="#contact" class="nav-link "><span class="nav-link-span"><span class="u-nav">Kontakt</span></span></a>
         <a href="logout.php" class="nav-link "><span class="nav-link-span"><span class="u-nav">Odhlásit se</span></span></a>
 
     </div>
@@ -41,7 +39,7 @@
 
     <section id="about">
         <h1 class="title">Proč si byl zablokován?</h1>
-        <p class="description">Zde jsou pravděpodobé důvody proč jsi byl zablokován</p>
+        <p class="description">Zde jsou pravděpodobné důvody proč jsi byl zablokován</p>
 
         <ul class="ban-reasons">
             <li>Nepřiměřené chování vůči ostatním uživatelům.</li>
@@ -56,7 +54,7 @@
     </section>
 
     <section id="contact">
-        <div class="work-container">
+        <div class="email-container">
             <div class="work-text">
                 <h2>Kontaktujte nás</h2>
                 <p>Pokud budete mít jakýkoli dotaz či se domíváte, že vám byla blokace udělena neprávem, neváhejte nás kontaktovat na našem emailu:</p>

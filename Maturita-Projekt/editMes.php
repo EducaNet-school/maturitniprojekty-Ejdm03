@@ -38,7 +38,7 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
 mysqli_close($conn);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -67,11 +67,13 @@ mysqli_close($conn);
 <form action="editMes.php" method="post">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div>
-        <input type="text" name="description" id="description" class="popisek" required value="<?php echo $description; ?>">
+        <input type="text" maxlength="50" name="description" id="description" class="popisek" required value="<?php echo $description; ?>">
     </div>
     <div>
 
-        <textarea name="message" id="message" class="message-textarea"  required><?php echo $message; ?></textarea>
+        <textarea name="message" maxlength="280" oninput="countChars()" id="message" class="message-textarea"  required><?php echo $message; ?></textarea>
+        <p class="count" id="charCount"></p>
+
     </div>
     <div>
         <input type="submit" name="submit" class="mes-add" value="Ulož">
@@ -79,4 +81,20 @@ mysqli_close($conn);
 </form>
 </div>
 </body>
+<script>
+    function countChars() {
+        var charCount = document.getElementById("message").value.length;
+        var remainingChars = 280 - charCount;
+        var charCountDisplay = remainingChars + "/280";
+        document.getElementById("charCount").innerHTML = charCountDisplay;
+        document.getElementById("submitBtn").disabled = (charCount > 280);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var textarea = document.getElementById("message");
+        textarea.addEventListener("input", countChars);
+        countChars(); // call countChars on page load to show the initial character count
+    });
+</script>
+
 </html>

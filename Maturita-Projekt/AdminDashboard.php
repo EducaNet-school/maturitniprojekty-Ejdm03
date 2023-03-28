@@ -5,14 +5,14 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Fetch data from users table
+//Nacita data z databaze
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
 
 $role = "";
 
-
+// filtrace podle role
 if(isset($_POST["role"])) {
     $role = $_POST["role"];
 
@@ -27,6 +27,7 @@ if(isset($_POST["role"])) {
         $result = mysqli_query($conn, $query);
 }
 
+// data pro statistiky
 $sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
 $resulttt = mysqli_query($conn, $sql);
 
@@ -38,18 +39,59 @@ if (mysqli_num_rows($resulttt) > 0) {
 }
 
 
-
 $sql1 ="SELECT COUNT(*) AS total_messages FROM messages";
 $result1 = mysqli_query($conn, $sql1);
-
-
-
 if (mysqli_num_rows($result1) > 0) {
     $row1 = mysqli_fetch_assoc($result1);
     $total_messages = $row1["total_messages"];
 } else {
     $total_messages = 0;
 }
+
+$sql2="SELECT COUNT(*) / DATEDIFF(NOW(), MIN(registrationd)) AS avg_reg FROM `users`";
+$result2 =mysqli_query($conn, $sql2);
+
+if (mysqli_num_rows($result2) > 0) {
+    $row2 = mysqli_fetch_assoc($result2);
+    $avg_registration = number_format($row2["avg_reg"], 2);
+} else {
+    $avg_registration = 0;
+}
+
+$sql3 = "SELECT COUNT(*) AS num_banned_users FROM `users` WHERE `Block` = 1";
+$result3 = mysqli_query($conn, $sql3);
+
+if (mysqli_num_rows($result3) > 0) {
+    $row3 = mysqli_fetch_assoc($result3);
+    $num_banned_users = $row3["num_banned_users"];
+} else {
+    $num_banned_users = 0;
+}
+
+
+
+
+
+$sql6 = "SELECT COUNT(*) / DATEDIFF(NOW(), MIN(date)) / 7 AS avg_messages_per_week FROM `messages`";
+$result6 = mysqli_query($conn, $sql6);
+
+if (mysqli_num_rows($result6) > 0) {
+    $row6 = mysqli_fetch_assoc($result6);
+    $avg_messages_per_week = number_format($row6["avg_messages_per_week"],2);
+} else {
+    $avg_messages_per_week = 0;
+}
+
+$sql7 = "SELECT COUNT(*) / (DATEDIFF(NOW(), MIN(date)) / 30) AS avg_messages_per_month FROM `messages`";
+$result7 = mysqli_query($conn, $sql7);
+
+if (mysqli_num_rows($result7) > 0) {
+    $row7 = mysqli_fetch_assoc($result7);
+    $avg_messages_per_month =number_format( $row7["avg_messages_per_month"],2);
+} else {
+    $avg_messages_per_month = 0;
+}
+
 
 
 
@@ -58,16 +100,16 @@ if (mysqli_num_rows($result1) > 0) {
 
 ?>
 <!doctype html>
-<html lang="cz">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AdminDashboard</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
 </head>
-<body>
+<body class="show-admin">
 
 <header id="nav-wrapper">
     <nav id="nav">
@@ -85,24 +127,18 @@ if (mysqli_num_rows($result1) > 0) {
         </div>
     </nav>
 </header>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<h1>Admin Dashboard</h1>
+<div class="admin-nadpis">Admin Dashboard</div>
 <div class="custom-select">
     <form action="AdminDashboard.php" method="POST">
         <select name="role" id="role">
             <option value="">--Select Role--</option>
-            <option value="0" <?php if($role == "0") {echo "selected";} ?>>Users</option>
-            <option value="1" <?php if($role == "1") {echo "selected";} ?>>Admins</option>
-            <option value="3" <?php echo "selected"; ?>>ALL</option>
+            <option value="0" <?php if($role == "0") {echo "selected";} ?>>Uživatel</option>
+            <option value="1" <?php if($role == "1") {echo "selected";} ?>>Admin</option>
+            <option value="3" <?php echo "selected"; ?>>Všechny</option>
         </select>
         <div class="filtr">
-            <input type="submit" value="Filter">
+            <input type="submit" value="Filtruj" class="filtr-button">
         </div>
     </form>
 </div>
@@ -113,21 +149,21 @@ if (mysqli_num_rows($result1) > 0) {
 <br>
 
 <div class="table-users">
-    <?php echo "<h1>Celkem " . mysqli_num_rows($result) . " Uživatelé</h1>";?>
-
+    <?php echo "<span class='admin-nadpis'>Celkem " . mysqli_num_rows($result) . " Uživatelé</span>";?>
+<div class="inner-containertab">
     <table>
     <tr>
         <th>ID</th>
         <th>Jméno</th>
         <th>Příjmení</th>
         <th>Email</th>
-        <th>Admin Role</th>
+        <th>Role</th>
         <th>Blokován</th>
         <th>Akce</th>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)) {
         if ($row["adminRole"] == 0) {
-            $adminRole = "User";
+            $adminRole = "Uživatel";
         } else if ($row["adminRole"] == 1) {
             $adminRole = "Admin";
         }
@@ -170,14 +206,24 @@ if (mysqli_num_rows($result1) > 0) {
             </td>
         </tr>
     <?php } ?>
+
 </table>
+</div>
 </div>
 
 <div  class="statistika-container">
-    <div class="statistika-nadpis">Statistiky průměr</div>
+    <div class="statistika-nadpis">Statistiky</div>
+        <div class="inner-container">
+            <div class='avg-messages-per-day'>Průměr zápisků za den: <?php echo $avg_messages_per_day; ?> </div>
+            <div class='avg-messages-per-day'>Průměr zápisků za týden: <?php echo $avg_messages_per_week; ?> </div>
+            <div class='avg-messages-per-day'>Průměr zápisků za měsíc: <?php echo $avg_messages_per_month; ?> </div>
+            <div class='avg-messages-per-day'>Celkový počet zápisků: <?php echo $total_messages; ?> </div>
+            <div class='avg-messages-per-day'>Průměr registrací za den: <?php echo $avg_registration; ?> </div>
+            <div class='avg-messages-per-day'>Celkový počet blokací: <?php echo $num_banned_users; ?> </div>
 
-    <div class='avg-messages-per-day'>Přidané zprávy za 1 den:<?php echo $avg_messages_per_day; ?> </div>
-    <div class='avg-messages-per-day'>Celkový počet zpráv:<?php echo $total_messages; ?> </div>
+
+
+        </div>
 </div>
 </div>
 
@@ -185,13 +231,15 @@ if (mysqli_num_rows($result1) > 0) {
 
 <script>
     function confirmDelete(id) {
-        var confirmDelete = confirm("Are you sure you want to delete the user with ID " + id + "?");
+        var confirmDelete = confirm("Opravdu cheš vymazat tohoto uživatele?" + id + "?");
         if (confirmDelete == true) {
             window.location.replace("delete.php?id=" + id);
         } else {
+            event.preventDefault();
             return false;
         }
     }
+
     var x, i, j, l, ll, selElmnt, a, b, c;
     /* Look for any elements with the class "custom-select": */
     x = document.getElementsByClassName("custom-select");

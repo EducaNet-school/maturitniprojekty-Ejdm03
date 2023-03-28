@@ -9,13 +9,13 @@ $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Live Search Box</title>
-    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="styltest.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
@@ -51,7 +51,7 @@ $result = mysqli_query($conn, $query);
 
     </script>
 </head>
-<body>
+<body class="show-admin">
 <header id="nav-wrapper">
     <nav id="nav">
         <div class="nav left">
@@ -70,7 +70,7 @@ $result = mysqli_query($conn, $query);
 </header>
 <div class="hledat-nadpis">Zde hledej uživatele</div>
 <div id="search-container">
-    <input type="text" id="search" placeholder="Zadej klíčové slovo...">
+    <input max="75" type="text" id="search" placeholder="Zadej klíčové slovo...">
     <div id="result"></div>
 </div>
 </body>

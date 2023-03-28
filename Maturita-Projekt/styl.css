@@ -64,7 +64,7 @@ input[type=text],input[type=password],input[type=email]{
     font-size:18px;
 }
 
-input[type=submit] {
+.filtr-button {
     width: 50%;
     background-color: #4CAF50;
     color: #fdfdfd;
@@ -75,7 +75,7 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+.filtr-button:hover {
     background-color: #45a049;
 }
 
@@ -93,7 +93,7 @@ label {
     font-size: 18px;
 }
 
-table {
+.table-users table {
     width: 100%;
     color: white;
     text-align: center;
@@ -103,23 +103,53 @@ table {
     overflow: hidden;
 }
 
-th, td {
+.table-users th, td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
-tr{
+.table-users tr{
     background-color: #5a5757;
 }
 
-th {
+.table-users th {
     background-color:#4040a1;
 }
 
-tr:nth-child(even) {
+.table-users tr:nth-child(even) {
     background-color: #333;
 }
 
-tr:hover {
+.table-users tr:hover {
+    background-color: #565454;
+}
+
+.table-zapisky table {
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-collapse: collapse;
+    font-size:20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-zapisky th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.table-zapisky tr{
+    background-color: #5a5757;
+}
+
+.table-zapisky th {
+    background-color:#4040a1;
+}
+
+.table-zapisky tr:nth-child(even) {
+    background-color: #333;
+}
+
+.table-zapisky tr:hover {
     background-color: #565454;
 }
 
@@ -182,7 +212,7 @@ a:hover {
 /* Style items (options): */
 .select-items {
     position: absolute;
-    background-color: #372ec9;
+    background-color: #080546;
     top: 100%;
     left: 0;
     right: 0;
@@ -280,15 +310,7 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.form-input input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
+
 
 #loader {
     position: fixed;
@@ -495,14 +517,19 @@ a:hover {
     font-size: 20px;
     font-weight: bold;
     color: #ffffff;
-    text-align:left;
-    padding:10px;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 30px;
 }
+
+
 .table-users {
     background-color: #999999;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 700px;
+    height: auto;
     padding: 20px;
     width: 1350px;
     text-align: center;
@@ -510,7 +537,18 @@ a:hover {
     margin-left: auto;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
-
+.table-zapisky {
+    background-color: #999999;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    width: auto;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
 .uzivatele {
     display: flex;
     padding: 20px;
@@ -529,7 +567,18 @@ a:hover {
     margin-left: auto;
     flex-grow: 1;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
 }
+
+.inner-container {
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 95%;
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+
 .statistika-nadpis{
     text-align: center;
     color: #590808;
@@ -649,4 +698,16 @@ a.D-akce{
     cursor: not-allowed;
     background: rgba(0, 0, 0, .08);
     color: rgba(0, 0, 0, .3);
+}
+
+
+.statistika-nadpis{
+    color: white;
+}
+
+
+.show-admin{
+    background-color: #7c7575;
+    font-family:monospace;
+    margin-top: 150px;
 }

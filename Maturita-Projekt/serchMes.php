@@ -6,7 +6,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Check if there is anything in the search field
+// koukne zda tu neco je
 if (isset($_POST['search']) && !empty($_POST['search'])) {
     $search = mysqli_real_escape_string($conn, $_POST['search']);
 
@@ -14,6 +14,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
 FROM messages
 JOIN m2d ON messages.id_message = m2d.id_m
 WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$search%' OR date LIKE '%$search%')";    $result = mysqli_query($conn, $query);
+    echo'<div class="table-users">';
 
     echo '<table>';
     echo '<thead><tr><th>Popis</th><th>Text</th><th>Datum</th><th>Akce</th></tr></thead>';
@@ -46,7 +47,9 @@ WHERE m2d.id_d = '$id' AND (description LIKE '%$search%' OR message LIKE '%$sear
     }
     echo '</tbody>';
     echo '</table>';
-    echo "<h1>Celkem " . mysqli_num_rows($result) . " zápisky</h1>";
+    echo'</div>';
+
+    echo "<h1>Celkem: " . mysqli_num_rows($result) . " zápisky</h1>";
     exit;
 }
 
