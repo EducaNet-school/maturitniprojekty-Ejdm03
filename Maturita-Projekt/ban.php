@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
         $query = "UPDATE users SET Block='$block' WHERE id = $id";
         mysqli_query($conn, $query);
 
-        if (!$query){
+        if ($query){
             $ok = "Změny proběhly v pořádku";
         } else{
             $ne = "Něco se pokazilo";
