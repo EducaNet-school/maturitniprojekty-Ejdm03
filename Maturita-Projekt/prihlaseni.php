@@ -1,72 +1,38 @@
 <?php
 include "connection.php";
 
-
-
-// potvrzeni
 if (isset($_POST['ok'])) {
-    // Get the form data
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];
-    // pripojeni do db
-    // kontrola
+
     $query = "SELECT * FROM users WHERE email='$email' AND password='$heslo'";
     $result = mysqli_query($conn, $query);
-    $row=mysqli_fetch_assoc($result);
 
-
-//kontola role
     if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
 
         if ($row["Block"] == 1) {
             header('Location: Banned.php');
+            exit;
         }
-        // check if user is admin
-        elseif ($row["adminRole"] == 1) {
+
+        if ($row["adminRole"] == 1) {
             setcookie("id",$row["id"]);
             header('Location: AdminDashboard.php');
-        } elseif ($row["adminRole"] == 0) {
-            setcookie("id",$row["id"]);
-            header('Location: denicek.php');
+            exit;
         }
-    }
-    else {
-        // neco nesedi , vypise
-        $error = "Email nebo Heslo nesedí. Zkus to znovu.";
+
+        setcookie("id",$row["id"]);
+        header('Location: denicek.php');
+        exit;
     }
 
-    // zavre pripojeni
-    mysqli_close($conn);
-
+    $error = "Email nebo Heslo nesedí. Zkus to znovu.";
 }
 
 
-if (isset($_POST['reset'])) {
-    $email = $_POST['reset_email'];
+mysqli_close($conn);
 
-    $query = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        // Generate password reset link and send email
-        $reset_link = generateResetLink($email);
-        sendPasswordResetEmail($email, $reset_link);
-        $success = "A password reset link has been sent to your email.";
-    } else {
-        $error = "The email address is not associated with any account.";
-    }
-    mysqli_close($conn);
-}
-
-// Function to generate password reset link
-function generateResetLink($email) {
-    // Generate a unique reset token
-    $reset_token = bin2hex(random_bytes(16));
-    // Save the reset token and expiry date
-
-
-
-
-}
 ?>
 
 

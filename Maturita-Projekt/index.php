@@ -20,7 +20,7 @@
         <div class="nav right">
             <a href="#home" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Domů</span></span></a>
             <a href="#about" class="nav-link"><span class="nav-link-span"><span class="u-nav">Proč</span></span></a>
-            <a href="#work" class="nav-link"><span class="nav-link-span"><span class="u-nav">O mě</span></span></a>
+            <a href="#work" class="nav-link"><span class="nav-link-span"><span class="u-nav">O mně</span></span></a>
             <a href="#contact" class="nav-link"><span class="nav-link-span"><span class="u-nav">Kontakt</span></span></a>
             <a href="prihlaseni.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
             <a href="registrace.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
