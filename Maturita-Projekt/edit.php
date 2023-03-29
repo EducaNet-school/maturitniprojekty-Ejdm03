@@ -1,39 +1,53 @@
 <?php
 include "connection.php";
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//cte data
-$id = $_POST['id']; // Use POST instead of GET
-$query = "SELECT * FROM users WHERE id = $id";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$id = 0; //initialize the $id variable with a default value
+
+if (isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+}
 
 if (isset($_POST["submit"])) {
-    $id = (int)$_POST["id"];
+    $id = intval($_POST["id"]);
     $firstname = $_POST['firstname'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
     $adminRole = $_POST['adminRole'];
 
-    // kontrola emailu zda existuje
-    $query = "SELECT * FROM users WHERE email='$email' AND id != $id";
-    $result = mysqli_query($conn, $query);
-    if(mysqli_num_rows($result) > 0) {
+    // Check if email already exists
+    $stmt = mysqli_prepare($conn, "SELECT id FROM users WHERE email = ? AND id != ?");
+    mysqli_stmt_bind_param($stmt, "si", $email, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+    if (mysqli_stmt_num_rows($stmt) > 0) {
         $email_error = "Tento email už někdo má, zkus jiný.";
     } else {
-        // update user data
-        $query = "UPDATE users SET firstname='$firstname', surname='$surname', email='$email', adminRole='$adminRole' WHERE id = $id";
-        mysqli_query($conn, $query);
+        // Update user data
+        $stmt = mysqli_prepare($conn, "UPDATE users SET firstname = ?, surname = ?, email = ?, adminRole = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "ssssi", $firstname, $surname, $email, $adminRole, $id);
+        mysqli_stmt_execute($stmt);
 
-        if ($query){
-            $okedit ="Data upravena.";
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            $okedit = "Data upravena.";
         }
     }
 }
 
+//Fetch user details
+$stmt = mysqli_prepare($conn, "SELECT firstname, surname, email, adminRole FROM users WHERE id = ?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $firstname, $surname, $email, $adminRole);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+
+mysqli_close($conn);
 ?>
+
 <!doctype html>
 <html lang="cs">
 <head>
@@ -68,20 +82,20 @@ if (isset($_POST["submit"])) {
         <input type="hidden" name="id" value="<?php echo $id; ?>">
 
         <div class="input-container ic1">
-            <input class="input" id="firstname" type="text" name="firstname" value="<?php echo $row['firstname']; ?>">
+            <input class="input" id="firstname" type="text" name="firstname" value="<?php echo $firstname; ?>">
             <div class="cut"></div>
             <label for="firstname" class="placeholder">Jméno:</label>
         </div>
 
         <div class="input-container ic2">
-            <input class="input" id="surname" type="text" name="surname" value="<?php echo $row['surname']; ?>">
+            <input class="input" id="surname" type="text" name="surname" value="<?php echo $surname; ?>">
             <div class="cut"></div>
             <label class="placeholder" for="surname">Příjmení:</label>
 
         </div>
 
         <div class="input-container ic2">
-            <input class="input" id="email" type="email" name="email" value="<?php echo $row['email']; ?>">
+            <input class="input" id="email" type="email" name="email" value="<?php echo $email; ?>">
             <div class="cut"></div>
             <label class="placeholder" for="email">E-mail:</label>
             <?php if(isset($email_error)) { ?>
@@ -92,8 +106,8 @@ if (isset($_POST["submit"])) {
 
         <div class="input-container ic2">
             <select class="input" id="admin" name="adminRole">
-                <option value="0" <?php if($row['adminRole'] == 0) { echo 'selected'; } ?>>Uživatel</option>
-                <option value="1" <?php if($row['adminRole'] == 1) { echo 'selected'; } ?>>Admin</option>
+                <option value="0" <?php if($adminRole == 0) { echo 'selected'; } ?>>Uživatel</option>
+                <option value="1" <?php if($adminRole == 1) { echo 'selected'; } ?>>Admin</option>
             </select>
             <div class="cut"></div>
             <label class="placeholder" for="admin">Role:</label>

@@ -1,39 +1,35 @@
 <?php
 include "connection.php";
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//cte data
 $id = $_POST['id'];
-$query = "SELECT * FROM users WHERE id = $id";
-$result = mysqli_query($conn, $query);
+$query = "SELECT id, firstname, surname, email, adminRole, Block FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
 
-
-// cte data z formulare
 if (isset($_POST["submit"])) {
     $id = (int)$_POST["id"];
-    $firstname = $_POST['firstname'];
-    $surname = $_POST['surname'];
-    $email = $_POST['email'];
-    $adminRole = $_POST['adminRole'];
-    $block= $_POST['ban'];
+    $block = $_POST['ban'];
 
+    $query = "UPDATE users SET Block = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "si", $block, $id);
+    mysqli_stmt_execute($stmt);
 
-        // updatuje data
-        $query = "UPDATE users SET Block='$block' WHERE id = $id";
-        mysqli_query($conn, $query);
-
-        if ($query){
-            $ok = "Změny proběhly v pořádku";
-        } else{
-            $ne = "Něco se pokazilo";
-        }
-
-
+    if (mysqli_affected_rows($conn) > 0) {
+        $ok_message = "Změny proběhly v pořádku";
+    } else{
+        $error_message = "Něco se pokazilo";
     }
+}
 
+mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="cs">
@@ -105,12 +101,12 @@ if (isset($_POST["submit"])) {
 
         </div>
 
-        <?php if(isset($ok)) { ?>
-            <span class="okedit"><?php echo $ok; ?></span>
+        <?php if(isset($ok_message)) { ?>
+            <span class="okedit"><?php echo $ok_message; ?></span>
         <?php } ?>
 
-        <?php if(isset($ne)) { ?>
-            <span class="error"><?php echo $ne; ?></span>
+        <?php if(isset($error_message)) { ?>
+            <span class="error"><?php echo $error_message; ?></span>
         <?php } ?>
 
 

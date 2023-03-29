@@ -1,46 +1,50 @@
 <?php
 $id = $_COOKIE["id"];
-$idd=$_COOKIE["id_d"];
+$diaryName = '';
+$messages = array();
 
 include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Výběr jména deníku z tabulky "denik", kde "idd" = "$id"
-$sql = "SELECT jmeno FROM denik WHERE idd = '$id'";
-$result = mysqli_query($conn, $sql);
+// Výběr jména deníku z tabulky "denik", kde "idd" = "$id"
+$query_diary = "SELECT jmeno FROM denik WHERE idd = ?";
+$stmt_diary = mysqli_prepare($conn, $query_diary);
+mysqli_stmt_bind_param($stmt_diary, "i", $id);
+mysqli_stmt_execute($stmt_diary);
+$result_diary = mysqli_stmt_get_result($stmt_diary);
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $diaryName = $row["jmeno"];
+if (mysqli_num_rows($result_diary) > 0) {
+    $row_diary = mysqli_fetch_assoc($result_diary);
+    $diaryName = $row_diary["jmeno"];
 }
 
-//Výběr zpráv z tabulky "messages", kde "id_d" = "$id" pomocí join s tabulkou "M2D"
-$sql = "SELECT messages.id_message, messages.description, messages.date FROM messages
-JOIN m2d ON messages.id_message = m2d.id_m
-WHERE m2d.id_d = '$id'";
-$result = mysqli_query($conn, $sql);
+// Výběr zpráv z tabulky "messages", kde "id_d" = "$id" pomocí join s tabulkou "M2D"
+$query_messages = "SELECT messages.id_message, messages.description, messages.date FROM messages JOIN m2d ON messages.id_message = m2d.id_m WHERE m2d.id_d = ?";
+$condition_query = " AND DATE(messages.date) >= ? AND DATE(messages.date) <= ?";
 
-
-//filtrace od do
-if (isset($_POST['from']) && isset($_POST['to'])) {
+if (isset($_POST['from'], $_POST['to'])) {
     $from = $_POST['from'];
     $to = $_POST['to'];
-    $sql .= " AND DATE(messages.date) >= '$from' AND DATE(messages.date) <= '$to'";
-
+    $query_messages .= $condition_query;
+    $stmt_messages = mysqli_prepare($conn, $query_messages);
+    mysqli_stmt_bind_param($stmt_messages, "iss", $id, $from, $to);
+} else {
+    $stmt_messages = mysqli_prepare($conn, $query_messages);
+    mysqli_stmt_bind_param($stmt_messages, "i", $id);
 }
 
-$result = mysqli_query($conn, $sql);
+mysqli_stmt_execute($stmt_messages);
+$result_messages = mysqli_stmt_get_result($stmt_messages);
 
-
-
-
-
-
-
-mysqli_close($conn);
+if (mysqli_num_rows($result_messages) > 0) {
+    while ($row_messages = mysqli_fetch_assoc($result_messages)) {
+        $messages[] = $row_messages;
+    }
+}
 ?>
+
 <!doctype html>
 <html lang="cs">
 <head>
@@ -115,27 +119,27 @@ mysqli_close($conn);
         <th>Datum vytvoření</th>
         <th>Akce</th>
     </tr>
-    <?php while($row = mysqli_fetch_assoc($result)) { ?>
+        <?php foreach ($messages as $message): ?>
         <tr>
-            <td><?php echo $row['description']; ?></td>
-            <td><?php echo $row['date']; ?></td>
+            <td><?php echo $message['description']; ?></td>
+            <td><?php echo $message['date']; ?></td>
             <td>
                 <form method="post" action="showMes.php">
-                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $message['id_message']; ?>">
                     <button type="submit" class="button-18">Zobrazit</button>
                 </form>
                 <form method="post" action="editMes.php">
-                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $message['id_message']; ?>">
                     <button type="submit" class="button-18">Upravit</button>
                 </form>
-                <form id="deleteForm_<?php echo $row['id_message']; ?>" method="post" action="deleteD.php">
-                    <input type="hidden" name="id" value="<?php echo $row['id_message']; ?>">
-                    <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $row["id_message"]; ?>')">Smazat</button>
+                <form id="deleteForm_<?php echo $message['id_message']; ?>" method="post" action="deleteD.php">
+                    <input type="hidden" name="id" value="<?php echo $message['id_message']; ?>">
+                    <button type="submit" class="button-delete" onclick="confirmDelete('<?php echo $message["id_message"]; ?>')">Smazat</button>
                 </form>
 
             </td>
         </tr>
-    <?php } ?>
+        <?php endforeach; ?>
 </table>
 </div>
 </div>

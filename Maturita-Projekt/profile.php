@@ -11,16 +11,19 @@ $email = '';
 $password = '';
 $dname="";
 
-
-
-
 if ($id) {
     // vybere uzivatele
-    $sql = "SELECT * FROM users WHERE id = $id";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    $sql1 = "SELECT * FROM denik WHERE idd=$id";
-    $result1 = mysqli_query($conn, $sql1);
+    $sql1 = "SELECT * FROM denik WHERE idd=?";
+    $stmt1 = mysqli_prepare($conn, $sql1);
+    mysqli_stmt_bind_param($stmt1, "i", $id);
+    mysqli_stmt_execute($stmt1);
+    $result1 = mysqli_stmt_get_result($stmt1);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -48,25 +51,30 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $dname = mysqli_real_escape_string($conn, $_POST["dname"]);
 
-    $query = "SELECT * FROM users WHERE email='$email' AND id != $id";
-    $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM users WHERE email=? AND id != ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "si", $email, $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
     if(mysqli_num_rows($result) > 0) {
         $email_error = "Tento email už někdo má, zkus jiný.";
-        } else {
-            $sql = "UPDATE users SET firstname = '$name', surname = '$surname', email = '$email', password = '$password' WHERE id = $id";
-            mysqli_query($conn, $sql);
+    } else {
+        $sql = "UPDATE users SET firstname = ?, surname = ?, email = ?, password = ? WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ssssi", $name, $surname, $email, $password, $id);
+        mysqli_stmt_execute($stmt);
 
-            $sql1 ="UPDATE denik SET jmeno='$dname' WHERE idd = $id";
-            mysqli_query($conn, $sql1);
+        $sql1 ="UPDATE denik SET jmeno=? WHERE idd = ?";
+        $stmt1 = mysqli_prepare($conn, $sql1);
+        mysqli_stmt_bind_param($stmt1, "si", $dname, $id);
+        mysqli_stmt_execute($stmt1);
 
-            $sucess = "Data upravena.";
-
-
-
-
+        $success = "Data upravena.";
     }
 }
 
+mysqli_close($conn);
 ?>
 
 <!doctype html>
@@ -148,9 +156,10 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
             <label class="placeholder" for="dname">Název deníku:</label>
         </div>
 
-        <?php if(isset($sucess)) { ?>
-            <span class="okedit"><?php echo $sucess; ?></span>
+        <?php if(isset($success)) { ?>
+            <span class="okedit"><?php echo $success; ?></span>
         <?php } ?>
+
 
 
         <button type="submit" value="submit" class="submit" name="submit">Upravit</button>

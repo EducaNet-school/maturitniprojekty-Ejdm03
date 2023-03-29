@@ -1,39 +1,60 @@
 <?php
-$id = $_COOKIE["id"];
-$idd = $_COOKIE["id_d"];
+$error = '';
 
-include "connection.php";
+// Check if the required cookies are set
+if (isset($_COOKIE['id'], $_COOKIE['id_d'])) {
+    $id = $_COOKIE['id'];
+    $id_d = $_COOKIE['id_d'];
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    // Connect to the database
+    include 'connection.php';
 
-if ($_POST) {
-    $description = $_POST["description"];
-    $message = $_POST["message"];
+    if ($conn) {
+        // Check if the form has been submitted
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $description = $_POST['description'];
+            $message = $_POST['message'];
 
-    // Kontroluje pocet znaku
-    if (strlen($message) > 280) {
-        $error = "Message should not be more than 280 characters";
+            // Check character count
+            if (strlen($message) > 280) {
+                $error = 'Message should not be more than 280 characters';
+            } else {
+                // Insert message into database
+                $stmt = mysqli_prepare($conn, 'INSERT INTO messages (description, message) VALUES (?, ?)');
+                mysqli_stmt_bind_param($stmt, 'ss', $description, $message);
+                $result = mysqli_stmt_execute($stmt);
+
+                if ($result) {
+                    // Get inserted message ID
+                    $messageId = mysqli_insert_id($conn);
+
+                    // Create relationship
+                    $stmt = mysqli_prepare($conn, 'INSERT INTO m2d (id_m, id_d) VALUES (?, ?)');
+                    mysqli_stmt_bind_param($stmt, 'ii', $messageId, $id);
+                    $result = mysqli_stmt_execute($stmt);
+
+                    if ($result) {
+                        // Redirect to dashboard
+                        header('Location: denikDash.php');
+                        exit;
+                    } else {
+                        $error = 'Error creating message relationship';
+                    }
+                } else {
+                    $error = 'Error creating message';
+                }
+            }
+        }
+
+        mysqli_close($conn);
     } else {
-        // vklada do databaze message
-        $sql = "INSERT INTO messages (description, message) VALUES ('$description', '$message')";
-        $result = mysqli_query($conn, $sql);
-
-        // ziska id vkladane message
-        $messageId = mysqli_insert_id($conn);
-
-        // vytvari vztaz
-        $sql = "INSERT INTO m2d (id_m, id_d) VALUES ('$messageId', '$id')";
-        $result = mysqli_query($conn, $sql);
-
-        header("Location: denikDash.php");
-        exit;
+        $error = "Connection failed: " . mysqli_connect_error();
     }
+} else {
+    $error = 'User ID cookies are not set';
 }
-
-mysqli_close($conn);
 ?>
+
 <!doctype html>
 <html lang="cs">
 <head>
@@ -48,9 +69,9 @@ mysqli_close($conn);
 <header id="nav-wrapper">
     <nav id="nav">
         <div class="nav left">
-        <span class="gradient skew">
-          <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
-        </span>
+            <span class="gradient skew">
+                <h1 class="logo un-skew"><a href="">OnlineD</a></h1>
+            </span>
             <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
         </div>
         <div class="nav right">
@@ -62,6 +83,9 @@ mysqli_close($conn);
 <div class="mes-container">
 
     <h1 class="mes-popis">Přidej si zápisek</h1>
+    <?php if ($error) : ?>
+        <p class="error"><?php echo $error; ?></p>
+    <?php endif; ?>
     <form action="addMes.php" method="post">
         <div>
             <input maxlength="50" type="text" name="description" id="description" placeholder="Zde vlož popisek" class="popisek" required>
@@ -78,19 +102,19 @@ mysqli_close($conn);
 
 <script>
     function countChars() {
-        var charCount = document.getElementById("message").value.length;
+        var charCount = document.getElementById('message').value.length;
         var remainingChars = 280 - charCount;
-        var charCountDisplay = remainingChars + "/280";
-        document.getElementById("charCount").innerHTML = charCountDisplay;
-        document.getElementById("submitBtn").disabled = (charCount > 280);
+        var charCountDisplay = remainingChars + '/280';
+        document.getElementById('charCount').innerHTML = charCountDisplay;
+        document.getElementById('submitBtn').disabled = (charCount > 280);
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var textarea = document.getElementById("message");
-        textarea.addEventListener("input", countChars);
+    document.addEventListener('DOMContentLoaded', function() {
+        var textarea = document.getElementById('message');
+        textarea.addEventListener('input', countChars);
         countChars(); // call countChars on page load to show the initial character count
     });
 </script>
-</body>
 
+</body>
 </html>

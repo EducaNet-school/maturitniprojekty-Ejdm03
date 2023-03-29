@@ -5,99 +5,88 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Nacita data z databaze
+//Select data from the database
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
-
 $role = "";
 
-// filtrace podle role
+// filter by role
 if(isset($_POST["role"])) {
     $role = $_POST["role"];
 
-    if ($role == "0" or $role==1) {
-        $query = "SELECT * FROM users WHERE adminRole = '$role'";
-        $result = mysqli_query($conn, $query);
+    if ($role == "0" or $role == 1) {
+        $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE adminRole = ?");
+        mysqli_stmt_bind_param($stmt, "s", $role);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
     }
-
-    } elseif (!!$role == "1") {
-
-        $query = "SELECT * FROM users";
-        $result = mysqli_query($conn, $query);
+} elseif (isset($role) && $role == "") {
+    $stmt = mysqli_prepare($conn, "SELECT * FROM users");
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 }
 
-// data pro statistiky
+// data for statistics
 $sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
-$resulttt = mysqli_query($conn, $sql);
+$res = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($resulttt) > 0) {
-    $rowa = mysqli_fetch_assoc($resulttt);
+if (mysqli_num_rows($res) > 0) {
+    $rowa = mysqli_fetch_assoc($res);
     $avg_messages_per_day = round($rowa["avg_messages_per_day"], 2);
 } else {
     $avg_messages_per_day = 0;
 }
 
-
-$sql1 ="SELECT COUNT(*) AS total_messages FROM messages";
-$result1 = mysqli_query($conn, $sql1);
-if (mysqli_num_rows($result1) > 0) {
-    $row1 = mysqli_fetch_assoc($result1);
+$sql1 = "SELECT COUNT(*) AS total_messages FROM messages";
+$res1 = mysqli_query($conn, $sql1);
+if (mysqli_num_rows($res1) > 0) {
+    $row1 = mysqli_fetch_assoc($res1);
     $total_messages = $row1["total_messages"];
 } else {
     $total_messages = 0;
 }
 
-$sql2="SELECT COUNT(*) / DATEDIFF(NOW(), MIN(registrationd)) AS avg_reg FROM `users`";
-$result2 =mysqli_query($conn, $sql2);
+$sql2 = "SELECT COUNT(*) / DATEDIFF(NOW(), MIN(registrationd)) AS avg_reg FROM `users`";
+$res2 = mysqli_query($conn, $sql2);
 
-if (mysqli_num_rows($result2) > 0) {
-    $row2 = mysqli_fetch_assoc($result2);
+if (mysqli_num_rows($res2) > 0) {
+    $row2 = mysqli_fetch_assoc($res2);
     $avg_registration = number_format($row2["avg_reg"], 2);
 } else {
     $avg_registration = 0;
 }
 
 $sql3 = "SELECT COUNT(*) AS num_banned_users FROM `users` WHERE `Block` = 1";
-$result3 = mysqli_query($conn, $sql3);
+$res3 = mysqli_query($conn, $sql3);
 
-if (mysqli_num_rows($result3) > 0) {
-    $row3 = mysqli_fetch_assoc($result3);
+if (mysqli_num_rows($res3) > 0) {
+    $row3 = mysqli_fetch_assoc($res3);
     $num_banned_users = $row3["num_banned_users"];
 } else {
     $num_banned_users = 0;
 }
 
-
-
-
-
 $sql6 = "SELECT COUNT(*) / DATEDIFF(NOW(), MIN(date)) / 7 AS avg_messages_per_week FROM `messages`";
-$result6 = mysqli_query($conn, $sql6);
+$res6 = mysqli_query($conn, $sql6);
 
-if (mysqli_num_rows($result6) > 0) {
-    $row6 = mysqli_fetch_assoc($result6);
-    $avg_messages_per_week = number_format($row6["avg_messages_per_week"],2);
+if (mysqli_num_rows($res6) > 0) {
+    $row6 = mysqli_fetch_assoc($res6);
+    $avg_messages_per_week = number_format($row6["avg_messages_per_week"], 2);
 } else {
     $avg_messages_per_week = 0;
 }
 
 $sql7 = "SELECT COUNT(*) / (DATEDIFF(NOW(), MIN(date)) / 30) AS avg_messages_per_month FROM `messages`";
-$result7 = mysqli_query($conn, $sql7);
+$res7 = mysqli_query($conn, $sql7);
 
-if (mysqli_num_rows($result7) > 0) {
-    $row7 = mysqli_fetch_assoc($result7);
-    $avg_messages_per_month =number_format( $row7["avg_messages_per_month"],2);
+if (mysqli_num_rows($res7) > 0) {
+    $row7 = mysqli_fetch_assoc($res7);
+    $avg_messages_per_month = number_format($row7["avg_messages_per_month"], 2);
 } else {
     $avg_messages_per_month = 0;
 }
-
-
-
-
-
-
-
+mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="cs">

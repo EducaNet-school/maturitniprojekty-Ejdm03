@@ -29,8 +29,8 @@ if (isset($_POST['reset'])) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'onlinedenicek@gmail.com';
-        $mail->Password = '';
+        $mail->Username = '';
+        $mail->Password = 'iuqwbunxynthgsdh';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('info@onlined.com', 'Onlined');
@@ -85,7 +85,7 @@ if (isset($_POST['reset'])) {
         <div class="nav right">
             <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Domů</span></span></a>
             <a href="prihlaseni.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Přihlášení</span></span></a>
-            <a href="$" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Obnova Hesla</span></span></a>
+            <a href="" class="nav-link active"><span class="nav-link-span"><span class="u-nav">Obnova Hesla</span></span></a>
             <a href="registrace.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Registrace</span></span></a>
 
         </div>
