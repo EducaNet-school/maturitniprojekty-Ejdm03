@@ -1,6 +1,6 @@
 <?php
 include "connection.php";
-
+//kontrola potvrzeni
 if (isset($_POST['ok'])) {
     $email = $_POST['email'];
     $heslo = $_POST['heslo'];

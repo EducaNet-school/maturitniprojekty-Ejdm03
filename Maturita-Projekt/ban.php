@@ -4,7 +4,7 @@ include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
+//cte data z db
 $id = $_POST['id'];
 $query = "SELECT id, firstname, surname, email, adminRole, Block FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $query);
@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "si", $block, $id);
     mysqli_stmt_execute($stmt);
-
+//vysledek
     if (mysqli_affected_rows($conn) > 0) {
         $ok_message = "Změny proběhly v pořádku";
     } else{

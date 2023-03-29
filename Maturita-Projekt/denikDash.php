@@ -23,7 +23,7 @@ if (mysqli_num_rows($result_diary) > 0) {
 // Výběr zpráv z tabulky "messages", kde "id_d" = "$id" pomocí join s tabulkou "M2D"
 $query_messages = "SELECT messages.id_message, messages.description, messages.date FROM messages JOIN m2d ON messages.id_message = m2d.id_m WHERE m2d.id_d = ?";
 $condition_query = " AND DATE(messages.date) >= ? AND DATE(messages.date) <= ?";
-
+//nastaveni filtru kontrola
 if (isset($_POST['from'], $_POST['to'])) {
     $from = $_POST['from'];
     $to = $_POST['to'];

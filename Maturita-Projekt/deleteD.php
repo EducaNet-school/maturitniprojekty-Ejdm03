@@ -6,7 +6,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Using a transaction to ensure atomicity
+// transakce zacatek
 mysqli_begin_transaction($conn);
 
 try {
@@ -26,7 +26,7 @@ try {
     header("Location: denikDash.php");
 } catch (Exception $e) {
     mysqli_rollback($conn);
-    echo "Error deleting message: " . mysqli_error($conn);
+    echo "Chyba v mazani zápisku, pošli nám tuto chybu na email: " . mysqli_error($conn);
 }
 
 mysqli_close($conn);

@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $adminRole = $_POST['adminRole'];
 
-    // Check if email already exists
+    // kontrola zda email existuje
     $stmt = mysqli_prepare($conn, "SELECT id FROM users WHERE email = ? AND id != ?");
     mysqli_stmt_bind_param($stmt, "si", $email, $id);
     mysqli_stmt_execute($stmt);
@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
-//Fetch user details
+//Fetchne user data
 $stmt = mysqli_prepare($conn, "SELECT firstname, surname, email, adminRole FROM users WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);

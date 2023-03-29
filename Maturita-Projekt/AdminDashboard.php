@@ -27,7 +27,7 @@ if(isset($_POST["role"])) {
     $result = mysqli_stmt_get_result($stmt);
 }
 
-// data for statistics
+// data pro statistics
 $sql = "SELECT COUNT(*) / DATEDIFF(MAX(date), MIN(date)) as avg_messages_per_day FROM messages";
 $res = mysqli_query($conn, $sql);
 

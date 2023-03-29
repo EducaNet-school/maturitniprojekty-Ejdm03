@@ -37,7 +37,7 @@ if (isset($_POST["submit"]) && $id > 0) {
         header("Location: denikDash.php");
         exit();
     } else {
-        echo "Error updating message: " . mysqli_error($conn);
+        echo "Chyba v upravovani zapisku, pošli nám prosím tuto chybovou hlášku: " . mysqli_error($conn);
     }
 }
 

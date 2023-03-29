@@ -7,7 +7,7 @@ $description = '';
 $message = '';
 
 if ($id_message > 0) {
-    // Select the message with the given ID
+    // vybere zapisek s id
     $sql = "SELECT description, message FROM messages WHERE id_message = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_message);

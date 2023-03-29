@@ -1,57 +1,57 @@
 <?php
 $error = '';
 
-// Check if the required cookies are set
+// kontrola zda jsou cooki zadane
 if (isset($_COOKIE['id'], $_COOKIE['id_d'])) {
     $id = $_COOKIE['id'];
     $id_d = $_COOKIE['id_d'];
 
-    // Connect to the database
+    // pripojeni do db
     include 'connection.php';
 
     if ($conn) {
-        // Check if the form has been submitted
+        // kontrola zda byl formular potvrzen
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = $_POST['description'];
             $message = $_POST['message'];
 
-            // Check character count
+            // kontrola znaku
             if (strlen($message) > 280) {
                 $error = 'Message should not be more than 280 characters';
             } else {
-                // Insert message into database
+                // vklada do db message
                 $stmt = mysqli_prepare($conn, 'INSERT INTO messages (description, message) VALUES (?, ?)');
                 mysqli_stmt_bind_param($stmt, 'ss', $description, $message);
                 $result = mysqli_stmt_execute($stmt);
 
                 if ($result) {
-                    // Get inserted message ID
+                    // ziska id od vkladane message
                     $messageId = mysqli_insert_id($conn);
 
-                    // Create relationship
+                    // tvori vztah
                     $stmt = mysqli_prepare($conn, 'INSERT INTO m2d (id_m, id_d) VALUES (?, ?)');
                     mysqli_stmt_bind_param($stmt, 'ii', $messageId, $id);
                     $result = mysqli_stmt_execute($stmt);
 
                     if ($result) {
-                        // Redirect to dashboard
+                        // presmerovani
                         header('Location: denikDash.php');
                         exit;
                     } else {
-                        $error = 'Error creating message relationship';
+                        $error = 'Chyba s vytvarenim vztahu';
                     }
                 } else {
-                    $error = 'Error creating message';
+                    $error = 'chyba ve vytvatreni';
                 }
             }
         }
 
         mysqli_close($conn);
     } else {
-        $error = "Connection failed: " . mysqli_connect_error();
+        $error = "připojeni se nezdařilo, pošli nám tuto chybovou hlášku na email : " . mysqli_connect_error();
     }
 } else {
-    $error = 'User ID cookies are not set';
+    $error = 'Uzivatelske id není nastaveno';
 }
 ?>
 
