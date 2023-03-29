@@ -9,17 +9,16 @@ if (!$conn) {
 mysqli_begin_transaction($conn);
 
 try {
-    // maze data z messages
-    $query_messages = "DELETE messages FROM messages JOIN m2d ON messages.id_message = m2d.id_m JOIN denik ON m2d.id_d = denik.idd WHERE denik.idd = ?";
-    $stmt_messages = mysqli_prepare($conn, $query_messages);
-    mysqli_stmt_bind_param($stmt_messages, "i", $id);
-    mysqli_stmt_execute($stmt_messages);
-
-    // maze data z m2d
-    $query_m2d = "DELETE m2d FROM m2d JOIN denik ON m2d.id_d = denik.idd WHERE denik.idd = ?";
+    // maze data from m2d
+    $query_m2d = "DELETE FROM m2d WHERE id_d = ?";
     $stmt_m2d = mysqli_prepare($conn, $query_m2d);
     mysqli_stmt_bind_param($stmt_m2d, "i", $id);
     mysqli_stmt_execute($stmt_m2d);
+
+    // maze data z messages
+    $query_messages = "DELETE messages FROM messages LEFT JOIN m2d ON messages.id_message = m2d.id_m WHERE m2d.id_m IS NULL";
+    $stmt_messages = mysqli_prepare($conn, $query_messages);
+    mysqli_stmt_execute($stmt_messages);
 
     // maze data z u2d
     $query_u2d = "DELETE FROM u2d WHERE id_d = ?";
@@ -47,3 +46,4 @@ try {
     mysqli_rollback($conn);
     echo "Chyba, pošli nám tuto chybovou hlášku na email: " . $e->getMessage();
 }
+?>

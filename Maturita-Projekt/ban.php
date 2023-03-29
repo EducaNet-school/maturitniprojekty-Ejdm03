@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
     mysqli_stmt_bind_param($stmt, "si", $block, $id);
     mysqli_stmt_execute($stmt);
 //vysledek
-    if (mysqli_affected_rows($conn) > 0) {
+    if ($stmt) {
         $ok_message = "Změny proběhly v pořádku";
     } else{
         $error_message = "Něco se pokazilo";
@@ -38,7 +38,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
+    <title>Blokace</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="edit-body">

@@ -70,7 +70,14 @@ if (isset($_POST["submit"]) && !empty($_POST["id"])) {
         mysqli_stmt_bind_param($stmt1, "si", $dname, $id);
         mysqli_stmt_execute($stmt1);
 
-        $success = "Data upravena.";
+        if($stmt1){
+            $success = "Data upravena.";
+        }else{
+            $errorek="Data nebyla upraveny";
+        }
+
+
+
     }
 }
 
@@ -84,7 +91,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
+    <title>Úprava profilu</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="show-mes-body">
@@ -158,6 +165,9 @@ mysqli_close($conn);
 
         <?php if(isset($success)) { ?>
             <span class="okedit"><?php echo $success; ?></span>
+        <?php } ?>
+        <?php if(isset($errorek)) { ?>
+            <span class="error"><?php echo $errorek; ?></span>
         <?php } ?>
 
 
