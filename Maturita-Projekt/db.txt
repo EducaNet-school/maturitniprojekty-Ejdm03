@@ -1,3 +1,8 @@
+CREATE DATABASE onlined;
+
+use onlined;
+
+
 CREATE TABLE `users` (
   `id` int(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `firstname` varchar(100) NOT NULL,
@@ -6,11 +11,18 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `adminRole` int(5) NOT NULL,
   `Block` int(10) NOT NULL DEFAULT '0',
-  `registrationd` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `registrationd` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-
-
+CREATE TABLE users_backup (
+id int(50) NOT NULL PRIMARY KEY,
+firstname varchar(100) NOT NULL,
+surname varchar(100) NOT NULL,
+email varchar(100) NOT NULL ,
+password_b varchar(100) NOT NULL,
+adminRole int(5) NOT NULL,
+Block int(10) NOT NULL ,
+registrationd DATE NOT NULL );
 
 
 CREATE TABLE `denik`(
@@ -44,6 +56,26 @@ CREATE TABLE `m2d`(
   FOREIGN KEY(id_d) REFERENCES denik(idd),
   FOREIGN KEY(id_m) REFERENCES messages(id_message)
 );
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE `backup_users`()
+BEGIN
+    INSERT INTO users_backup (id, firstname, surname, email, password_b, adminRole, Block, registrationd)
+    SELECT id, firstname, surname, email, password, adminRole, Block, registrationd FROM users ORDER BY id DESC LIMIT 1;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER `backup_users_trigger` AFTER INSERT ON `users`
+FOR EACH ROW
+BEGIN
+    CALL backup_users();
+END//
+
+DELIMITER ;
 
 
 
