@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $adminRole = $_POST['adminRole'];
 
-    // Check if email already exists
+    // kontrola zda email existuje
     $stmt = mysqli_prepare($conn, "SELECT id FROM users WHERE email = ? AND id != ?");
     mysqli_stmt_bind_param($stmt, "si", $email, $id);
     mysqli_stmt_execute($stmt);
@@ -31,13 +31,15 @@ if (isset($_POST["submit"])) {
         mysqli_stmt_bind_param($stmt, "ssssi", $firstname, $surname, $email, $adminRole, $id);
         mysqli_stmt_execute($stmt);
 
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
+        if ($stmt) {
             $okedit = "Data upravena.";
+        }else{
+            $errorek = "Data nebyla upravena";
         }
     }
 }
 
-//Fetch user details
+//Fetchne user data
 $stmt = mysqli_prepare($conn, "SELECT firstname, surname, email, adminRole FROM users WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
@@ -55,7 +57,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
+    <title>Upravit uživatele</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="edit-body">
@@ -117,6 +119,9 @@ mysqli_close($conn);
             <span class="okedit"><?php echo $okedit; ?></span>
         <?php } ?>
 
+        <?php if(isset($errorek)) { ?>
+            <span class="error"><?php echo $errorek; ?></span>
+        <?php } ?>
         <button type="submit" value="submit" class="submit" name="submit">Upravit</button>
     </form>
 </div>

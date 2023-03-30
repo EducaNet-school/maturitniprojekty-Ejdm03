@@ -7,7 +7,7 @@ $description = '';
 $message = '';
 
 if ($id_message > 0) {
-    // Select the message with the given ID
+    // vybere zapisek s id
     $sql = "SELECT description, message FROM messages WHERE id_message = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id_message);
@@ -32,7 +32,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail</title>
+    <title>Zápisek</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="show-mes-body">

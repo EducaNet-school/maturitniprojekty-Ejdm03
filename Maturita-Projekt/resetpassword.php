@@ -9,19 +9,19 @@ require 'PHPMailer/src/SMTP.php';
 
 
 if (isset($_POST['reset'])) {
-    // Get the email from the form
+    // ziska email z formulare
     $email = $_POST['email'];
 
     // pripojeni do db
 
-    // Check if the email exists in the database
+    // kontrola zda email existuje v db
     $query = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        // Generate a new password
+        // generuje nove heslo
         $new_password = substr(md5(rand()), 0, 7);
-        // Update the password in the database
+        // updatuje heslo v db
         $update_query = "UPDATE users SET password='$new_password' WHERE email='$email'";
         mysqli_query($conn, $update_query);
         // Send an email with the new password to the user
@@ -30,7 +30,7 @@ if (isset($_POST['reset'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = '';
-        $mail->Password = 'iuqwbunxynthgsdh';
+        $mail->Password = '';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->setFrom('info@onlined.com', 'Onlined');
@@ -117,16 +117,16 @@ if (isset($_POST['reset'])) {
                 <?php echo " Heslo bylo vygenerováno a posláno na tvůj email.   Stránka bude automaticky přesměrována za <span id='countdown'>$countdown</span> sekund."; ?>
             </h3>
             <script>
-                // Set the countdown time in seconds
+                // odpocet
                 var countdown = <?php echo $countdown; ?>;
 
-                // Update the countdown timer every second
+                // updatuje odpocet kazdou sekundu
                 setInterval(function() {
                     countdown--;
                     document.getElementById('countdown').innerHTML = countdown;
                 }, 1000);
 
-                // Redirect to the login page after the countdown ends
+                // presmerovani po konci casovace
                 setTimeout(function() {
                     window.location.href = "prihlaseni.php";
                 }, countdown * 1000);

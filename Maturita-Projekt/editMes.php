@@ -34,10 +34,10 @@ if (isset($_POST["submit"]) && $id > 0) {
     $result = mysqli_stmt_execute($stmt);
 
     if ($result) {
-        header("Location: denikDash.php");
-        exit();
+        $editok="Úprava zápisku proběhla v pořádku.";
+
     } else {
-        echo "Error updating message: " . mysqli_error($conn);
+        $chyba=  "Chyba v upravovani zapisku, pošli nám prosím tuto chybovou hlášku: " . mysqli_error($conn);
     }
 }
 
@@ -52,7 +52,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit</title>
+    <title>Úprava zápisku</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="show-mes-body">
@@ -73,21 +73,29 @@ mysqli_close($conn);
 <div class="mes-container">
 <h1 class="mes-popis">Uprav svůj zápisek</h1>
 <form action="editMes.php" method="post">
-        <?php if ($id > 0): ?>
+
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div>
                 <input type="text" maxlength="50" name="description" id="description" class="popisek" required value="<?php echo $description; ?>">
             </div>
+            <?php if(isset($editok)) { ?>
+                <span class="okedit"><?php echo $editok; ?></span>
+            <?php } ?>
+
+
+            <?php if(isset($chyba)) { ?>
+                <span class="error"><?php echo $chyba; ?></span>
+            <?php } ?>
+
             <div>
                 <textarea name="message" maxlength="280" oninput="countChars()" id="message" class="message-textarea"  required><?php echo $message; ?></textarea>
                 <p class="count" id="charCount"></p>
             </div>
+
             <div>
                 <input type="submit" name="submit" class="mes-add" value="Ulož">
             </div>
-        <?php else: ?>
-            <span>No message ID specified.</span>
-        <?php endif; ?>
+
     </form>
 
 </div>

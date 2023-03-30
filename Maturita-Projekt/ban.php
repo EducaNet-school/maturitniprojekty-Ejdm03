@@ -4,7 +4,7 @@ include "connection.php";
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
+//cte data z db
 $id = $_POST['id'];
 $query = "SELECT id, firstname, surname, email, adminRole, Block FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $query);
@@ -21,8 +21,8 @@ if (isset($_POST["submit"])) {
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "si", $block, $id);
     mysqli_stmt_execute($stmt);
-
-    if (mysqli_affected_rows($conn) > 0) {
+//vysledek
+    if ($stmt) {
         $ok_message = "Změny proběhly v pořádku";
     } else{
         $error_message = "Něco se pokazilo";
@@ -38,7 +38,7 @@ mysqli_close($conn);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
+    <title>Blokace</title>
     <link rel="stylesheet" href="styltest.css">
 </head>
 <body class="edit-body">

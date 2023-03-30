@@ -44,3 +44,7 @@ CREATE TABLE `m2d`(
   FOREIGN KEY(id_d) REFERENCES denik(idd),
   FOREIGN KEY(id_m) REFERENCES messages(id_message)
 );
+
+
+
+
