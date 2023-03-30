@@ -21,6 +21,9 @@ if (isset($_POST["odeslat"])) {
     $sql = "INSERT INTO u2d (id_u, id_d) VALUES ('$id', '$id')";
     mysqli_query($conn, $sql);
 
+
+    setcookie("id_d",$id);
+
     // presmeruj to the denikDash.php
     header("Location: denikDash.php");
     exit;

@@ -77,7 +77,7 @@ if (mysqli_num_rows($res6) > 0) {
     $avg_messages_per_week = 0;
 }
 
-$sql7 = "SELECT COUNT(*) / (DATEDIFF(NOW(), MIN(date)) / 30) AS avg_messages_per_month FROM `messages`";
+$sql7 = "SELECT COUNT(*) / DATEDIFF(NOW(), MIN(date)) / 30 AS avg_messages_per_month FROM `messages`";
 $res7 = mysqli_query($conn, $sql7);
 
 if (mysqli_num_rows($res7) > 0) {
