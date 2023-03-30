@@ -1099,7 +1099,7 @@ input.mes-add:hover {
     background-color: #6d728a;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 700px;
+    height: auto;
     padding: 20px;
     width: 150px;
     text-align: center;
