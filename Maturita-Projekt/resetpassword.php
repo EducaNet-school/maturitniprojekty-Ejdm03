@@ -29,7 +29,7 @@ if (isset($_POST['reset'])) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = '';
+        $mail->Username = 'onlinedenicek@gmail.com';
         $mail->Password = '';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
