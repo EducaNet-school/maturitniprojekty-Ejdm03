@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="182f5fc4-85d3-47dd-bd59-425528209882" name="Changes" comment="" />
+    <list default="true" id="182f5fc4-85d3-47dd-bd59-425528209882" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Maturita-Projekt/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/Maturita-Projekt/connection.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +26,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Maturita-Projekt/AdminDashboard.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maturita-Projekt/connection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -124,6 +130,7 @@
       <workItem from="1680007157246" duration="530000" />
       <workItem from="1680071668786" duration="3892000" />
       <workItem from="1680092244983" duration="705000" />
+      <workItem from="1680220454136" duration="221000" />
     </task>
     <servers />
   </component>
