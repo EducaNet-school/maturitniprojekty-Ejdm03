@@ -1,7 +1,7 @@
 <?php
 // pripojeni do db
 $servername = "localhost:8889";
-$db = "onlined";
+$db = "onlined2";
 $username = "root";
 $password = "root";
 
